@@ -11,7 +11,7 @@ in
 {
   imports = [
     inputs.nixos-wsl.nixosModules.default
-    ../../modules/system.nix
+    ../../modules/system
     ../../modules/dev.nix
   ];
 

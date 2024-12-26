@@ -14,4 +14,15 @@
   ];
 
   users.defaultUserShell = pkgs.nushell;
+
+  home-manager.sharedModules = [
+    {
+      programs = {
+        nushell = {
+          enable = true;
+          configFile.source = ./nushell_config.nu;
+        };
+      };
+    }
+  ];
 }
