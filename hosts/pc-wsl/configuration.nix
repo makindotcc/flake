@@ -13,6 +13,7 @@ in
   imports = [
     inputs.nixos-wsl.nixosModules.default
     ../../modules/system
+    ../../modules/pc
     ../../modules/dev.nix
   ];
 

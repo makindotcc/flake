@@ -18,9 +18,19 @@
     git
     vim
     nushell
-    neofetch
     wget
     tmux
+    bat
+    file
+    ncdu
+    ouch
+    bottom
+    fastfetch
+    psmisc
+    doggo
+    inetutils
+    nmap
+    speedtest-go
   ];
 
   users.defaultUserShell = pkgs.nushell;
