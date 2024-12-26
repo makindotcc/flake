@@ -11,6 +11,7 @@
     nushell
     neofetch
     wget
+    tmux
   ];
 
   users.defaultUserShell = pkgs.nushell;
