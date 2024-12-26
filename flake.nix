@@ -7,16 +7,18 @@
     home-manager.url = "github:nix-community/home-manager/master";
   };
 
-  outputs = inputs @ { self, nixpkgs, ... }: {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/pc-wsl/configuration.nix
-        ];
+  outputs =
+    inputs@{ self, nixpkgs, ... }:
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/pc-wsl/configuration.nix
+          ];
+        };
+
       };
     };
-  };
 }
-

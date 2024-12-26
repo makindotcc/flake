@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
-    nixpkgs-fmt
+    nixfmt-rfc-style
     cargo
     gleam
     go
