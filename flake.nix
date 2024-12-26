@@ -11,7 +11,7 @@
     inputs@{ self, nixpkgs, ... }:
     {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        pc-wsl = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
