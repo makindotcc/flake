@@ -25,7 +25,7 @@ in
     package = pkgs.nix-ld-rs; # only for NixOS 24.05
   };
 
-  networking.hostName = "wsl";
+  networking.hostName = "pc-wsl";
 
   home-manager.users = {
     nixos = import ../../home/user/home.nix;
