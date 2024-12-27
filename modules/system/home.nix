@@ -8,5 +8,4 @@
       configFile.source = ./nushell_config.nu;
     };
   };
-  home.stateVersion = "24.05";
 }

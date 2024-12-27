@@ -13,9 +13,9 @@ in
   imports = [
     inputs.nixos-wsl.nixosModules.default
     ../../modules/system
-    ../../modules/pc
     ../../modules/dev.nix
   ];
+  home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
 
   wsl.enable = true;
   wsl.defaultUser = "nixos";
@@ -28,7 +28,7 @@ in
   networking.hostName = "pc-wsl";
 
   home-manager.users = {
-    nixos = import ../../home/user/home.nix;
+    nixos = import ../../users/user/home.nix;
   };
 
   system.stateVersion = stateVersion;
