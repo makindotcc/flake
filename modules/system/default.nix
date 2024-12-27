@@ -17,7 +17,6 @@
   environment.systemPackages = with pkgs; [
     git
     vim
-    nushell
     wget
     tmux
     bat
