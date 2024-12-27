@@ -23,7 +23,7 @@
     # social
     (telegram-desktop.override { withWebkit = false; })
     signal-desktop
-    # discord # huj wam w dupe ? ciezko zbumpowac wersje przegladarki ?
+    discord # huj wam w dupe ? ciezko zbumpowac wersje przegladarki ?
     vesktop
 
     # hakowanie na ekranie
@@ -31,6 +31,8 @@
     ida-free
     # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
     frida-tools
+
+    mullvad-vpn
   ];
 
   programs = {
@@ -57,9 +59,9 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = with pkgs; [
-    totem # "could not initialise opengl support" 😂😂😂 use clapper instead
-  ];
+  # environment.gnome.excludePackages = with pkgs; [
+  #   # totem # "could not initialise opengl support" 😂😂😂 use clapper instead
+  # ];
   services.xserver.xkb = {
     layout = "pl";
     variant = "";

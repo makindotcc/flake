@@ -7,9 +7,10 @@ in
     ./hardware-configuration.nix
     ../../modules/system
     ../../modules/pc
+    ../../modules/nvidia
+    ../../modules/gaming
     ../../modules/dev.nix
     ../../users/user
-    ../../modules/nvidia
   ];
   home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
 

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -35,4 +35,18 @@
   };
 
   hardware.graphics.enable = true;
+
+  hardware.opengl = {
+    enable = true;
+
+    # VA-API
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
+  };
+
+  boot.kernelParams = [ "module_blacklist=amdgpu" ];
+  boot.blacklistedKernelModules = [ "nouveau" ];
 }

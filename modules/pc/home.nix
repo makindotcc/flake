@@ -36,6 +36,23 @@
     };
   };
 
+  xdg.desktopEntries = {
+    vesktop = {
+      name = "vesktop";
+      exec = "vesktop --enable-accelerated-mjpeg-decode --enable-accelerated-video --ignore-gpu-blacklist --enable-native-gpu-memory-buffers --enable-gpu-rasterization";
+    };
+  };
+
+  programs.gnome-shell = {
+    enable = true;
+    extensions = with pkgs.gnomeExtensions; [
+      { package = appindicator; }
+      { package = caffeine; }
+      { package = media-progress; }
+      { package = rounded-window-corners-reborn; }
+      { package = window-is-ready-remover; }
+    ];
+  };
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";

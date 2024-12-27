@@ -17,5 +17,11 @@
     enable = true;
     extest.enable = true;
     protontricks.enable = true;
-  }
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraPackages = with pkgs; [
+      steamtinkerlaunch
+      winetricks
+    ];
+    gamescopeSession.enable = true;
+  };
 }
