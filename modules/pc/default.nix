@@ -57,12 +57,22 @@
     LC_TIME = "pl_PL.UTF-8";
   };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
   environment.gnome.excludePackages = with pkgs; [
     totem # "could not initialise opengl support" 😂😂😂 use clapper instead
   ];
+  environment.sessionVariables = {
+    # nicer font rendering
+    FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+    # wayland in (most) electron apps
+    NIXOS_OZONE_WL = "1";
+  };
+  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
+
   services.xserver.xkb = {
     layout = "pl";
     variant = "";
