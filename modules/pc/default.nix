@@ -11,6 +11,7 @@
 
     gparted
     mission-center
+    fsearch
 
     # media
     yt-dlp
