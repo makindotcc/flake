@@ -59,9 +59,9 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  # environment.gnome.excludePackages = with pkgs; [
-  #   # totem # "could not initialise opengl support" 😂😂😂 use clapper instead
-  # ];
+  environment.gnome.excludePackages = with pkgs; [
+    totem # "could not initialise opengl support" 😂😂😂 use clapper instead
+  ];
   services.xserver.xkb = {
     layout = "pl";
     variant = "";
