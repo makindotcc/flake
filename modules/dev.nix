@@ -7,5 +7,6 @@
     go
     jdk
     nodejs_23
+    gdb
   ];
 }
