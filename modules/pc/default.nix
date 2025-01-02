@@ -31,6 +31,7 @@
     signal-desktop
     discord # huj wam w dupe ? ciezko zbumpowac wersje przegladarki ?
     vesktop
+    slack
 
     # hakowanie na ekranie
     burpsuite
@@ -40,6 +41,7 @@
     vscode
 
     mullvad-vpn
+    parsec-bin
   ];
 
   programs = {

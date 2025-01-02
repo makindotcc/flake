@@ -10,6 +10,7 @@ in
     ../../modules/nvidia
     ../../modules/gaming
     ../../modules/dev.nix
+    ../../modules/docker.nix
     ../../users/user
   ];
   home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
