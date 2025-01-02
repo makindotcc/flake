@@ -13,6 +13,11 @@
     mission-center
     fsearch
 
+    eyedropper
+
+    gnome-tweaks
+    adw-gtk3
+
     # media
     yt-dlp
     ffmpeg_6-full
@@ -32,6 +37,7 @@
     ida-free
     # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
     frida-tools
+    vscode
 
     mullvad-vpn
   ];
@@ -72,6 +78,32 @@
     NIXOS_OZONE_WL = "1";
   };
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
+
+  fonts = {
+    enableDefaultPackages = true;
+    packages = [
+      inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
+      inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd
+      inputs.apple-fonts.packages.${pkgs.system}.ny-nerd
+    ];
+
+    fontconfig = {
+      defaultFonts = {
+        sansSerif = [
+          "SFRounded Nerd Font"
+        ];
+        serif = [
+          "SFRounded Nerd Font"
+        ];
+        monospace = [ "SFMono Nerd Font" ];
+      };
+    };
+  };
 
   services.xserver.xkb = {
     layout = "pl";

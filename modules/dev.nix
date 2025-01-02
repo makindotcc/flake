@@ -8,5 +8,8 @@
     jdk
     nodejs_23
     gdb
+    glib
+    gnumake
+    dconf2nix
   ];
 }

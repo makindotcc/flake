@@ -34,6 +34,11 @@
     speedtest-go
   ];
 
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
+
   users.defaultUserShell = pkgs.nushell;
   home-manager.sharedModules = [ (import ./home.nix) ];
   home-manager.useGlobalPkgs = true;

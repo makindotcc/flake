@@ -9,6 +9,7 @@
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
     };
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
   };
 
   outputs =
