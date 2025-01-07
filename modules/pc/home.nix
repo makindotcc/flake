@@ -85,6 +85,14 @@
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "flat";
     };
+    "org/gnome/shell" = {
+      favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "vesktop.desktop"
+        "org.telegram.desktop.desktop"
+        "firefox.desktop"
+      ];
+    };
     "org/gnome/shell/extensions/appindicator" = {
       icon-saturation = 1.0;
       legacy-tray-enabled = true;
