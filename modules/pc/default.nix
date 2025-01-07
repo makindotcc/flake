@@ -42,6 +42,8 @@
 
     mullvad-vpn
     parsec-bin
+
+    imagemagick # used by gnome extension "search light" for bg blur
   ];
 
   programs = {
@@ -49,7 +51,15 @@
     obs-studio.enable = true;
   };
 
-  home-manager.sharedModules = [ (import ./home.nix { inherit pkgs inputs; }) ];
+  home-manager.sharedModules = [
+    (
+      {
+        lib,
+        ...
+      }:
+      (import ./home.nix { inherit lib pkgs inputs; })
+    )
+  ];
 
   time.timeZone = "Europe/Warsaw";
   i18n.defaultLocale = "en_US.UTF-8";

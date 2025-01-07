@@ -1,4 +1,10 @@
-{ pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+with lib.hm.gvariant;
 {
   home.file.".mozilla/firefox/nix-user-profile/chrome/firefox-gnome-theme".source =
     inputs.firefox-gnome-theme;
@@ -46,7 +52,9 @@
       { package = media-progress; }
       { package = rounded-window-corners-reborn; }
       { package = window-is-ready-remover; }
-      # { package = blur-my-shell; }
+      { package = search-light; }
+      { package = blur-my-shell; }
+      { package = start-overlay-in-application-view; }
       {
         package = dash-to-panel.overrideAttrs (oldAttrs: {
           postInstall = ''
@@ -189,6 +197,96 @@
       tray-padding = 4;
       tray-size = 0;
       window-preview-title-position = "TOP";
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell" = {
+      settings-version = 2;
+    };
+    "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
+      brightness = 1.0;
+    };
+    "org/gnome/shell/extensions/blur-my-shell/applications" = {
+      blacklist = [
+        "Plank"
+        "com.desktop.ding"
+        "Conky"
+        "firefox"
+        "google-chrome"
+      ];
+      blur = true;
+      enable-all = false;
+      opacity = 250;
+      whitelist = [
+        "org.gnome.Extensions"
+        "org.gnome.Extensions"
+        "org.gnome.Settings"
+        "org.gnome.Console"
+      ];
+    };
+    "org/gnome/shell/extensions/blur-my-shell/coverflow-alt-tab" = {
+      pipeline = "pipeline_default";
+    };
+    "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+      pipeline = "pipeline_default_rounded";
+    };
+    "org/gnome/shell/extensions/blur-my-shell/dash-to-panel" = {
+      blur-original-panel = true;
+    };
+    "org/gnome/shell/extensions/blur-my-shell/lockscreen" = {
+      pipeline = "pipeline_default";
+    };
+    "org/gnome/shell/extensions/blur-my-shell/overview" = {
+      pipeline = "pipeline_default";
+    };
+    "org/gnome/shell/extensions/blur-my-shell/panel" = {
+      blur = true;
+      brightness = 1.0;
+      force-light-text = false;
+      override-background = false;
+      override-background-dynamically = true;
+      pipeline = "pipeline_default";
+      sigma = 19;
+      static-blur = false;
+      style-panel = 0;
+      unblur-in-overview = true;
+    };
+    "org/gnome/shell/extensions/blur-my-shell/screenshot" = {
+      pipeline = "pipeline_default";
+    };
+
+    "org/gnome/shell/extensions/search-light" = {
+      background-color = mkTuple [
+        0.0
+        0.0
+        0.0
+        0.78333336114883423
+      ];
+      blur-background = true;
+      blur-brightness = 0.6;
+      blur-sigma = 30.0;
+      border-color = mkTuple [
+        1.0
+        1.0
+        1.0
+        1.0
+      ];
+      border-radius = 2.3800000000000003;
+      currency-converter = false;
+      entry-font-size = 1;
+      monitor-count = 2;
+      popup-at-cursor-monitor = true;
+      preferred-monitor = 0;
+      scale-height = 0.2;
+      scale-width = 0.1;
+      shortcut-search = [ "<Control>space" ];
+      show-panel-icon = false;
+      window-effect = 0;
+      window-effect-color = mkTuple [
+        1.0
+        1.0
+        1.0
+        1.0
+      ];
     };
   };
 }
