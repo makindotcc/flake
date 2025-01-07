@@ -46,7 +46,7 @@
       { package = media-progress; }
       { package = rounded-window-corners-reborn; }
       { package = window-is-ready-remover; }
-      { package = blur-my-shell; }
+      # { package = blur-my-shell; }
       {
         package = dash-to-panel.overrideAttrs (oldAttrs: {
           postInstall = ''
