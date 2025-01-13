@@ -40,7 +40,6 @@
     frida-tools
     vscode
 
-    mullvad-vpn
     parsec-bin
 
     imagemagick # used by gnome extension "search light" for bg blur
@@ -49,6 +48,11 @@
   programs = {
     wavemon.enable = true;
     obs-studio.enable = true;
+  };
+
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
   };
 
   home-manager.sharedModules = [
