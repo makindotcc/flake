@@ -50,7 +50,11 @@ with lib.hm.gvariant;
       { package = appindicator; }
       { package = caffeine; }
       { package = media-progress; }
-      { package = rounded-window-corners-reborn; }
+      # causes extremely low screenshots quality
+      # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/7903
+      # https://github.com/flexagoon/rounded-window-corners/issues/36
+      # https://gitlab.gnome.org/GNOME/mutter/-/issues/3346
+      # { package = rounded-window-corners-reborn; }
       { package = window-is-ready-remover; }
       { package = search-light; }
       { package = blur-my-shell; }
