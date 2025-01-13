@@ -284,7 +284,7 @@ with lib.hm.gvariant;
       preferred-monitor = 0;
       scale-height = 0.2;
       scale-width = 0.1;
-      shortcut-search = [ "<Control>space" ];
+      shortcut-search = [ "<Shift>space" ];
       show-panel-icon = false;
       window-effect = 0;
       window-effect-color = mkTuple [
