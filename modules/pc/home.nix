@@ -47,31 +47,38 @@ with lib.hm.gvariant;
 
   programs.gnome-shell = {
     enable = true;
-    extensions = with pkgs.gnomeExtensions; [
-      { package = appindicator; }
-      { package = caffeine; }
-      { package = media-progress; }
-      # causes extremely low screenshots quality
-      # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/7903
-      # https://github.com/flexagoon/rounded-window-corners/issues/36
-      # https://gitlab.gnome.org/GNOME/mutter/-/issues/3346
-      # { package = rounded-window-corners-reborn; }
-      { package = window-is-ready-remover; }
-      { package = search-light; }
-      { package = blur-my-shell; }
-      { package = start-overlay-in-application-view; }
-      # { package = airpod-battery-monitor; } # doesn't work
-      {
-        package = dash-to-panel.overrideAttrs (oldAttrs: {
-          postInstall = ''
-            ${oldAttrs.postInstall or ""}
-            rm -rf $out/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com
-            ln -s /home/user/Documents/dev/dash-to-panel/ $out/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com
-            touch $out/share/gnome-shell/extensions/kurczeasf4.txt
-          '';
-        });
-      }
-    ];
+    extensions =
+      (with pkgs.gnomeExtensions; [
+        { package = appindicator; }
+        { package = caffeine; }
+        { package = media-progress; }
+        # causes extremely low screenshots quality
+        # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/7903
+        # https://github.com/flexagoon/rounded-window-corners/issues/36
+        # https://gitlab.gnome.org/GNOME/mutter/-/issues/3346
+        # { package = rounded-window-corners-reborn; }
+        { package = window-is-ready-remover; }
+        { package = search-light; }
+        { package = blur-my-shell; }
+        { package = start-overlay-in-application-view; }
+        # { package = airpod-battery-monitor; } # doesn't work
+        # development
+        # {
+        #   package = dash-to-panel.overrideAttrs (oldAttrs: {
+        #     postInstall = ''
+        #       ${oldAttrs.postInstall or ""}
+        #       rm -rf $out/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com
+        #       ln -s /home/user/Documents/dev/dash-to-panel/ $out/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com
+        #       touch $out/share/gnome-shell/extensions/kurczeasf4.txt
+        #     '';
+        #   });
+        # }
+      ])
+      ++ [
+        {
+          package = inputs.dash-to-panel-win11.packages.${pkgs.system}.default;
+        }
+      ];
   };
   dconf.settings = {
     "org/gnome/desktop/interface" = {

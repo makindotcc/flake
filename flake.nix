@@ -11,6 +11,7 @@
       flake = false;
     };
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/flake";
   };
 
   outputs =
