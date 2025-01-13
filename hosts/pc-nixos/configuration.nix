@@ -39,6 +39,14 @@ in
     }
   ];
 
+  services.openssh = {
+    enable = true;
+    ports = [ 2135 ];
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+    settings.PermitRootLogin = "no";
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
