@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager.url = "github:nix-community/home-manager/master";
     firefox-gnome-theme = {
@@ -13,28 +14,44 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, ... }:
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-master,
+      ...
+    }:
+    let
+      additionalArgs =
+        { system }:
+        {
+          inherit inputs;
+          pkgs-master = import nixpkgs-master {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+    in
     {
       nixosConfigurations = {
-        pc-nixos = nixpkgs.lib.nixosSystem {
+        pc-nixos = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = additionalArgs { inherit system; };
           modules = [
             ./hosts/pc-nixos/configuration.nix
           ];
         };
 
-        pc-wsl = nixpkgs.lib.nixosSystem {
+        pc-wsl = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = additionalArgs { inherit system; };
           modules = [
             ./hosts/pc-wsl/configuration.nix
           ];
         };
 
-        vmware-nix = nixpkgs.lib.nixosSystem {
+        vmware-nix = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = additionalArgs { inherit system; };
           modules = [
             ./hosts/vmware-nix/configuration.nix
           ];

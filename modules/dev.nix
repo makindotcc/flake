@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-master, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages =
+    (with pkgs; [
     nixfmt-rfc-style
     cargo
     gleam
@@ -11,5 +12,8 @@
     glib
     gnumake
     dconf2nix
-  ];
+    ])
+    ++ (with pkgs-master; [
+      opam
+    ]);
 }
