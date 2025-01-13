@@ -1,38 +1,18 @@
 { config, pkgs, ... }:
 {
-  # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-    # Modesetting is required.
     modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
     powerManagement.enable = true;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = true;
-
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
+
+  # BRAWO KURWA BRAWO UKRYTE MENU BY NAPRAWIC SLEEPA
+  systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
 
   hardware.graphics = {
     enable = true;
@@ -45,11 +25,26 @@
     ];
   };
 
-  nixpkgs.config.cudaSupport = true;
-
-  boot.kernelParams = [ "module_blacklist=amdgpu" ];
+  boot.kernelParams = [
+    "module_blacklist=amdgpu"
+    "mem_sleep_default=deep"
+  ];
   boot.blacklistedKernelModules = [
     "nouveau"
     "amdgpu"
   ];
 }
+
+# testy (kernel 6.12.8):
+# 565.77:
+#  - powerManagement.enable = true; open = true; == po win + L miga minitor na kazdy kolor
+#  - powerManagement.enable = false; open = true; == NIE MA TAPETY NIE MA IKONEK NIE MA NICZEGO ?
+#  - powerManagement.enable = false; open = false; == NIE MA TAPETY NIE MA IKONEK NIE MA NICZEGO ?
+#  - powerManagement.enable = true; open = false; == odpala sie do verbose po suspendzie
+# 550.142:
+#  - powerManagement.enable = false; open = false; == NIE MA TAPETY NIE MA IKONEK NIE MA NICZEGO ?
+#  - powerManagement.enable = true; open = false; == odpala sie do verbose po suspendzie
+#  - powerManagement.enable = true; open = true; == wgl nie ma obrazu i essa
+#  - powerManagement.enable = false; open = true; == NIE MA TAPETY NIE MA IKONEK NIE MA NICZEGO ?
+# 565.77 + NVreg_PreserveVideoMemoryAllocations=1:
+#  - powerManagement.enable = false; open = true; == NIE MA TAPETY NIE MA IKONEK NIE MA NICZEGO ?
