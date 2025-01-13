@@ -23,6 +23,7 @@
     ffmpeg_6-full
     krita
     clapper
+    spotify
 
     google-chrome
 
@@ -40,7 +41,9 @@
     frida-tools
     vscode
 
+    mongodb-compass
     parsec-bin
+    ngrok
 
     imagemagick # used by gnome extension "search light" for bg blur
   ];
