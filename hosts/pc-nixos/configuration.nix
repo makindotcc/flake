@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   stateVersion = "24.11";
 in
@@ -11,6 +15,7 @@ in
     ../../modules/gaming
     ../../modules/dev.nix
     ../../modules/docker.nix
+    ../../modules/usb-wakeup-disable.nix
     ../../users/user
   ];
   home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
@@ -20,6 +25,19 @@ in
   ];
 
   networking.hostName = "pc-nixos";
+
+  hardware.usb.wakeupDisabled = [
+    {
+      # logitech g pro superlight
+      vendor = "046d";
+      product = "c547";
+    }
+    {
+      # Apple, Inc. Apple Watch Magnetic Charging Cable
+      vendor = "05ac";
+      product = "0503";
+    }
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
