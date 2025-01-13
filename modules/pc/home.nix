@@ -21,6 +21,7 @@ with lib.hm.gvariant;
     #   userSettings = builtins.fromJSON (builtins.readFile ./config/vscode-userSettings.json);
     # };
     nushell = {
+      enable = true;
       shellAliases = {
         nixcfg = "code ~/.config/nix";
       };
