@@ -60,6 +60,7 @@ with lib.hm.gvariant;
       { package = search-light; }
       { package = blur-my-shell; }
       { package = start-overlay-in-application-view; }
+      # { package = airpod-battery-monitor; } # doesn't work
       {
         package = dash-to-panel.overrideAttrs (oldAttrs: {
           postInstall = ''
@@ -293,5 +294,10 @@ with lib.hm.gvariant;
         1.0
       ];
     };
+
+    # not working, needs fix.
+    # "org/gnome/shell/extensions/Airpod-Battery-Monitor" = {
+    #   gui-interface = true;
+    # };
   };
 }
