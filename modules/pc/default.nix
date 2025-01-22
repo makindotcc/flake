@@ -4,6 +4,11 @@
   ...
 }:
 {
+  imports = [
+    ./programs/sublime.nix
+    ./programs/vmware.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     # hw monitoring tools
     usbutils
@@ -39,7 +44,11 @@
     ida-free
     # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
     frida-tools
+    jadx
     vscode
+    jetbrains.idea-community
+
+    ghostty
 
     mongodb-compass
     parsec-bin
