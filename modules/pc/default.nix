@@ -109,6 +109,7 @@
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
       inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd
       inputs.apple-fonts.packages.${pkgs.system}.ny-nerd
+      pkgs.comic-mono
     ];
 
     fontconfig = {
