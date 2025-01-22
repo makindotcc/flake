@@ -29,14 +29,14 @@ with lib.hm.gvariant;
     firefox = {
       enable = true;
       profiles.default = {
-        userChrome = ''
-          @import "${inputs.firefox-gnome-theme}/userChrome.css";
-        '';
-        userContent = ''
-          @import "${inputs.firefox-gnome-theme}/userContent.css";
-        '';
+        # userChrome = ''
+        #   @import "${inputs.firefox-gnome-theme}/userChrome.css";
+        # '';
+        # userContent = ''
+        #   @import "${inputs.firefox-gnome-theme}/userContent.css";
+        # '';
         settings = {
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = false;
           "browser.uidensity" = 0;
           "svg.context-properties.content.enabled" = true;
           "browser.theme.dark-private-windows" = false;
