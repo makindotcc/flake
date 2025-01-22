@@ -177,7 +177,7 @@ with lib.hm.gvariant;
         {"0":"BOTTOM"}
       '';
       panel-sizes = ''
-        {"0":40,"1":48}
+        {"0":40,"1":44}
       '';
       preview-custom-opacity = 80;
       preview-use-custom-opacity = true;
@@ -267,6 +267,15 @@ with lib.hm.gvariant;
       pipeline = "pipeline_default";
     };
 
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-input-source = [ "<Super>k" ]; # rebind default <Super>space to search-light
+
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
+      switch-window = [ "<Alt>Tab" ];
+      switch-window-backward = [ "<Shift><Alt>Tab" ];
+    };
+
     "org/gnome/shell/extensions/search-light" = {
       background-color = mkTuple [
         0.0
@@ -291,7 +300,7 @@ with lib.hm.gvariant;
       preferred-monitor = 0;
       scale-height = 0.2;
       scale-width = 0.1;
-      shortcut-search = [ "<Shift>space" ];
+      shortcut-search = [ "<Super>space" ];
       show-panel-icon = false;
       window-effect = 0;
       window-effect-color = mkTuple [
@@ -300,6 +309,10 @@ with lib.hm.gvariant;
         1.0
         1.0
       ];
+    };
+
+    "org/gnome/desktop/session" = {
+      idle-delay = 900;
     };
 
     # not working, needs fix.
