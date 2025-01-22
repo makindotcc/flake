@@ -40,6 +40,10 @@
   ];
 
   users.defaultUserShell = pkgs.nushell;
+  environment.shells = [
+    pkgs.nushell
+  ];
+
   home-manager.sharedModules = [ (import ./home.nix) ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
