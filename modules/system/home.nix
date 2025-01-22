@@ -8,4 +8,6 @@
       configFile.source = ./nushell_config.nu;
     };
   };
+
+  services.pueue.enable = true;
 }
