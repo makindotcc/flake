@@ -1,4 +1,9 @@
-{ pkgs, pkgs-master, ... }:
+{
+  inputs,
+  pkgs,
+  pkgs-master,
+  ...
+}:
 {
   environment.systemPackages =
     (with pkgs; [
@@ -29,7 +34,10 @@
     ])
     ++ (with pkgs-master; [
       opam
-    ]);
+    ])
+    ++ [
+      inputs.kobweb.packages.default
+    ];
 
   environment.sessionVariables = {
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
