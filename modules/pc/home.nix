@@ -274,6 +274,8 @@ with lib.hm.gvariant;
       switch-applications-backward = [ ];
       switch-window = [ "<Alt>Tab" ];
       switch-window-backward = [ "<Shift><Alt>Tab" ];
+
+      show-screenshot-ui = [ "<Control><Super>s" ];
     };
 
     "org/gnome/shell/extensions/search-light" = {
