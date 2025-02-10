@@ -44,7 +44,7 @@
     ida-free
     # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
     frida-tools
-    jadx
+    # jadx
     vscode
     jetbrains.idea-community
 
