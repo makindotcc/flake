@@ -60,7 +60,7 @@ with lib.hm.gvariant;
         # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/7903
         # https://github.com/flexagoon/rounded-window-corners/issues/36
         # https://gitlab.gnome.org/GNOME/mutter/-/issues/3346
-        # { package = rounded-window-corners-reborn; }
+        { package = rounded-window-corners-reborn; }
         { package = window-is-ready-remover; }
         { package = search-light; }
         { package = blur-my-shell; }
@@ -104,8 +104,7 @@ with lib.hm.gvariant;
       button-layout = "appmenu:minimize,maximize,close";
     };
     "org/gnome/mutter" = {
-      edge-tiling = true;
-      experimental-features = [ "scale-monitor-framebuffer" ];
+      edge-tiling = false;
     };
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "flat";
@@ -113,7 +112,7 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
-        "vesktop.desktop"
+        "discord.desktop"
         "org.telegram.desktop.desktop"
         "firefox.desktop"
       ];
@@ -315,10 +314,6 @@ with lib.hm.gvariant;
         1.0
         1.0
       ];
-    };
-
-    "org/gnome/desktop/session" = {
-      idle-delay = 900;
     };
 
     # not working, needs fix.

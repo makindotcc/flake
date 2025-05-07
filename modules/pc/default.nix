@@ -6,7 +6,8 @@
 {
   imports = [
     ./programs/sublime.nix
-    ./programs/vmware.nix
+    # congratulations you so braave and gatekeeped installer behind login page
+    # ./programs/vmware.nix
     ./localcerts.nix
     ../downloadram.nix
   ];

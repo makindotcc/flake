@@ -18,7 +18,7 @@
       gleam
       go
       jdk
-      nodejs_23
+      nodejs_24
       gdb
       glib
       gnumake
