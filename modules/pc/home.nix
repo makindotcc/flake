@@ -6,6 +6,10 @@
 }:
 with lib.hm.gvariant;
 {
+  imports = [
+    ./xdg.nix
+  ];
+
   home.file.".mozilla/firefox/nix-user-profile/chrome/firefox-gnome-theme".source =
     inputs.firefox-gnome-theme;
 

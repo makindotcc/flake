@@ -7,6 +7,8 @@
   imports = [
     ./programs/sublime.nix
     ./programs/vmware.nix
+    ./localcerts.nix
+    ../downloadram.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -46,7 +48,7 @@
     frida-tools
     # jadx
     vscode
-    jetbrains.idea-community
+    jetbrains.idea-community-bin
 
     ghostty
 
@@ -55,11 +57,18 @@
     ngrok
 
     imagemagick # used by gnome extension "search light" for bg blur
+
+    gnome-screenshot
   ];
 
   programs = {
     wavemon.enable = true;
     obs-studio.enable = true;
+  };
+
+  services.scx = {
+    enable = true;
+    scheduler = "scx_bpfland";
   };
 
   services.mullvad-vpn = {
@@ -96,9 +105,11 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
+
   environment.gnome.excludePackages = with pkgs; [
     totem # "could not initialise opengl support" 😂😂😂 use clapper instead
   ];
+
   environment.sessionVariables = {
     # nicer font rendering
     FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
