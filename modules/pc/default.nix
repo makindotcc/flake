@@ -130,6 +130,7 @@
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
       inputs.apple-fonts.packages.${pkgs.system}.sf-mono-nerd
       inputs.apple-fonts.packages.${pkgs.system}.ny-nerd
+      inputs.apple-emoji-linux.packages.${pkgs.system}.apple-emoji-linux
       pkgs.comic-mono
     ];
 
@@ -142,6 +143,7 @@
           "SFRounded Nerd Font"
         ];
         monospace = [ "SFMono Nerd Font" ];
+        emoji = [ "Apple Color Emoji" ];
       };
     };
   };
