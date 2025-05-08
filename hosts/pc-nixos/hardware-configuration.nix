@@ -14,6 +14,14 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  boot.kernelModules = [
+    "kvm-amd"
+    "nct6775"
+  ];
+  boot.extraModprobeConfig = ''
+    options nct6775 force_id=0xd420
+  '';
+  boot.initrd.kernelModules = [ "nct6775" ];
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -22,8 +30,6 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
