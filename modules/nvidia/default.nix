@@ -6,6 +6,7 @@
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;
+    # open = false;
     open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
@@ -28,6 +29,7 @@
   boot.kernelParams = [
     "module_blacklist=amdgpu"
     "mem_sleep_default=deep"
+    # "nvidia.NVreg_EnableGpuFirmware=0"
   ];
   boot.blacklistedKernelModules = [
     "nouveau"

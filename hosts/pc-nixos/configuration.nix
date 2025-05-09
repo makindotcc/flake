@@ -11,6 +11,7 @@ in
     ./hardware-configuration.nix
     ../../modules/system
     ../../modules/pc
+    ../../modules/gnome
     ../../modules/nvidia
     ../../modules/gaming
     ../../modules/dev.nix
