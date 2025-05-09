@@ -68,14 +68,14 @@ with lib.hm.gvariant;
         # { package = airpod-battery-monitor; } # doesn't work
         # development
         # {
-        #   package = dash-to-panel.overrideAttrs (oldAttrs: {
-        #     postInstall = ''
-        #       ${oldAttrs.postInstall or ""}
-        #       rm -rf $out/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com
-        #       ln -s /home/user/Documents/dev/dash-to-panel/ $out/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com
-        #       touch $out/share/gnome-shell/extensions/kurczeasf4.txt
-        #     '';
-        #   });
+        # package = inputs.dash-to-panel-win11.packages.${pkgs.system}.default.overrideAttrs (oldAttrs: {
+        #   postInstall = ''
+        #     ${oldAttrs.postInstall or ""}
+        #     rm -rf $out/share/gnome-shell/extensions/dash-to-panel@makindotcc.github.com
+        #     ln -s /home/user/Documents/dev/dash-to-panel/ $out/share/gnome-shell/extensions/dash-to-panel@makindotcc.github.com
+        #     touch $out/share/gnome-shell/extensions/kurczeasf45.txt
+        #   '';
+        # });
         # }
       ])
       ++ [
