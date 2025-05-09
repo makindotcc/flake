@@ -135,6 +135,7 @@
     ];
 
     fontconfig = {
+      enable = true;
       defaultFonts = {
         sansSerif = [
           "SFRounded Nerd Font"
@@ -145,6 +146,7 @@
         monospace = [ "SFMono Nerd Font" ];
         emoji = [ "Apple Color Emoji" ];
       };
+      useEmbeddedBitmaps = true;
     };
   };
 
