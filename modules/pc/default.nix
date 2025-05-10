@@ -31,6 +31,7 @@
     krita
     clapper
     spotify
+    amberol
 
     google-chrome
 

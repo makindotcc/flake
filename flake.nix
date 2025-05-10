@@ -13,6 +13,14 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
+    mutter-triple-buffering-src = {
+      url = "gitlab:vanvugt/mutter?ref=triple-buffering-v4-47&host=gitlab.gnome.org";
+      flake = false;
+    };
+    gvdb-src = {
+      url = "gitlab:GNOME/gvdb?ref=main&host=gitlab.gnome.org";
+      flake = false;
+    };
   };
 
   outputs =

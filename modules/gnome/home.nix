@@ -233,10 +233,13 @@ with lib.hm.gvariant;
 
       switch-applications = [ ];
       switch-applications-backward = [ ];
-      switch-window = [ "<Alt>Tab" ];
-      switch-window-backward = [ "<Shift><Alt>Tab" ];
+      switch-windows = [ "<Alt>Tab" ];
+      switch-windows-backward = [ "<Shift><Alt>Tab" ];
+    };
 
+    "org/gnome/shell/keybindings" = {
       show-screenshot-ui = [ "<Control><Super>s" ];
+      screenshot-window = [ "<Shift><Control><Super>s" ];
     };
 
     "org/gnome/shell/extensions/search-light" = {
