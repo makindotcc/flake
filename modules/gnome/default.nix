@@ -45,7 +45,9 @@
   environment.systemPackages = with pkgs; [
     gnome-tweaks
     gnome-screenshot
+    egl-wayland
   ];
+
   home-manager.sharedModules = [
     (
       {

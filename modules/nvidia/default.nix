@@ -9,7 +9,7 @@
     open = false;
     # open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # BRAWO KURWA BRAWO UKRYTE MENU BY NAPRAWIC SLEEPA
@@ -17,6 +17,8 @@
 
   hardware.graphics = {
     enable = true;
+
+    enable32Bit = true;
 
     # VA-API
     extraPackages = with pkgs; [
