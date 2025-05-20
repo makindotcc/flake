@@ -13,7 +13,8 @@
     ../downloadram.nix
   ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages =
+    (with pkgs; [
     # hw monitoring tools
     usbutils
     pciutils
