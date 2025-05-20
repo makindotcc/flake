@@ -6,6 +6,10 @@
 }:
 with lib.hm.gvariant;
 {
+  import = [
+    ./powerManagement.nix
+  ];
+
   programs.gnome-shell = {
     enable = true;
     extensions =

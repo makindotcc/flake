@@ -1,7 +1,5 @@
 { ... }:
 {
-  imports = [ ./dconf.nix ];
-
   programs = {
     git.enable = true;
     home-manager.enable = true;
