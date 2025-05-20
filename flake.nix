@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager.url = "github:nix-community/home-manager/master";
     firefox-gnome-theme = {
@@ -13,10 +13,6 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
-    mutter-triple-buffering-src = {
-      url = "gitlab:vanvugt/mutter?ref=triple-buffering-v4-47&host=gitlab.gnome.org";
-      flake = false;
-    };
     gvdb-src = {
       url = "gitlab:GNOME/gvdb?ref=main&host=gitlab.gnome.org";
       flake = false;
@@ -27,7 +23,7 @@
     inputs@{
       self,
       nixpkgs,
-      nixpkgs-master,
+      nixpkgs-stable,
       ...
     }:
     let
@@ -35,7 +31,7 @@
         { system }:
         {
           inherit inputs;
-          pkgs-master = import nixpkgs-master {
+          pkgs-stable = import nixpkgs-stable {
             inherit system;
             config.allowUnfree = true;
           };
