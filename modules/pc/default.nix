@@ -66,7 +66,14 @@
 
   programs = {
     wavemon.enable = true;
-    obs-studio.enable = true;
+    obs-studio = {
+      enable = true;
+      package = (
+        pkgs.obs-studio.override {
+          cudaSupport = true;
+        }
+      );
+    };
   };
 
   services.scx = {
