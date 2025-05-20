@@ -217,13 +217,13 @@ with lib.hm.gvariant;
       pipeline = "pipeline_default";
     };
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
-      blur = true;
-      brightness = 1.0;
+      blur = false;
+      brightness = 0.9;
       force-light-text = false;
       override-background = false;
       override-background-dynamically = true;
       pipeline = "pipeline_default";
-      sigma = 19;
+      sigma = 90;
       static-blur = false;
       style-panel = 0;
       unblur-in-overview = true;
