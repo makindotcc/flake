@@ -15,50 +15,50 @@
 
   environment.systemPackages =
     (with pkgs; [
-    # hw monitoring tools
-    usbutils
-    pciutils
+      # hw monitoring tools
+      usbutils
+      pciutils
 
-    gparted
-    mission-center
-    fsearch
+      gparted
+      mission-center
+      fsearch
 
-    eyedropper
+      eyedropper
 
-    adw-gtk3
+      adw-gtk3
 
-    # media
-    yt-dlp
-    ffmpeg_6-full
-    krita
-    spotify
-    amberol
+      # media
+      yt-dlp
+      ffmpeg_6-full
+      krita
+      spotify
+      amberol
 
-    google-chrome
+      google-chrome
 
-    # social
-    (telegram-desktop.override { withWebkit = false; })
-    signal-desktop
-    discord # huj wam w dupe ? ciezko zbumpowac wersje przegladarki ?
-    vesktop
-    slack
+      # social
+      (telegram-desktop.override { withWebkit = false; })
+      signal-desktop
+      discord # huj wam w dupe ? ciezko zbumpowac wersje przegladarki ?
+      vesktop
+      slack
 
-    # hakowanie na ekranie
-    burpsuite
-    ida-free
-    # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
-    frida-tools
-    # jadx
+      # hakowanie na ekranie
+      burpsuite
+      ida-free
+      # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
+      frida-tools
+      # jadx
       vscode.fhs
-    jetbrains.idea-community-bin
+      jetbrains.idea-community-bin
 
-    ghostty
+      ghostty
 
-    mongodb-compass
-    parsec-bin
-    ngrok
+      mongodb-compass
+      parsec-bin
+      ngrok
 
-    imagemagick # used by gnome extension "search light" for bg blur
+      imagemagick # used by gnome extension "search light" for bg blur
     ])
     ++ (with pkgs-stable; [
       clapper
@@ -74,6 +74,7 @@
         }
       );
     };
+    wireshark.enable = true;
   };
 
   services.scx = {
