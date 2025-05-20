@@ -30,7 +30,6 @@
     yt-dlp
     ffmpeg_6-full
     krita
-    clapper
     spotify
     amberol
 
