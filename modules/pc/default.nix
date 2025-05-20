@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   inputs,
   ...
 }:
@@ -58,7 +59,10 @@
     ngrok
 
     imagemagick # used by gnome extension "search light" for bg blur
-  ];
+    ])
+    ++ (with pkgs-stable; [
+      clapper
+    ]);
 
   programs = {
     wavemon.enable = true;
