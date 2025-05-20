@@ -1,15 +1,14 @@
 { config, pkgs, ... }:
 {
-  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.enableRedistributableFirmware = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
     open = false;
-    # open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
   # BRAWO KURWA BRAWO UKRYTE MENU BY NAPRAWIC SLEEPA
@@ -17,12 +16,11 @@
 
   hardware.graphics = {
     enable = true;
-
     enable32Bit = true;
 
-    # VA-API
     extraPackages = with pkgs; [
       vaapiVdpau
+      libvdpau
       libvdpau-va-gl
       nvidia-vaapi-driver
     ];
@@ -30,13 +28,18 @@
 
   boot.kernelParams = [
     "module_blacklist=amdgpu"
-    "mem_sleep_default=deep"
     "nvidia.NVreg_EnableGpuFirmware=0"
   ];
-  boot.blacklistedKernelModules = [
-    "nouveau"
-    "amdgpu"
-  ];
+
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+
+    screenSection = ''
+      Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+      Option         "AllowIndirectGLXProtocol" "off"
+      Option         "TripleBuffer" "on"
+    '';
+  };
 }
 
 # testy (kernel 6.12.8):
