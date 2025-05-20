@@ -49,7 +49,7 @@
     # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
     frida-tools
     # jadx
-    vscode
+      vscode.fhs
     jetbrains.idea-community-bin
 
     ghostty
