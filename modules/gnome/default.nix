@@ -4,17 +4,6 @@
   ...
 }:
 {
-  nixpkgs.overlays = [
-    (final: prev: {
-      mutter = prev.mutter.overrideAttrs (old: {
-        src = inputs.mutter-triple-buffering-src;
-        preConfigure = ''
-          cp -a "${inputs.gvdb-src}" ./subprojects/gvdb
-        '';
-      });
-    })
-  ];
-
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
