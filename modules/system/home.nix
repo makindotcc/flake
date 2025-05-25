@@ -7,7 +7,10 @@
       enable = true;
       configFile.source = ./nushell/config.nu;
     };
+    zsh.enable = true;
   };
 
   services.pueue.enable = true;
+
+  home.shell.enableNushellIntegration = true;
 }

@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    ../downloadram.nix
   ];
 
   nix.settings.experimental-features = [

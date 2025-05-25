@@ -10,11 +10,12 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
+    ../../modules/desktop
     ../../modules/pc
-    ../../modules/gnome
-    ../../modules/nvidia
-    ../../modules/gaming
-    ../../modules/dev.nix
+    ../../modules/de/gnome
+    ../../modules/nvidia.nix
+    ../../modules/gaming.nix
+    ../../modules/dev
     ../../modules/docker.nix
     ../../modules/usb-wakeup-disable.nix
     ../../users/user
@@ -23,6 +24,9 @@ in
 
   environment.systemPackages = with pkgs; [
     veracrypt
+    (ollama.override {
+      acceleration = "cuda";
+    })
   ];
 
   networking.hostName = "pc-nixos";

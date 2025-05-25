@@ -4,6 +4,11 @@
   ...
 }:
 {
+
+  imports = [
+    ./power-management.nix
+  ];
+
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;

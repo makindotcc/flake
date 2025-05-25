@@ -12,6 +12,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
+    ../../modules/desktop
     ../../modules/pc
     ../../modules/dev.nix
     ../../users/user

@@ -1,9 +1,14 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }:
 {
+  imports = [
+    ./localcerts.nix
+  ];
+
   environment.systemPackages = (
     with pkgs;
     [
@@ -20,9 +25,11 @@
       jdk
       nodejs_24
       gdb
+      lldb
       glib
       gnumake
       dconf2nix
+      lld
 
       erlang
       rebar3
@@ -31,6 +38,17 @@
 
       pkg-config
       openssl
+
+      # hakowanie na ekranie
+      burpsuite
+      ida-free
+      # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
+      frida-tools
+      # jadx
+      vscode
+      jetbrains.idea-community-bin
+
+      inotify-tools
     ]
   );
 
@@ -39,10 +57,8 @@
     RUST_SRC_PATH = pkgs.rust.packages.stable.rustPlatform.rustLibSrc;
   };
 
-  # dziala to wgl ?
   home-manager.sharedModules = [
-    {
-      home.sessionPath = [ "$HOME/.cargo/bin" ];
-    }
+    (lib.withEnvPath "~/.cargo/bin")
+    ./home.nix
   ];
 }

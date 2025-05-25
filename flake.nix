@@ -13,10 +13,7 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
-    gvdb-src = {
-      url = "gitlab:GNOME/gvdb?ref=main&host=gitlab.gnome.org";
-      flake = false;
-    };
+    urldebloater.url = "github:makindotcc/urldebloater";
   };
 
   outputs =
@@ -35,6 +32,8 @@
             inherit system;
             config.allowUnfree = true;
           };
+
+          lib = nixpkgs.lib // import ./lib { };
         };
     in
     {

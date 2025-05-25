@@ -6,10 +6,6 @@
 }:
 with lib.hm.gvariant;
 {
-  import = [
-    ./powerManagement.nix
-  ];
-
   programs.gnome-shell = {
     enable = true;
     extensions =
@@ -67,6 +63,7 @@ with lib.hm.gvariant;
     };
     "org/gnome/mutter" = {
       edge-tiling = false;
+      experimental-features = [ "scale-monitor-framebuffer" ];
     };
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "flat";
