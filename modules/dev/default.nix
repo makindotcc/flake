@@ -15,6 +15,7 @@
       nixfmt-rfc-style
 
       rustc
+      rustup
       cargo
       clippy
       rustfmt
