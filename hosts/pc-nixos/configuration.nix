@@ -9,19 +9,18 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system
-    ../../modules/desktop
-    ../../modules/pc
-    ../../modules/de/gnome
-    ../../modules/nvidia.nix
-    ../../modules/gaming.nix
+    ../../roles/physical
     ../../modules/dev
-    ../../modules/docker.nix
-    ../../modules/usb-wakeup-disable.nix
+    ../../modules/gaming.nix
     ../../modules/wine.nix
     ../../users/user
+
+    ./localcerts.nix
   ];
-  home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
+
+  dev.full = true;
+
+  virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
     veracrypt
@@ -29,22 +28,10 @@ in
     (ollama.override {
       acceleration = "cuda";
     })
+    ngrok
   ];
 
   networking.hostName = "pc-nixos";
-
-  hardware.usb.wakeupDisabled = [
-    {
-      # logitech g pro superlight
-      vendor = "046d";
-      product = "c547";
-    }
-    {
-      # Apple, Inc. Apple Watch Magnetic Charging Cable
-      vendor = "05ac";
-      product = "0503";
-    }
-  ];
 
   services.openssh = {
     enable = true;
@@ -53,6 +40,8 @@ in
     settings.KbdInteractiveAuthentication = false;
     settings.PermitRootLogin = "no";
   };
+
+  home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

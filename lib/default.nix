@@ -1,4 +1,4 @@
-_: {
+_: _: {
   withEnvPath = path: {
     programs.nushell.extraEnv = ''
       $env.PATH ++= [ "${path}" ];

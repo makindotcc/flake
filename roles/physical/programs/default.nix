@@ -1,14 +1,14 @@
 {
+  config,
+  lib,
   pkgs,
-  inputs,
   ...
 }:
 {
   imports = [
-    ./programs/urldebloater.nix
-    # congratulations you so braave and gatekeeped installer behind login page
-    # ./programs/vmware.nix
-    ./programs/kde-connect.nix
+    ./sublime.nix
+    ./urldebloater.nix
+    ./kde-connect.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -34,7 +34,8 @@
     slack
 
     parsec-bin
-    ngrok
+
+    google-chrome
   ];
 
   programs = {
@@ -49,17 +50,11 @@
     wireshark.enable = true;
   };
 
-  services.scx = {
-    enable = true;
-    scheduler = "scx_bpfland";
-  };
-
   services.mullvad-vpn = {
     enable = true;
     package = pkgs.mullvad-vpn;
   };
 
-  home-manager.sharedModules = [
-    ./xdg.nix
-  ];
+  # congratulations you so braave and gatekeeped installer behind login page corporation final boss
+  # virtualisation.vmware.host.enable = true;
 }

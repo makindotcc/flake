@@ -33,7 +33,7 @@
             config.allowUnfree = true;
           };
 
-          lib = nixpkgs.lib // import ./lib { };
+          lib = nixpkgs.lib.extend (import ./lib);
         };
     in
     {

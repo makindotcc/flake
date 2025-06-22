@@ -3,65 +3,21 @@
   pkgs,
   pkgs-stable,
   lib,
+  config,
   ...
 }:
 {
   imports = [
-    ./localcerts.nix
+    ./langs
+    ./programs.nix
   ];
 
-  environment.systemPackages =
-    (with pkgs; [
-      nixfmt-rfc-style
+  options.dev.full = lib.mkEnableOption "Enable all development modules";
 
-      rustc
-      rustup
-      cargo
-      clippy
-      rustfmt
-      rust-analyzer
-
-      go
-      jdk
-      nodejs_24
-      gdb
-      lldb
-      glib
-      gnumake
-      dconf2nix
-      lld
-
-      erlang
-      rebar3
-
-      gccgo
-
-      pkg-config
-      openssl
-
-      # hakowanie na ekranie
-      burpsuite
-      ida-free
-      # binja https://gist.github.com/Ninja3047/256a0727e7ea09ab6c82756f11265ee1
-      frida-tools
-      # jadx
-      vscode
-      jetbrains.idea-community-bin
-      jetbrains.clion
-
-      inotify-tools
-    ])
-    ++ (with pkgs-stable; [
-      gleam
-    ]);
-
-  environment.sessionVariables = {
-    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-    RUST_SRC_PATH = pkgs.rust.packages.stable.rustPlatform.rustLibSrc;
+  config = lib.mkIf config.dev.full {
+    dev = {
+      langs.all = lib.mkDefault true;
+      programs.all = lib.mkDefault true;
+    };
   };
-
-  home-manager.sharedModules = [
-    (lib.withEnvPath "~/.cargo/bin")
-    ./home.nix
-  ];
 }
