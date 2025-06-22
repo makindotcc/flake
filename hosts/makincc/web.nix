@@ -5,6 +5,9 @@ _: {
     globalConfig = ''
       admin off
     '';
+    virtualHosts."localhost".extraConfig = ''
+      respond "Hello, world!"
+    '';
   };
   services.cloudflared = {
     enable = true;
