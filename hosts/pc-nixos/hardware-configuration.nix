@@ -10,10 +10,6 @@
 }:
 
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   boot.kernelModules = [
     "kvm-amd"
     "nct6775"
