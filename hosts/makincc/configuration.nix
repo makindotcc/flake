@@ -119,10 +119,6 @@ in
     enable = true;
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
-    settings.PermitRootLogin = "prohibit-password";
+    settings.PermitRootLogin = "no";
   };
-
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3BdWxBIA3tyMEF7xiuFQLB85iGHWlROSXNVomxBJ96 user@pc-nixos"
-  ];
 }
