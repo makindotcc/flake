@@ -19,6 +19,7 @@ in
   ];
 
   dev.full = true;
+  gaming.full = true;
 
   virtualisation.docker.enable = true;
 
