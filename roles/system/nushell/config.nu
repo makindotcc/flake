@@ -14,3 +14,5 @@ $env.config = {
         algorithm: "prefix"    # prefix or fuzzy
     }
 }
+
+$env.PROMPT_COMMAND = { $"(sys host | get hostname) (pwd)" }
