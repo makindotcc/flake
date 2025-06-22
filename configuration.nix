@@ -19,24 +19,17 @@ in
     ../../users/makin
   ];
 
-  # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.timeout = 15;
+  boot.loader.grub.devices = [ "/dev/sda" ];
 
   networking.hostName = "makincc";
 
-  # Set your time zone.
   time.timeZone = "Europe/Warsaw";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-    useXkbConfig = true; # use xkb.options in tty.
-  };
+  console.keyMap = "us";
 
-  # Open ports in the firewall.
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
@@ -45,18 +38,9 @@ in
     allowedUDPPorts = [ ];
     allowPing = false;
   };
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   system.stateVersion = stateVersion;
   home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
-
-  boot.loader.grub.devices = [ "/dev/sda" ];
 
   services.openssh = {
     enable = true;
