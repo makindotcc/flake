@@ -53,4 +53,6 @@ in
     associations.added = associations;
     defaultApplications = associations;
   };
+  # force overwrite=
+  xdg.configFile."mimeapps.list".force = true;
 }

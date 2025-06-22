@@ -8,7 +8,7 @@
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   # BRAWO KURWA BRAWO UKRYTE MENU BY NAPRAWIC SLEEPA

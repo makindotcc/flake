@@ -8,6 +8,7 @@
     ./programs/urldebloater.nix
     # congratulations you so braave and gatekeeped installer behind login page
     # ./programs/vmware.nix
+    ./programs/kde-connect.nix
   ];
 
   environment.systemPackages = with pkgs; [

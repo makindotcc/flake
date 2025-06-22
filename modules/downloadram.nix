@@ -2,7 +2,7 @@
 {
   zramSwap = {
     enable = true;
-    memoryPercent = 150;
+    memoryPercent = 250;
   };
 
   boot.kernel.sysctl = {

@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  pkgs-stable,
   lib,
   ...
 }:
@@ -9,9 +10,8 @@
     ./localcerts.nix
   ];
 
-  environment.systemPackages = (
-    with pkgs;
-    [
+  environment.systemPackages =
+    (with pkgs; [
       nixfmt-rfc-style
 
       rustc
@@ -21,7 +21,6 @@
       rustfmt
       rust-analyzer
 
-      gleam
       go
       jdk
       nodejs_24
@@ -48,10 +47,13 @@
       # jadx
       vscode
       jetbrains.idea-community-bin
+      jetbrains.clion
 
       inotify-tools
-    ]
-  );
+    ])
+    ++ (with pkgs-stable; [
+      gleam
+    ]);
 
   environment.sessionVariables = {
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";

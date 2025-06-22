@@ -62,7 +62,7 @@ with lib.hm.gvariant;
       button-layout = "appmenu:minimize,maximize,close";
     };
     "org/gnome/mutter" = {
-      edge-tiling = false;
+      edge-tiling = true;
       experimental-features = [ "scale-monitor-framebuffer" ];
     };
     "org/gnome/desktop/peripherals/mouse" = {

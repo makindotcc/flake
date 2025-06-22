@@ -18,12 +18,14 @@ in
     ../../modules/dev
     ../../modules/docker.nix
     ../../modules/usb-wakeup-disable.nix
+    ../../modules/wine.nix
     ../../users/user
   ];
   home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
 
   environment.systemPackages = with pkgs; [
     veracrypt
+    ntfs3g
     (ollama.override {
       acceleration = "cuda";
     })
