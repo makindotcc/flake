@@ -13,6 +13,7 @@ in
     ../../modules/dev
     ../../modules/gaming.nix
     ../../modules/wine.nix
+    ../../modules/downloadram.nix
     ../../users/user
 
     ./localcerts.nix
