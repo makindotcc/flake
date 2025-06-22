@@ -4,23 +4,26 @@
   lib,
   ...
 }:
+let
+  mkEnableProgramsOption = lib.mkEnableDefaultOption config.dev.programs.all;
+in
 {
   options.dev.programs = {
     all = lib.mkEnableOption "Enable all development programs";
 
     editor = {
-      vscode.enable = pkgs.lib.mkEnableOption "Enable Visual Studio Code";
-      idea.enable = pkgs.lib.mkEnableOption "Enable JetBrains Idea";
-      clion.enable = pkgs.lib.mkEnableOption "Enable JetBrains CLion";
+      vscode.enable = mkEnableProgramsOption "Enable Visual Studio Code";
+      idea.enable = mkEnableProgramsOption "Enable JetBrains Idea";
+      clion.enable = mkEnableProgramsOption "Enable JetBrains CLion";
     };
     re = {
-      frida.enable = lib.mkEnableOption "Enable Frida tools";
-      ida.enable = lib.mkEnableOption "Enable IDA";
-      burp.enable = lib.mkEnableOption "Enable Burp Suite";
+      frida.enable = mkEnableProgramsOption "Enable Frida tools";
+      ida.enable = mkEnableProgramsOption "Enable IDA";
+      burp.enable = mkEnableProgramsOption "Enable Burp Suite";
     };
     debuggers = {
-      gdb.enable = lib.mkEnableOption "Enable GDB";
-      lldb.enable = lib.mkEnableOption "Enable LLDB";
+      gdb.enable = mkEnableProgramsOption "Enable GDB";
+      lldb.enable = mkEnableProgramsOption "Enable LLDB";
     };
   };
 
@@ -29,23 +32,6 @@
       cfg = config.dev.programs;
     in
     {
-      dev.programs = lib.mkIf cfg.all {
-        editor = {
-          vscode.enable = lib.mkDefault true;
-          idea.enable = lib.mkDefault true;
-          clion.enable = lib.mkDefault true;
-        };
-        re = {
-          frida.enable = lib.mkDefault true;
-          ida.enable = lib.mkDefault true;
-          burp.enable = lib.mkDefault true;
-        };
-        debuggers = {
-          gdb.enable = lib.mkDefault true;
-          lldb.enable = lib.mkDefault true;
-        };
-      };
-
       environment.systemPackages = builtins.concatLists [
         (lib.optional cfg.editor.vscode.enable pkgs.vscode)
         (lib.optional cfg.editor.idea.enable pkgs.jetbrains.idea-community-bin)
