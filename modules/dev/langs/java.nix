@@ -7,7 +7,7 @@
 
 {
   options.dev.langs.java = {
-    enable = lib.mkEnableOption "Enable Java development";
+    enable = lib.mkEnableDefaultOption config.dev.langs.all "Enable Java development";
   };
 
   config = lib.mkIf config.dev.langs.java.enable {

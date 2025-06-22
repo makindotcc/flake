@@ -6,7 +6,7 @@
 }:
 {
   options.dev.langs.deprecated = {
-    enable = lib.mkEnableOption "Deprecated programming languages support";
+    enable = lib.mkEnableDefaultOption config.dev.langs.all "Deprecated programming languages support";
   };
 
   config = lib.mkIf config.dev.langs.deprecated.enable {

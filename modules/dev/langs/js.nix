@@ -7,7 +7,7 @@
 
 {
   options.dev.langs.js = {
-    enable = lib.mkEnableOption "Enable js development";
+    enable = lib.mkEnableDefaultOption config.dev.langs.all "Enable js development";
   };
 
   config = lib.mkIf config.dev.langs.js.enable {

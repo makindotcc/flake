@@ -6,7 +6,7 @@
 }:
 {
   options.dev.langs.rust = {
-    enable = lib.mkEnableOption "Rust programming language support";
+    enable = lib.mkEnableDefaultOption config.dev.langs.all "Rust programming language support";
   };
 
   config = lib.mkIf (config.dev.langs.rust.enable) {
