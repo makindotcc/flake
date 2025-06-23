@@ -16,9 +16,9 @@
     enable = true;
     package = pkgs.cloudflared;
     certificateFile = config.age.secrets.cf-cert.path;
-    credentialsFile = config.age.secrets.cf-tunnel.path;
     tunnels = {
       "d46659f4-ff43-46e6-a94b-3c5afef7d4ca" = {
+        credentialsFile = config.age.secrets.cf-tunnel.path;
         default = "http_status:404";
         ingress = {
           "xd.firma.sex.pl" = {
