@@ -16,6 +16,8 @@ in
     ../../roles/system
     ./hardware-configuration.nix
 
+    ./web.nix
+
     ../../users/makin
   ];
 
