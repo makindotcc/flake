@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.agenix.nixosModules.default
   ];
 
   nix.settings.experimental-features = [
@@ -17,23 +18,27 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-    wget
-    tmux
-    bat
-    file
-    ncdu
-    ouch
-    bottom
-    fastfetch
-    psmisc
-    doggo
-    inetutils
-    nmap
-    speedtest-go
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      git
+      vim
+      wget
+      tmux
+      bat
+      file
+      ncdu
+      ouch
+      bottom
+      fastfetch
+      psmisc
+      doggo
+      inetutils
+      nmap
+      speedtest-go
+    ])
+    ++ [
+      inputs.agenix.packages.${pkgs.system}.default
+    ];
 
   networking.nameservers = [
     "1.1.1.1"

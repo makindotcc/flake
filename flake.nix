@@ -2,6 +2,7 @@
   description = "moje sprzety";
 
   inputs = {
+    self.submodules = true;
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
@@ -14,6 +15,7 @@
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
     urldebloater.url = "github:makindotcc/urldebloater";
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
