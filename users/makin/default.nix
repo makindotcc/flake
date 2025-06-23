@@ -2,6 +2,9 @@
   config,
   ...
 }:
+let
+  keys = import ../../keys.nix;
+in
 {
   users.users.makin = {
     isNormalUser = true;
@@ -11,9 +14,7 @@
       "wheel"
     ];
 
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3BdWxBIA3tyMEF7xiuFQLB85iGHWlROSXNVomxBJ96 user@pc-nixos"
-    ];
+    openssh.authorizedKeys.keys = keys.pc;
   };
   home-manager.users.makin = { };
 }

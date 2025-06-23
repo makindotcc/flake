@@ -14,6 +14,7 @@
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
     urldebloater.url = "github:makindotcc/urldebloater";
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
