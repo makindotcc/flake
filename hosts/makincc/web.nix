@@ -28,6 +28,6 @@
       };
     };
   };
-
+  age.secrets.cf-cert.file = ../../secrets/cf-cert.age;
   age.secrets.cf-tunnel.file = ../../secrets/cf-tunnel.age;
 }
