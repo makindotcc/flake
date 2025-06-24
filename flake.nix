@@ -16,6 +16,7 @@
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
     urldebloater.url = "github:makindotcc/urldebloater";
     agenix.url = "github:ryantm/agenix";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs =
