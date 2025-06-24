@@ -124,6 +124,7 @@
         ".config/ngrok"
         ".config/fsearch"
         ".config/ghostty"
+        ".config/monitors.xml"
         ".cache"
         ".ollama"
         ".cargo"
