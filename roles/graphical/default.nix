@@ -28,6 +28,7 @@
         adw-gtk3
         ghostty
         amberol # music player
+        mission-center
       ])
       ++ (with pkgs-stable; [
         clapper

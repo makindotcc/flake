@@ -3,9 +3,11 @@
   ...
 }:
 {
+  users.mutableUsers = false;
   users.users.user = {
     isNormalUser = true;
     description = "user";
+    hashedPasswordFile = config.age.secrets.user-password.path;
     extraGroups =
       [
         "networkmanager"
@@ -21,4 +23,6 @@
   home-manager.users = {
     user = import ./home.nix;
   };
+
+  age.secrets.user-password.file = ../../secrets/user-password.age;
 }
