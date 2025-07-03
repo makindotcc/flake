@@ -214,7 +214,7 @@ with lib.hm.gvariant;
       pipeline = "pipeline_default";
     };
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
-      blur = false;
+      blur = true;
       brightness = 0.9;
       force-light-text = false;
       override-background = false;
