@@ -6,6 +6,10 @@
 }:
 with lib.hm.gvariant;
 {
+  imports = [
+    ./wallpaper.nix
+  ];
+
   programs.gnome-shell = {
     enable = true;
     extensions =
