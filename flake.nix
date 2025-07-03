@@ -13,6 +13,7 @@
     };
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
+    s76-scheduler-plugin.url = "github:makindotcc/s76-scheduler-plugin";
     apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
     urldebloater.url = "github:makindotcc/urldebloater";
     agenix.url = "github:ryantm/agenix";
