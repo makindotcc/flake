@@ -277,6 +277,12 @@ with lib.hm.gvariant;
         1.0
       ];
     };
+    "org/gnome/nautilus/preferences" = {
+      default-folder-viewer = "list-view";
+    };
+    "org/gtk/gtk4/settings/file-chooser" = {
+      show-hidden = true;
+    };
 
     # not working, needs fix.
     # "org/gnome/shell/extensions/Airpod-Battery-Monitor" = {
