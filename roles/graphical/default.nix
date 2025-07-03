@@ -25,7 +25,7 @@
       (with pkgs; [
         fsearch
         adw-gtk3
-        ghostty
+        # ghostty # lagi jakies jak huj
         amberol # music player
         mission-center
       ])

@@ -19,7 +19,7 @@
 
   environment.gnome.excludePackages = with pkgs; [
     totem # "could not initialise opengl support" 😂😂😂 use clapper instead
-    gnome-console
+    # gnome-console
     epiphany
     evince
     gnome-maps
