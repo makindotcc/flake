@@ -17,7 +17,7 @@ with lib.hm.gvariant;
         # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/7903
         # https://github.com/flexagoon/rounded-window-corners/issues/36
         # https://gitlab.gnome.org/GNOME/mutter/-/issues/3346
-        { package = rounded-window-corners-reborn; }
+        # { package = rounded-window-corners-reborn; }
         { package = window-is-ready-remover; }
         { package = search-light; }
         { package = blur-my-shell; }
