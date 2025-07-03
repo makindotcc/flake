@@ -62,16 +62,20 @@
     directories = [
       "/var/log"
       "/var/lib"
-      "/persist"
       "/nix"
       "/etc/ssh"
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
+      "/etc/mullvad-vpn"
     ];
     files = [
       "/etc/machine-id"
     ];
     users.user = {
+      files = [
+        ".bash_history"
+        ".config/monitors.xml"
+      ];
       directories = [
         "Downloads"
         "Music"
@@ -122,8 +126,8 @@
         ".config/ngrok"
         ".config/fsearch"
         ".config/ghostty"
-        ".config/monitors.xml"
         ".cache"
+        ".BurpSuite"
         ".ollama"
         ".cargo"
         ".rustup"
