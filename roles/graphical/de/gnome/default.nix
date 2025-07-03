@@ -8,6 +8,7 @@
   imports = [
     ./extensions/search-light.nix
     ./power-management.nix
+    ./wallpaper.nix
   ];
 
   services = {
