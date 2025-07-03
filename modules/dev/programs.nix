@@ -15,6 +15,7 @@ in
       vscode.enable = mkEnableProgramsOption "Enable Visual Studio Code";
       idea.enable = mkEnableProgramsOption "Enable JetBrains Idea";
       clion.enable = mkEnableProgramsOption "Enable JetBrains CLion";
+      rust-rover.enable = mkEnableProgramsOption "Enable Jetbrains RustRover";
     };
     re = {
       frida.enable = mkEnableProgramsOption "Enable Frida tools";
@@ -36,6 +37,7 @@ in
         (lib.optional cfg.editor.vscode.enable pkgs.vscode)
         (lib.optional cfg.editor.idea.enable pkgs.jetbrains.idea-community-bin)
         (lib.optional cfg.editor.clion.enable pkgs.jetbrains.clion)
+        (lib.optional cfg.editor.rust-rover.enable pkgs.jetbrains.rust-rover)
         (lib.optional cfg.re.frida.enable pkgs.frida-tools)
         (lib.optional cfg.re.ida.enable pkgs.ida-free)
         (lib.optional cfg.re.burp.enable pkgs.burpsuite)
