@@ -71,14 +71,17 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1751754469,
-        "narHash": "sha256-PMoQAmeDyLR53LzBrJVCB20c2NCY8YIk2JjbaWFbgZs=",
-        "path": "/home/user/Documents/dev/buzkaaclicker/backend-rs",
-        "type": "path"
+        "lastModified": 1751756632,
+        "narHash": "sha256-zFqFdlE9nlXIug81wG51Pow/jNXcgqPaNyBm65LEIXo=",
+        "owner": "buzkaaclicker",
+        "repo": "backend-rs",
+        "rev": "4f5616197065a085012e592d431e3991b30634d3",
+        "type": "github"
       },
       "original": {
-        "path": "/home/user/Documents/dev/buzkaaclicker/backend-rs",
-        "type": "path"
+        "owner": "buzkaaclicker",
+        "repo": "backend-rs",
+        "type": "github"
       }
     },
     "darwin": {

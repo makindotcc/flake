@@ -62,6 +62,10 @@
       "1.1.1.1"
       "8.8.8.8"
     ];
+    services.resolved = {
+      enable = true;
+      dnssec = "false";
+    };
 
     users.defaultUserShell = pkgs.nushell;
     environment.shells = [
