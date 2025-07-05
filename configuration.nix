@@ -7,9 +7,10 @@ in
     ../../roles/system
     ./hardware-configuration.nix
 
-    ./web.nix
-
     ../../users/makin
+
+    ./buzkaaclicker
+    ./web.nix
   ];
 
   boot.loader.grub.enable = true;
