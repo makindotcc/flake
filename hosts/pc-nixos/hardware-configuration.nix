@@ -1,14 +1,9 @@
 {
   config,
   lib,
-  inputs,
   ...
 }:
 {
-  imports = [
-    inputs.impermanence.nixosModules.impermanence
-  ];
-
   boot.kernelModules = [
     "kvm-amd"
     "nct6775"
@@ -40,7 +35,7 @@
         "mode=755"
       ];
     };
-    "/persistent" = {
+    ${config.impermanence.dir} = {
       device = "/dev/disk/by-uuid/96dd4e43-27fc-4cd2-9c1b-13de02ee4853";
       fsType = "ext4";
       neededForBoot = true;
@@ -56,8 +51,8 @@
     "/etc/ssh".neededForBoot = true;
   };
 
-  environment.persistence."/persistent" = {
-    enable = true;
+  impermanence.enable = true;
+  environment.persistence.${config.impermanence.dir} = {
     hideMounts = true;
     directories = [
       "/var/log"
