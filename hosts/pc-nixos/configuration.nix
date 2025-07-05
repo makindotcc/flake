@@ -13,6 +13,7 @@ in
     ../../modules/gaming.nix
     ../../modules/wine.nix
     ../../modules/downloadram.nix
+    ../../modules/docker.nix
     ../../users/user
 
     ./localcerts.nix
@@ -20,8 +21,6 @@ in
 
   dev.full = true;
   gaming.full = true;
-
-  virtualisation.docker.enable = true;
 
   environment.systemPackages = with pkgs; [
     veracrypt
