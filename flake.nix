@@ -18,6 +18,7 @@
     urldebloater.url = "github:makindotcc/urldebloater";
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
+    buzkaaclicker-backend.url = "path:/home/user/Documents/dev/buzkaaclicker/backend-rs";
   };
 
   outputs =
