@@ -71,11 +71,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1751756632,
-        "narHash": "sha256-zFqFdlE9nlXIug81wG51Pow/jNXcgqPaNyBm65LEIXo=",
+        "lastModified": 1751830932,
+        "narHash": "sha256-eBZoEXMPBpHAnBxu7i6az8/GdAFPys8pAUgEvuhrfJc=",
         "owner": "buzkaaclicker",
         "repo": "backend-rs",
-        "rev": "4f5616197065a085012e592d431e3991b30634d3",
+        "rev": "93d4afd6d648e0bb7b09b12b66a84248450767d9",
         "type": "github"
       },
       "original": {
