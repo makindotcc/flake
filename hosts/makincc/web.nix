@@ -24,6 +24,9 @@
           "xd.firma.sex.pl" = {
             service = "http://localhost:80";
           };
+          "buzkaaclicker.firma.sex.pl" = {
+            service = "http://localhost:2137";
+          };
           "buzkaaclickerapi.firma.sex.pl" = {
             service = "http://localhost:2137";
           };
