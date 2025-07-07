@@ -17,6 +17,7 @@ in
     ../../users/user
 
     ./localcerts.nix
+    ./makincc-builder.nix
   ];
 
   dev.full = true;

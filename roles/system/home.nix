@@ -8,6 +8,7 @@
       configFile.source = ./nushell/config.nu;
     };
     zsh.enable = true;
+    ssh.enable = true;
   };
 
   services.pueue.enable = true;

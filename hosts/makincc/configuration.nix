@@ -8,6 +8,7 @@ in
     ./hardware-configuration.nix
 
     ../../users/makin
+    ../../users/remote-deploy
 
     ./buzkaaclicker
     ./web.nix
