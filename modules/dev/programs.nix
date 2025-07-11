@@ -13,6 +13,7 @@ in
 
     editor = {
       vscode.enable = mkEnableProgramsOption "Enable Visual Studio Code";
+      zed.enable = mkEnableProgramsOption "Enable Zed Editor";
       idea.enable = mkEnableProgramsOption "Enable JetBrains Idea";
       clion.enable = mkEnableProgramsOption "Enable JetBrains CLion";
       rust-rover.enable = mkEnableProgramsOption "Enable Jetbrains RustRover";
@@ -35,6 +36,7 @@ in
     {
       environment.systemPackages = builtins.concatLists [
         (lib.optional cfg.editor.vscode.enable pkgs.vscode)
+        (lib.optional cfg.editor.zed.enable pkgs.zed-editor)
         (lib.optional cfg.editor.idea.enable pkgs.jetbrains.idea-community-bin)
         (lib.optional cfg.editor.clion.enable pkgs.jetbrains.clion)
         (lib.optional cfg.editor.rust-rover.enable pkgs.jetbrains.rust-rover)
@@ -45,10 +47,25 @@ in
         (lib.optional cfg.debuggers.lldb.enable pkgs.lldb)
       ];
 
-      home-manager.sharedModules = lib.mkIf cfg.editor.vscode.enable [
+      home-manager.sharedModules = [
         {
-          programs.nushell.shellAliases.nixcfg = "code ~/.config/nix";
+          programs = {
+            nushell.shellAliases.nixcfg = lib.mkIf cfg.editor.vscode.enable "code ~/.config/nix";
+            zed-editor = lib.mkIf cfg.editor.zed.enable {
+              userSettings = {
+                lsp = {
+                  rust-analyzer = {
+                    binary.path_lookup = true;
+                  };
+                };
+              };
+            };
+          };
         }
+      ];
+
+      impermanence.normalUsers.directories = lib.mkIf cfg.editor.zed.enable [
+        ".local/share/zed"
       ];
     };
 }

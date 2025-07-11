@@ -97,7 +97,6 @@
         ".local/share/fsearch"
         ".local/share/TelegramDesktop"
         ".local/share/krita"
-        ".local/share/zed"
         ".local/share/nautilus"
         {
           directory = ".local/share/keyrings";
