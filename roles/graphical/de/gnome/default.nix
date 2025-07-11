@@ -15,6 +15,11 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
+  # https://discourse.nixos.org/t/gnome-display-manager-fails-to-login-until-wi-fi-connection-is-established/50513/15
+  systemd.services = {
+    "getty@tty1".enable = false;
+    "autovt@tty1".enable = false;
+  };
 
   environment.gnome.excludePackages = with pkgs; [
     totem # "could not initialise opengl support" 😂😂😂 use clapper instead
