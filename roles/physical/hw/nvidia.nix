@@ -40,6 +40,12 @@
       Option         "TripleBuffer" "on"
     '';
   };
+
+  home-manager.sharedModules = [
+    {
+      nixGL.vulkan.enable = true;
+    }
+  ];
 }
 
 # testy (kernel 6.12.8):
