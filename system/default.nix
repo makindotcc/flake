@@ -27,6 +27,11 @@
       default = false;
       description = "Whether this is a physical system.";
     };
+    isPersonalPuter = lib.mkOption {
+      type = lib.types.bool;
+      default = config.isDesktop && config.isPhysical;
+      description = "Whether this is a personal computer.";
+    };
     os = lib.mkConst <| lib.last <| lib.splitString "-" config.nixpkgs.hostPlatform.system;
     isLinux = lib.mkConst (config.os == "linux");
   };
@@ -40,27 +45,9 @@
 
     nixpkgs.config.allowUnfree = true;
 
-    environment.systemPackages =
-      (with pkgs; [
-        git
-        vim
-        wget
-        tmux
-        bat
-        file
-        ncdu
-        ouch
-        bottom
-        fastfetch
-        psmisc
-        doggo
-        inetutils
-        nmap
-        speedtest-go
-      ])
-      ++ [
-        inputs.agenix.packages.${pkgs.system}.default
-      ];
+    environment.systemPackages = [
+      inputs.agenix.packages.${pkgs.system}.default
+    ];
 
     networking.nameservers = [
       "1.1.1.1"
