@@ -1,10 +1,15 @@
-{ pkgs, config, ... }:
 {
-  options.programs.mullvad.enable = pkgs.lib.mkEnableOption "Mullvad VPN client" // {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options.programs.mullvad.enable = lib.mkEnableOption "Mullvad VPN client" // {
     default = config.isPersonalPuter;
   };
 
-  config = pkgs.lib.mkIf config.programs.mullvad.enable {
+  config = lib.mkIf config.programs.mullvad.enable {
     services.mullvad-vpn = {
       enable = true;
       package = pkgs.mullvad-vpn;

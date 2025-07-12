@@ -10,7 +10,8 @@
   };
 
   config = lib.mkIf config.programs.sublime.enable {
-    environment.systemPackages = [ pkgs.sublime-text ];
+    environment.systemPackages = [ pkgs.sublime4 ];
+    nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
     impermanence.normalUsers.directories = [ ".config/sublime-text" ];
   };
 }
