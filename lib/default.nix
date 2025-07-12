@@ -13,4 +13,11 @@ final: _: {
       default = default;
       description = description;
     };
+
+  collectNix =
+    ./.
+    |> builtins.readDir
+    |> builtins.attrNames
+    |> builtins.filter (f: (final.strings.hasSuffix ".nix" f))
+    |> builtins.map (f: ./. + f);
 }

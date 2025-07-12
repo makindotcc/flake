@@ -35,7 +35,7 @@
         "mode=755"
       ];
     };
-    ${config.impermanence.dir} = {
+    ${config.environment.persistence.dir} = {
       device = "/dev/disk/by-uuid/96dd4e43-27fc-4cd2-9c1b-13de02ee4853";
       fsType = "ext4";
       neededForBoot = true;
@@ -51,8 +51,8 @@
     "/etc/ssh".neededForBoot = true;
   };
 
-  impermanence.enable = true;
-  environment.persistence.${config.impermanence.dir} = {
+  environment.persistence.enable = true;
+  environment.persistence.${config.environment.persistence.dir} = {
     hideMounts = true;
     directories = [
       "/var/log"
@@ -95,7 +95,6 @@
         ".local/share/PrismLauncher"
         ".local/share/JetBrains"
         ".local/share/fsearch"
-        ".local/share/TelegramDesktop"
         ".local/share/krita"
         ".local/share/nautilus"
         {
@@ -105,18 +104,10 @@
         ".local/share/nix"
         ".local/share/kotlin"
         ".config/nix"
-        ".config/google-chrome"
-        ".config/discord"
-        ".config/Slack"
         ".config/Code"
-        ".config/vesktop"
         ".config/chromium"
-        ".config/Signal"
-        ".config/obs-studio"
         ".config/JetBrains"
         ".config/nushell"
-        ".config/Mullvad VPN"
-        ".config/spotify"
         ".config/ngrok"
         ".config/fsearch"
         ".config/ghostty"
@@ -135,8 +126,6 @@
         "go"
         ".npm"
         ".m2"
-        ".parsec"
-        ".parsec-persistent"
         ".java"
         ".docker"
         ".pki"

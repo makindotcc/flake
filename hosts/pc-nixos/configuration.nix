@@ -8,20 +8,20 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ../../roles/physical
-    ../../modules/dev
-    ../../modules/gaming.nix
-    ../../modules/wine.nix
-    ../../modules/downloadram.nix
-    ../../modules/docker.nix
+
+    ../system
     ../../users/user
 
     ./localcerts.nix
     ./makincc-builder.nix
   ];
 
+  isWorkstation = true;
   dev.full = true;
   gaming.full = true;
+  wine.enable = true;
+  docker.enable = true;
+  hardware.nvidia.enable = true;
 
   environment.systemPackages = with pkgs; [
     veracrypt
