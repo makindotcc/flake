@@ -8,6 +8,7 @@ in
 
     ../../system
     ../../users/makin
+    ../../users/remote-deploy
 
     ./buzkaaclicker
     ./web.nix
