@@ -4,9 +4,9 @@ let
 in
 {
   imports = [
-    ../../roles/system
     ./hardware-configuration.nix
 
+    ../../system
     ../../users/makin
     ../../users/remote-deploy
 
@@ -19,11 +19,6 @@ in
   boot.loader.grub.devices = [ "/dev/sda" ];
 
   networking.hostName = "makincc";
-
-  time.timeZone = "Europe/Warsaw";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "us";
 
   networking.firewall = {
     enable = true;
