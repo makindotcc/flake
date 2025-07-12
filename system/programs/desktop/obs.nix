@@ -9,5 +9,5 @@
     );
   };
 
-  environment.persistence.normalUsers.directories = [ ".config/obs-studio" ];
+  impermanence.normalUsers.directories = [ ".config/obs-studio" ];
 }

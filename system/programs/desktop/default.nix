@@ -13,13 +13,11 @@
       pkgs.krita
     ]
     ++ (lib.optional config.isPhysical pkgs.gparted)
-    ++ (
-      lib.optionals config.os == "linux" [
-        pkgs.fsearch
-        pkgs.adw-gtk3
-        pkgs.amberol
-        pkgs.mission-center
-        pkgs-stable.clapper
-      ]
-    );
+    ++ (lib.optionals config.isLinux [
+      pkgs.fsearch
+      pkgs.adw-gtk3
+      pkgs.amberol
+      pkgs.mission-center
+      pkgs-stable.clapper
+    ]);
 }

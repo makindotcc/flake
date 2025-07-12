@@ -4,14 +4,10 @@
     enable = true;
     package = pkgs.mullvad-vpn;
   };
-  environment.persistence = {
-    ${config.environment.persistence.dir} = {
-      directories = [
-        "/etc/mullvad-vpn"
-      ];
-    };
-    normalUsers.directories = [
-      ".config/Mullvad VPN"
-    ];
-  };
+  environment.persistence.${config.impermanence.dir}.directories = [
+    "/etc/mullvad-vpn"
+  ];
+  impermanence.normalUsers.directories = [
+    ".config/Mullvad VPN"
+  ];
 }

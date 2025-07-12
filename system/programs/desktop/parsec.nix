@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = [ pkgs.parsec-bin ];
-  environment.persistence.normalUsers.directories = [
+  impermanence.normalUsers.directories = [
     ".parsec"
     ".parsec-persistent"
   ];

@@ -13,7 +13,7 @@ let
     fadeoutSeconds = 15;
   };
 in
-lib.mkIf config.isDesktop {
+lib.mkIf config.de.gnome.enable {
   services.xserver.displayManager.setupCommands = ''
     echo "xset dpms 0 0 ${
       toString (screenInactivity.timeoutSeconds + screenInactivity.fadeoutSeconds)

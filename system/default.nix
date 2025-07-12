@@ -9,6 +9,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.agenix.nixosModules.default
+    ./de
     ./dev
     ./hardware
     ./programs
@@ -27,6 +28,7 @@
       description = "Whether this is a physical system.";
     };
     os = lib.mkConst <| lib.last <| lib.splitString "-" config.nixpkgs.hostPlatform.system;
+    isLinux = lib.mkConst (config.os == "linux");
   };
 
   config = {

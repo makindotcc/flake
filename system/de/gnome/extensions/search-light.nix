@@ -1,5 +1,10 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+lib.mkIf config.de.gnome.enable {
   environment.systemPackages = [ pkgs.imagemagick ];
 
   home-manager.sharedModules = [

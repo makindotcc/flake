@@ -1,5 +1,5 @@
 { pkgs, ... }:
 {
   environment.systemPackages = [ pkgs.spotify ];
-  environment.persistence.normalUsers.directories = [ ".config/spotify" ];
+  impermanence.normalUsers.directories = [ ".config/spotify" ];
 }

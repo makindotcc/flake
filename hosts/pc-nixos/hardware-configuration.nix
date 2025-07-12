@@ -35,7 +35,7 @@
         "mode=755"
       ];
     };
-    ${config.environment.persistence.dir} = {
+    ${config.impermanence.dir} = {
       device = "/dev/disk/by-uuid/96dd4e43-27fc-4cd2-9c1b-13de02ee4853";
       fsType = "ext4";
       neededForBoot = true;
@@ -51,8 +51,8 @@
     "/etc/ssh".neededForBoot = true;
   };
 
-  environment.persistence.enable = true;
-  environment.persistence.${config.environment.persistence.dir} = {
+  impermanence.enable = true;
+  environment.persistence.${config.impermanence.dir} = {
     hideMounts = true;
     directories = [
       "/var/log"
@@ -61,7 +61,6 @@
       "/etc/ssh"
       "/etc/nixos"
       "/etc/NetworkManager/system-connections"
-      "/etc/mullvad-vpn"
     ];
     files = [
       "/etc/machine-id"

@@ -7,7 +7,7 @@ let
   wallpaperUri = "file://${config.home.homeDirectory}/${wallpaperHomePath}";
 in
 {
-  home.file.${wallpaperHomePath}.source = ../../../wallpaper.png;
+  home.file.${wallpaperHomePath}.source = ../../wallpaper.png;
 
   dconf.settings = {
     "org/gnome/desktop/background" = {

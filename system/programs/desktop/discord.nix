@@ -5,7 +5,7 @@
     pkgs.vesktop
   ];
 
-  environment.persistence.normalUsers.directories = [
+  impermanence.normalUsers.directories = [
     ".config/discord"
     ".config/vesktop"
   ];

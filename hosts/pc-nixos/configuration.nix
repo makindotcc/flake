@@ -9,14 +9,15 @@ in
   imports = [
     ./hardware-configuration.nix
 
-    ../system
+    ../../system
     ../../users/user
 
     ./localcerts.nix
     ./makincc-builder.nix
   ];
 
-  isWorkstation = true;
+  isDesktop = true;
+  isPhysical = true;
   dev.full = true;
   gaming.full = true;
   wine.enable = true;

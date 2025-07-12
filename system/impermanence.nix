@@ -10,7 +10,7 @@
   ];
 
   options = {
-    environment.persistence = {
+    impermanence = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -29,10 +29,10 @@
   };
 
   config = {
-    environment.persistence.${config.environment.persistence.dir} = {
-      enable = config.environment.persistence.enable;
+    environment.persistence.${config.impermanence.dir} = {
+      enable = config.impermanence.enable;
       # todo add dirs to all users (config.users.users infinite recursion issue)
-      users.user = config.environment.persistence.normalUsers;
+      users.user = config.impermanence.normalUsers;
     };
   };
 }
