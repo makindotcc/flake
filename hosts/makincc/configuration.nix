@@ -17,6 +17,8 @@ in
   boot.loader.timeout = 15;
   boot.loader.grub.devices = [ "/dev/sda" ];
 
+  networking.hostName = "makincc";
+
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
