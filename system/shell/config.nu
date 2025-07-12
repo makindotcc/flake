@@ -15,4 +15,8 @@ $env.config = {
     }
 }
 
-$env.PROMPT_COMMAND = { $"(sys host | get hostname) (pwd)" }
+let default_prompt_cmd = $env.PROMPT_COMMAND
+$env.PROMPT_COMMAND = { 
+    let original_prompt = (do $default_prompt_cmd)
+    $"(sys host | get hostname) ($original_prompt)"
+}
