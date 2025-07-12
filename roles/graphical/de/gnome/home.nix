@@ -6,10 +6,6 @@
 }:
 with lib.hm.gvariant;
 {
-  imports = [
-    ./wallpaper.nix
-  ];
-
   programs.gnome-shell = {
     enable = true;
     extensions =
@@ -59,6 +55,7 @@ with lib.hm.gvariant;
       monospace-font-name = "SFMono Nerd Font 10";
       font-antialiasing = "grayscale";
       font-hinting = "full";
+      enable-hot-corners = false;
     };
     "org/gnome/desktop/wm/preferences" = {
       resize-with-right-button = true;

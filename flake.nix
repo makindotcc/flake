@@ -32,7 +32,9 @@
       additionalArgs =
         { system }:
         {
+          inherit self;
           inherit inputs;
+
           pkgs-stable = import nixpkgs-stable {
             inherit system;
             config.allowUnfree = true;
