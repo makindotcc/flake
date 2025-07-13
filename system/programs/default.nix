@@ -11,7 +11,6 @@
   environment.systemPackages =
     [
       pkgs.git
-      pkgs.vim
       pkgs.wget
       pkgs.tmux
       pkgs.bat
@@ -44,4 +43,9 @@
       pkgs-stable.clapper
       pkgs.eyedropper
     ];
+
+  programs.vim = {
+    enable = true;
+    defaultEditor = true;
+  };
 }

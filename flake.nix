@@ -19,6 +19,7 @@
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
     buzkaaclicker-backend.url = "github:buzkaaclicker/backend-rs";
+    antibridge.url = "git+ssh://git@github.com/makindotcc/AntiBridge";
   };
 
   outputs =

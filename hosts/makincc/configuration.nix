@@ -12,6 +12,7 @@ in
 
     ./buzkaaclicker
     ./web.nix
+    ./antibridge.nix
   ];
 
   boot.loader.grub.enable = true;
