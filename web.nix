@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  self,
+  ...
+}:
 {
   services.caddy = {
     enable = true;
@@ -34,6 +39,6 @@
       };
     };
   };
-  age.secrets.cf-cert.file = ../../secrets/cf-cert.age;
-  age.secrets.cf-tunnel.file = ../../secrets/cf-tunnel.age;
+  age.secrets.cf-cert.file = self + /secrets/cf-cert.age;
+  age.secrets.cf-tunnel.file = self + /secrets/cf-tunnel.age;
 }
