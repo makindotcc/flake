@@ -5,7 +5,7 @@
   ];
 
   options = {
-    desktop-environment.type = lib.mkOption {
+    de.type = lib.mkOption {
       type = lib.types.enum [
         "gnome"
         # "kde"

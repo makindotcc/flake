@@ -13,7 +13,7 @@
   ];
 
   options.de.gnome.enable = lib.mkEnableOption "Enable gnome desktop environment." // {
-    default = config.desktop-environment.type == "gnome";
+    default = config.de.type == "gnome";
   };
 
   config = lib.mkIf config.de.gnome.enable {
