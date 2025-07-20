@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  pkgs-stable,
   ...
 }:
 
@@ -11,6 +11,6 @@
   };
 
   config = lib.mkIf config.dev.langs.java.enable {
-    environment.systemPackages = [ pkgs.jdk ];
+    environment.systemPackages = [ pkgs-stable.jdk ];
   };
 }

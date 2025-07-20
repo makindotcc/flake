@@ -7,10 +7,6 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager.url = "github:nix-community/home-manager/master";
-    firefox-gnome-theme = {
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
-    };
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
     s76-scheduler-plugin.url = "github:makindotcc/s76-scheduler-plugin";

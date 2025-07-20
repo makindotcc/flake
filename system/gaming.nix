@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   config,
   lib,
   ...
@@ -31,8 +32,8 @@ in
         (lib.optional cfg.minecraft.prismlauncher.enable (
           pkgs.prismlauncher.override {
             jdks = [
-              pkgs.jdk8
-              pkgs.jdk21
+              pkgs-stable.jdk8
+              pkgs-stable.jdk21
             ];
           }
         ))
