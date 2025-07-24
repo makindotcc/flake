@@ -23,6 +23,7 @@
       pkgs.doggo
       pkgs.inetutils
       pkgs.speedtest-go
+      pkgs.ripgrep
     ]
     ++ lib.optionals config.isPersonalPuter [
       pkgs.yt-dlp
