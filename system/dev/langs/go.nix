@@ -11,6 +11,10 @@
   };
 
   config = lib.mkIf config.dev.langs.go.enable {
-    environment.systemPackages = [ pkgs.go ];
+    environment.systemPackages = [
+      pkgs.go
+      pkgs.gopls
+    ];
+    impermanence.normalUsers.directories = [ "go" ];
   };
 }

@@ -122,7 +122,6 @@
         ".wine"
         ".lunarclient"
         ".vscode"
-        "go"
         ".npm"
         ".m2"
         ".java"
