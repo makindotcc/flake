@@ -2,13 +2,14 @@
 {
   imports = [
     ./gnome
+    ./kde
   ];
 
   options = {
     de.type = lib.mkOption {
       type = lib.types.enum [
         "gnome"
-        # "kde"
+        "kde"
         # "cosmic"
         "none"
       ];

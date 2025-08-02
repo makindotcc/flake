@@ -23,6 +23,7 @@ in
   wine.enable = true;
   docker.enable = true;
   hardware.nvidia.enable = true;
+  de.type = "kde";
 
   environment.systemPackages = with pkgs; [
     veracrypt
@@ -43,7 +44,12 @@ in
     settings.PermitRootLogin = "no";
   };
 
-  home-manager.sharedModules = [ { home.stateVersion = stateVersion; } ];
+  home-manager.sharedModules = [
+    {
+      services.pueue.enable = true;
+      home.stateVersion = stateVersion;
+    }
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
