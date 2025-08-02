@@ -6,13 +6,13 @@
 let
   # dzieki za liste https://github.com/surfaceflinger/flake/blob/master/modules/home/desktop/xdg.nix
 
-  browser = [ "Firefox.desktop" ];
+  browser = [ "firefox.desktop" ];
   photos = [ "org.gnome.Loupe.desktop" ];
   steam = [ "steam.desktop" ];
   music = [ "io.bassi.Amberol.desktop" ];
   text = [ "org.gnome.TextEditor.desktop" ];
 
-  steamHandlers = lib.mkIf config.programs.steam.enable {
+  steamHandlers = lib.optionalAttrs config.programs.steam.enable {
     "x-scheme-handler/steam" = steam;
     "x-scheme-handler/steamlink" = steam;
   };
@@ -20,7 +20,7 @@ let
   telegramPresent = builtins.elem "telegram-desktop" (
     map lib.getName config.environment.systemPackages
   );
-  telegramHandlers = lib.mkIf telegramPresent {
+  telegramHandlers = lib.optionalAttrs telegramPresent {
     "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
   };
 
@@ -35,8 +35,6 @@ let
       "application/x-extension-xhtml" = browser;
       "application/xhtml+xml" = browser;
       "text/html" = browser;
-
-      "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
 
       # image formats
       "image/avif" = photos;
