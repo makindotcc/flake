@@ -25,6 +25,7 @@ in
     enable = true;
     allowedTCPPorts = [
       22
+      8080
     ];
     allowedUDPPorts = [ ];
     allowPing = false;
@@ -35,8 +36,16 @@ in
 
   services.openssh = {
     enable = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-    settings.PermitRootLogin = "no";
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      GatewayPorts = "yes";
+    };
+  };
+
+  programs.mosh = {
+    enable = true;
+    openFirewall = true;
   };
 }
