@@ -14,6 +14,7 @@ in
 
     ./localcerts.nix
     ./makincc-builder.nix
+    ./tailscale.nix
   ];
 
   isDesktop = true;
