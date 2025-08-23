@@ -31,23 +31,22 @@
         ".config/session"
         ".config/xsettingsd"
         ".local/share/konsole"
+        ".local/share/kwalletd"
+        ".local/share/baloo"
       ];
       files = [
         ".config/akregatorrc"
-        ".config/baloofilerc"
         ".config/gtkrc"
         ".config/gtkrc-2.0"
         ".config/kactivitymanagerdrc"
         ".config/kactivitymanagerd-statsrc"
         ".config/kateschemarc"
         ".config/kcminputrc"
-        ".config/kded5rc"
         ".config/khotkeysrc"
         ".config/kmixrc"
         ".config/konsolerc"
         ".config/kscreenlockerrc"
         ".config/ktimezonedrc"
-        ".config/kwinrulesrc"
         ".config/kxkbrc"
         ".config/plasma-localerc"
         ".config/powermanagementprofilesrc"
@@ -64,6 +63,11 @@
           ".config/ksmserverrc"
           ".config/plasmanotifyrc"
           ".config/spectaclerc"
+          ".config/kwalletrc"
+          ".config/kwinrulesrc"
+          ".config/baloofilerc"
+          ".config/krunnerrc"
+          ".config/kded5rc"
         ]
         |> builtins.map (path: {
           name = "kde-${lib.strings.removePrefix ".config/" path}";
