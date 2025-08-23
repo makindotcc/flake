@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   lib,
   config,
   ...
@@ -11,7 +12,7 @@
 
   config = lib.mkIf (config.dev.langs.rust.enable) {
     environment.systemPackages =
-      with pkgs;
+      with pkgs-stable;
       [
         rustc
         rustup
