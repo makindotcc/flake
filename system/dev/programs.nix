@@ -27,6 +27,8 @@ in
       gdb.enable = mkEnablePrograms "Enable GDB";
       lldb.enable = mkEnablePrograms "Enable LLDB";
     };
+    devenv.enable = mkEnablePrograms "Enable devenv";
+    direnv.enable = mkEnablePrograms "Enable direnv";
   };
 
   config =
@@ -44,12 +46,38 @@ in
         (lib.optional cfg.re.burp.enable pkgs.burpsuite)
         (lib.optional cfg.debuggers.gdb.enable pkgs.gdb)
         (lib.optional cfg.debuggers.lldb.enable pkgs.lldb)
+        (lib.optional cfg.devenv.enable pkgs.devenv)
       ];
+
+      programs.direnv.enable = cfg.direnv.enable;
+
+      nix.extraOptions = lib.mkIf cfg.devenv.enable ''
+        extra-substituters = https://devenv.cachix.org
+        extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+      '';
 
       home-manager.sharedModules = [
         {
           programs = {
-            nushell.shellAliases.nixcfg = lib.mkIf cfg.editor.vscode.enable "code ~/.config/nix";
+            nushell = {
+              shellAliases.nixcfg = lib.mkIf cfg.editor.vscode.enable "code ~/.config/nix";
+              extraConfig = lib.mkIf cfg.direnv.enable ''
+                $env.config = {
+                  hooks: {
+                    pre_prompt: [{ ||
+                      if (which direnv | is-empty) {
+                        return
+                      }
+
+                      direnv export json | from json | default {} | load-env
+                      if 'ENV_CONVERSIONS' in $env and 'PATH' in $env.ENV_CONVERSIONS {
+                        $env.PATH = do $env.ENV_CONVERSIONS.PATH.from_string $env.PATH
+                      }
+                    }]
+                  }
+                }
+              '';
+            };
           };
         }
       ];
