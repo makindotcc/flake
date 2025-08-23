@@ -60,5 +60,5 @@ in
 
   system.stateVersion = stateVersion;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_15; # downgrade for vmware
 }
