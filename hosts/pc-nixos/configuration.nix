@@ -29,9 +29,6 @@ in
   environment.systemPackages = with pkgs; [
     veracrypt
     ntfs3g
-    (ollama.override {
-      acceleration = "cuda";
-    })
     ngrok
   ];
 

@@ -112,7 +112,6 @@
         ".config/ghostty"
         ".cache"
         ".BurpSuite"
-        ".ollama"
         ".cargo"
         ".rustup"
         ".gradle"
