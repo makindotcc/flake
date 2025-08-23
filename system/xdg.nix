@@ -24,45 +24,44 @@ let
     "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
   };
 
-  associations =
-    {
-      "application/pdf" = browser;
-      "application/json" = browser;
-      "application/x-extension-htm" = browser;
-      "application/x-extension-html" = browser;
-      "application/x-extension-shtml" = browser;
-      "application/x-extension-xht" = browser;
-      "application/x-extension-xhtml" = browser;
-      "application/xhtml+xml" = browser;
-      "text/html" = browser;
-      "x-scheme-handler/http" = browser;
-      "x-scheme-handler/https" = browser;
+  associations = {
+    "application/pdf" = browser;
+    "application/json" = browser;
+    "application/x-extension-htm" = browser;
+    "application/x-extension-html" = browser;
+    "application/x-extension-shtml" = browser;
+    "application/x-extension-xht" = browser;
+    "application/x-extension-xhtml" = browser;
+    "application/xhtml+xml" = browser;
+    "text/html" = browser;
+    "x-scheme-handler/http" = browser;
+    "x-scheme-handler/https" = browser;
 
-      # image formats
-      "image/avif" = photos;
-      "image/bmp" = photos;
-      "image/gif" = photos;
-      "image/heic" = photos;
-      "image/jpeg" = photos;
-      "image/png" = photos;
-      "image/svg+xml" = photos;
-      "image/tiff" = photos;
-      "image/webp" = photos;
-      "image/x-icon" = photos;
+    # image formats
+    "image/avif" = photos;
+    "image/bmp" = photos;
+    "image/gif" = photos;
+    "image/heic" = photos;
+    "image/jpeg" = photos;
+    "image/png" = photos;
+    "image/svg+xml" = photos;
+    "image/tiff" = photos;
+    "image/webp" = photos;
+    "image/x-icon" = photos;
 
-      # audio formats
-      "audio/aac" = music;
-      "audio/flac" = music;
-      "audio/mpeg" = music;
-      "audio/ogg" = music;
-      "audio/opus" = music;
-      "audio/wav" = music;
-      "audio/x-ms-wma" = music;
+    # audio formats
+    "audio/aac" = music;
+    "audio/flac" = music;
+    "audio/mpeg" = music;
+    "audio/ogg" = music;
+    "audio/opus" = music;
+    "audio/wav" = music;
+    "audio/x-ms-wma" = music;
 
-      "text/csv" = text;
-    }
-    // steamHandlers
-    // telegramHandlers;
+    "text/csv" = text;
+  }
+  // steamHandlers
+  // telegramHandlers;
 
   homeConfig = {
     xdg.mimeApps = {
