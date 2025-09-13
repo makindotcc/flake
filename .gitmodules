@@ -1,3 +1,7 @@
+[submodule "makincc"]
+	path = hosts/makincc
+	url = git@github.com:makindotcc/makincc.git
+
 [submodule "secrets"]
 	path = secrets
 	url = git@github.com:makindotcc/flake-secrets.git
