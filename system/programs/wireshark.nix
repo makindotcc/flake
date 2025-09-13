@@ -1,10 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, ... }:
 {
   config = {
-    programs.wireshark.enable = lib.mkDefault (config.isPhysical && config.isDesktop);
+    programs.wireshark.enable = config.isPersonalPuter;
   };
 }

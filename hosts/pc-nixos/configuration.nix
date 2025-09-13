@@ -14,7 +14,7 @@ in
 
     ./localcerts.nix
     ./makincc-builder.nix
-    ./tailscale.nix
+    # ./tailscale.nix
   ];
 
   isDesktop = true;
@@ -27,7 +27,6 @@ in
   de.type = "kde";
 
   environment.systemPackages = with pkgs; [
-    veracrypt
     ntfs3g
     ngrok
   ];
@@ -49,6 +48,17 @@ in
     }
   ];
 
+  networking.firewall = {
+    enable = true;
+    # playing with own tcp stack in my scanner
+    extraCommands = ''
+      iptables -A INPUT -p tcp --dport 41351 -j DROP
+    '';
+    logRefusedConnections = false;
+    logRefusedPackets = false;
+    logRefusedUnicastsOnly = false;
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -57,5 +67,5 @@ in
 
   system.stateVersion = stateVersion;
 
-  boot.kernelPackages = pkgs.linuxPackages_6_15; # downgrade for vmware
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 }

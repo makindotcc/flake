@@ -29,6 +29,7 @@ in
     };
     devenv.enable = mkEnablePrograms "Enable devenv";
     direnv.enable = mkEnablePrograms "Enable direnv";
+    samply.enable = mkEnablePrograms "Enable Samply";
   };
 
   config =
@@ -47,10 +48,15 @@ in
         (lib.optional cfg.debuggers.gdb.enable pkgs.gdb)
         (lib.optional cfg.debuggers.lldb.enable pkgs.lldb)
         (lib.optional cfg.devenv.enable pkgs.devenv)
+        (lib.optional cfg.samply.enable pkgs.samply)
       ];
 
       programs.direnv.enable = cfg.direnv.enable;
 
+      impermanence.normalUsers.directories = builtins.concatLists [
+        (lib.optional cfg.direnv.enable ".local/share/direnv")
+        (lib.optional cfg.devenv.enable ".local/share/devenv")
+      ];
       nix.extraOptions = lib.mkIf cfg.devenv.enable ''
         extra-substituters = https://devenv.cachix.org
         extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=

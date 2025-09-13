@@ -13,6 +13,7 @@ in
     ./buzkaaclicker
     ./web.nix
     ./antibridge.nix
+    # ./minecraft.nix
   ];
 
   boot.loader.grub.enable = true;
@@ -26,6 +27,7 @@ in
     allowedTCPPorts = [
       22
       8080
+      25565
     ];
     allowedUDPPorts = [ ];
     allowPing = false;

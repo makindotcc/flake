@@ -29,7 +29,6 @@
     pkgs.ffmpeg_6-full
     pkgs.nmap
     pkgs.krita
-    pkgs.mosh
   ]
   ++ lib.optionals (config.isLinux && config.isPhysical) [
     pkgs.usbutils
