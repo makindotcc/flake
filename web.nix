@@ -22,7 +22,7 @@
     package = pkgs.cloudflared;
     certificateFile = config.age.secrets.cf-cert.path;
     tunnels = {
-      "d46659f4-ff43-46e6-a94b-3c5afef7d4ca" = {
+      "eb4ab92c-2b98-4154-9c90-aa815451bb49" = {
         credentialsFile = config.age.secrets.cf-tunnel.path;
         default = "http_status:404";
         ingress = {
