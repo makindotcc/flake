@@ -26,11 +26,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1758418481,
-        "narHash": "sha256-Sh2WQDxdJQcSI84nbeHZ1F7NWhm8w8hdL9B3AxNHPgk=",
+        "lastModified": 1758424250,
+        "narHash": "sha256-meTARGaNlsgwfrI0UhBj+TsFM5NPOxd9PGsZJvtybAo=",
         "ref": "refs/heads/master",
-        "rev": "3b1f20c90f08920f11a1d475e5c19de31b704e66",
-        "revCount": 65,
+        "rev": "b34a95b1bfc5e18dbf047c91b5e3c41a1e1e2885",
+        "revCount": 66,
         "type": "git",
         "url": "ssh://git@github.com/makindotcc/AntiBridge"
       },
@@ -89,11 +89,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1752427642,
-        "narHash": "sha256-Whb7rjyNHE3VPDY0dEk5yuOnfJve1xvO70F4YaOsFyU=",
+        "lastModified": 1758424230,
+        "narHash": "sha256-QsDk9KvTpIM+WWZRDZ9iq7Q2IIhSTZ9jKkEhMrolk3M=",
         "owner": "buzkaaclicker",
         "repo": "backend-rs",
-        "rev": "54aad2567a83cba52116337bfc66edacdb180c42",
+        "rev": "71ecb47122780104d275bab2df6dade5f3efdd8b",
         "type": "github"
       },
       "original": {
