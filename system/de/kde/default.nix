@@ -72,6 +72,7 @@
           ".config/krunnerrc"
           ".config/kded5rc"
           ".config/dolphinrc"
+          ".config/plasmarc"
         ]
         |> builtins.map (path: {
           name = "kde-${lib.strings.removePrefix ".config/" path}";
