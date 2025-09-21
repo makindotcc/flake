@@ -1,6 +1,7 @@
 _: {
   home-manager.users.user = {
     programs.ssh = {
+      matchBlocks."*" = { };
       extraConfig = ''
         Host github.com-buzkaaclicker-bins
           Hostname github.com
