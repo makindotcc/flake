@@ -118,7 +118,6 @@
         ".minecraft"
         ".mozilla"
         "Games"
-        ".wine"
         ".lunarclient"
         ".vscode"
         ".npm"

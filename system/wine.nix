@@ -13,5 +13,7 @@
       pkgs.winetricks
       pkgs.wineWowPackages.waylandFull
     ];
+
+    impermanence.normalUsers.directories = [ ".wine" ];
   };
 }
