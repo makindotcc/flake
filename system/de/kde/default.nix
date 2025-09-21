@@ -25,6 +25,7 @@
 
     impermanence.normalUsers = {
       directories = [
+        ".config/kdedefaults"
         ".config/glib-2.0"
         ".config/gtk-3.0"
         ".config/kdeconnect"
@@ -33,6 +34,8 @@
         ".local/share/konsole"
         ".local/share/kwalletd"
         ".local/share/baloo"
+        ".local/share/dolphin"
+        ".local/share/plasma"
       ];
       files = [
         ".config/akregatorrc"
@@ -68,6 +71,7 @@
           ".config/baloofilerc"
           ".config/krunnerrc"
           ".config/kded5rc"
+          ".config/dolphinrc"
         ]
         |> builtins.map (path: {
           name = "kde-${lib.strings.removePrefix ".config/" path}";

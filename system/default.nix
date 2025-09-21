@@ -14,7 +14,8 @@
     ./hardware
     ./programs
     ./shell
-  ] ++ (lib.collectNix ./. |> lib.remove ./default.nix);
+  ]
+  ++ (lib.collectNix ./. |> lib.remove ./default.nix);
 
   options = {
     isDesktop = lib.mkOption {
@@ -66,7 +67,10 @@
         programs = {
           home-manager.enable = true;
           git.enable = true;
-          ssh.enable = true;
+          ssh = {
+            enable = true;
+            enableDefaultConfig = false;
+          };
         };
       }
     ];
