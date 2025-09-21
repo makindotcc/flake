@@ -6,5 +6,6 @@
 
   config = lib.mkIf config.programs.vmware.enable {
     virtualisation.vmware.host.enable = true;
+    impermanence.normalUsers.directories = [ "vmware" ];
   };
 }
