@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs-stable,
   lib,
   config,
   ...
@@ -13,7 +13,7 @@
     programs.obs-studio = {
       enable = true;
       package = (
-        pkgs.obs-studio.override {
+        pkgs-stable.obs-studio.override {
           cudaSupport = true;
         }
       );

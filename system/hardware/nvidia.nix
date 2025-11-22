@@ -13,7 +13,7 @@
       modesetting.enable = true;
       powerManagement.enable = true;
       powerManagement.finegrained = false;
-      open = true;
+      open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
@@ -25,45 +25,45 @@
       enable = true;
       enable32Bit = true;
 
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau
-        libvdpau-va-gl
-        nvidia-vaapi-driver
+      extraPackages = [
+        pkgs.libva-vdpau-driver
+        pkgs.libvdpau
+        pkgs.libvdpau-va-gl
+        pkgs.nvidia-vaapi-driver
       ];
     };
 
     boot.kernelParams = [
       "module_blacklist=amdgpu"
-      "nvidia.NVreg_UsePageAttributeTable=1"
-      # "nvidia.NVreg_EnableGpuFirmware=0"
+      # "nvidia.NVreg_UsePageAttributeTable=1"
+      "nvidia.NVreg_EnableGpuFirmware=0"
     ];
 
     services.xserver = {
       videoDrivers = [ "nvidia" ];
 
-      # screenSection = ''
-      #   Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
-      #   Option         "AllowIndirectGLXProtocol" "off"
-      #   Option         "TripleBuffer" "on"
-      # '';
+      screenSection = ''
+        Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+        Option         "AllowIndirectGLXProtocol" "off"
+        Option         "TripleBuffer" "on"
+      '';
     };
 
-    environment.sessionVariables = {
-      LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.libglvnd ];
-      __EGL_VENDOR_LIBRARY_FILENAMES = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
-    };
+    # environment.sessionVariables = {
+    #   LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.libglvnd ];
+    #   __EGL_VENDOR_LIBRARY_FILENAMES = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
+    # };
 
-    environment.variables = {
-      # KWIN_DRM_DISABLE_TRIPLE_BUFFERING = "1";
-      # KWIN_DRM_NO_AMS = "1";
-    };
+    # environment.variables = {
+    #   # KWIN_DRM_DISABLE_TRIPLE_BUFFERING = "1";
+    #   # KWIN_DRM_NO_AMS = "1";
+    # };
 
-    home-manager.sharedModules = [
-      {
-        nixGL.vulkan.enable = true;
-      }
-    ];
+    # home-manager.sharedModules = [
+    #   {
+    #     nixGL.vulkan.enable = true;
+    #   }
+    # ];
   };
 }
 

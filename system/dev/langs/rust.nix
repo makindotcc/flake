@@ -11,21 +11,14 @@
   };
 
   config = lib.mkIf (config.dev.langs.rust.enable) {
-    environment.systemPackages =
-      with pkgs-stable;
-      [
-        rustc
-        rustup
-        cargo
+    environment.systemPackages = with pkgs-stable; [
+      rustc
+      rustup
+      cargo
 
-        pkg-config
-        openssl
-      ]
-      ++ lib.optionals config.dev.programs.editor.vscode.enable [
-        clippy
-        rustfmt
-        rust-analyzer
-      ];
+      pkg-config
+      openssl
+    ];
 
     environment.sessionVariables = {
       RUST_SRC_PATH = pkgs.rust.packages.stable.rustPlatform.rustLibSrc;

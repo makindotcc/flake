@@ -14,7 +14,7 @@
     pkgs.tmux
     pkgs.bat
     pkgs.file
-    pkgs.ncdu
+    pkgs.dua
     pkgs.ouch
     pkgs.bottom
     pkgs.fastfetch

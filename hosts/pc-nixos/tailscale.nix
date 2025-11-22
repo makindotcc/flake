@@ -8,9 +8,9 @@
   environment.systemPackages = [ pkgs.tailscale ];
   services.tailscale = {
     enable = true;
-    authKeyFile = config.age.secrets.tailscale-authkey.path;
+    authKeyFile = config.age.secrets.tailscale-pc.path;
   };
-  age.secrets.tailscale-authkey.file = self + /secrets/tailscale-authkey.age;
+  age.secrets.tailscale-pc.file = self + /secrets/tailscale-pc.age;
 
   networking.firewall = {
     enable = true;

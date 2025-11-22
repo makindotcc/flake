@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   lib,
   config,
   ...
@@ -11,14 +10,14 @@
   };
 
   config = lib.mkIf (config.dev.langs.gleam.enable) {
-    environment.systemPackages =
-      (with pkgs; [
+    environment.systemPackages = (
+      with pkgs;
+      [
         erlang
         rebar3
         inotify-tools
-      ])
-      ++ (with pkgs-stable; [
         gleam
-      ]);
+      ]
+    );
   };
 }

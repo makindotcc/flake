@@ -1,8 +1,10 @@
 { lib, config, ... }:
 {
   imports = [
+    ./cosmic
     ./gnome
     ./kde
+    ./hyprland
   ];
 
   options = {
@@ -10,7 +12,7 @@
       type = lib.types.enum [
         "gnome"
         "kde"
-        # "cosmic"
+        "cosmic"
         "none"
       ];
       default = if config.isDesktop then "gnome" else "none";

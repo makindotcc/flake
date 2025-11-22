@@ -70,6 +70,10 @@
           ssh = {
             enable = true;
             enableDefaultConfig = false;
+            extraConfig = ''
+              Host *
+                  ServerAliveInterval 120
+            '';
           };
         };
       }
@@ -78,5 +82,7 @@
     security.sudo.extraConfig = ''
       Defaults lecture="never"
     '';
+
+    # programs.nix-ld.enable = true;
   };
 }

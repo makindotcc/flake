@@ -79,6 +79,19 @@
           path = path;
           mode = "copy";
         })
+      )
+      ++ (
+        [
+          "./local/state/dolphinstaterc"
+          "./local/state/plasmashellstaterc"
+          "./local/state/kickerstaterc"
+          "./local/state/katestaterc"
+        ]
+        |> builtins.map (path: {
+          name = "kde-${lib.strings.removePrefix "./local/state/" path}";
+          path = path;
+          mode = "copy";
+        })
       );
     };
 

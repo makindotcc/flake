@@ -2,7 +2,7 @@
 {
   imports = [
     ./langs
-    ./programs.nix
+    ./programs
   ];
 
   options.dev.full = lib.mkEnableOption "Enable all development modules";

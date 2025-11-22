@@ -9,11 +9,12 @@ let
   mkEnablePrograms = lib.mkEnableDefaultOption config.dev.programs.all;
 in
 {
+  imports = lib.collectNix ./. |> lib.remove ./default.nix;
+
   options.dev.programs = {
     all = lib.mkEnableOption "Enable all development programs";
 
     editor = {
-      vscode.enable = mkEnablePrograms "Enable Visual Studio Code";
       idea.enable = mkEnablePrograms "Enable JetBrains Idea";
       clion.enable = mkEnablePrograms "Enable JetBrains CLion";
       rust-rover.enable = mkEnablePrograms "Enable Jetbrains RustRover";
@@ -30,6 +31,9 @@ in
     devenv.enable = mkEnablePrograms "Enable devenv";
     direnv.enable = mkEnablePrograms "Enable direnv";
     samply.enable = mkEnablePrograms "Enable Samply";
+    kubernetes = {
+      kubectl.enable = mkEnablePrograms "Enable kubectl";
+    };
   };
 
   config =
@@ -38,7 +42,6 @@ in
     in
     {
       environment.systemPackages = builtins.concatLists [
-        (lib.optional cfg.editor.vscode.enable pkgs.vscode)
         (lib.optional cfg.editor.idea.enable pkgs-stable.jetbrains.idea-community-bin)
         (lib.optional cfg.editor.clion.enable pkgs-stable.jetbrains.clion)
         (lib.optional cfg.editor.rust-rover.enable pkgs-stable.jetbrains.rust-rover)
@@ -49,6 +52,7 @@ in
         (lib.optional cfg.debuggers.lldb.enable pkgs.lldb)
         (lib.optional cfg.devenv.enable pkgs.devenv)
         (lib.optional cfg.samply.enable pkgs.samply)
+        (lib.optional cfg.kubernetes.kubectl.enable pkgs.kubectl)
       ];
 
       programs.direnv.enable = cfg.direnv.enable;
@@ -66,7 +70,6 @@ in
         {
           programs = {
             nushell = {
-              shellAliases.nixcfg = lib.mkIf cfg.editor.vscode.enable "code ~/.config/nix";
               extraConfig = lib.mkIf cfg.direnv.enable ''
                 $env.config = {
                   hooks: {

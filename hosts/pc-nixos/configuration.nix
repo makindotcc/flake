@@ -14,7 +14,7 @@ in
 
     ./localcerts.nix
     ./makincc-builder.nix
-    # ./tailscale.nix
+    ./tailscale.nix
   ];
 
   isDesktop = true;
@@ -25,6 +25,8 @@ in
   docker.enable = true;
   hardware.nvidia.enable = true;
   de.type = "kde";
+  # de.hyprland.enable = true;
+  # de.cosmic.enable = true;
 
   environment.systemPackages = with pkgs; [
     ntfs3g
@@ -54,9 +56,9 @@ in
     extraCommands = ''
       iptables -A INPUT -p tcp --dport 41351 -j DROP
     '';
-    logRefusedConnections = false;
-    logRefusedPackets = false;
-    logRefusedUnicastsOnly = false;
+    allowedTCPPorts = [
+      8080
+    ];
   };
 
   # Bootloader.

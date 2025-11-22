@@ -7,5 +7,8 @@
   config = lib.mkIf config.programs.vmware.enable {
     virtualisation.vmware.host.enable = true;
     impermanence.normalUsers.directories = [ "vmware" ];
+    environment.persistence.${config.impermanence.dir}.directories = [
+      "/etc/vmware" # crashuje ? chjyba vmware przez to
+    ];
   };
 }
