@@ -62,14 +62,6 @@
           ];
         };
 
-        vmware-nix = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = additionalArgs { inherit system; };
-          modules = [
-            ./hosts/vmware-nix/configuration.nix
-          ];
-        };
-
         makincc = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = additionalArgs { inherit system; };
