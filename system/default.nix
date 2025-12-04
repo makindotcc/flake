@@ -70,10 +70,9 @@
           ssh = {
             enable = true;
             enableDefaultConfig = false;
-            extraConfig = ''
-              Host *
-                  ServerAliveInterval 120
-            '';
+            matchBlocks."*" = {
+              serverAliveInterval = 120;
+            };
           };
         };
       }
@@ -84,5 +83,8 @@
     '';
 
     # programs.nix-ld.enable = true;
+
+    # graphene hardened malloc
+    boot.kernel.sysctl."vm.max_map_count" = lib.mkIf config.isLinux 1048576;
   };
 }

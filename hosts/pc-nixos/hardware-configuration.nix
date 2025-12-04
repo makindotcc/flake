@@ -71,7 +71,6 @@
         ".config/monitors.xml"
       ];
       directories = [
-        "Android" # todo: add android files persistence in a better way
         "Downloads"
         "Music"
         "Pictures"
