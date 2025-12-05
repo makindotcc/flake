@@ -2,5 +2,6 @@
   pc = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3BdWxBIA3tyMEF7xiuFQLB85iGHWlROSXNVomxBJ96 user@pc-nixos"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXJkkj1vTf5rxSAQaYveCc9V/I442PyhXGNYkpCIvN4 root@pc-nixos"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILCffyTVbNGogsvAeCgNU3fLxdEZjt/Qs8N5mKCZ4G+r user@mkns-MacBook-Pro.local"
   ];
 }
