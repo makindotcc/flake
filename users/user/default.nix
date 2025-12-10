@@ -1,4 +1,5 @@
 {
+  self,
   config,
   ...
 }:
@@ -18,6 +19,8 @@
       else
         [ ]
     );
+
+    openssh.authorizedKeys.keys = (import (self + /keys.nix)).pc;
   };
   home-manager.users = {
     user = import ./home.nix;

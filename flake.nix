@@ -17,6 +17,12 @@
     urldebloater.url = "github:makindotcc/urldebloater";
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
+
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      flake = false;
+    };
+
     buzkaaclicker-backend.url = "github:buzkaaclicker/backend-rs";
     # buzkaaclicker-backend.url = "path:/home/user/Documents/dev/buzkaaclicker/backend-rs";
     antibridge.url = "git+ssh://git@github.com/makindotcc/AntiBridge";

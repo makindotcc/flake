@@ -15,6 +15,7 @@ in
     ./localcerts.nix
     ./makincc-builder.nix
     ./tailscale.nix
+    ./remote-access.nix
   ];
 
   isDesktop = true;
@@ -35,14 +36,6 @@ in
 
   networking.hostName = "pc-nixos";
 
-  services.openssh = {
-    enable = true;
-    ports = [ 2135 ];
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-    settings.PermitRootLogin = "no";
-  };
-
   home-manager.sharedModules = [
     {
       services.pueue.enable = true;
@@ -59,6 +52,10 @@ in
     allowedTCPPorts = [
       8080
     ];
+  };
+
+  networking.hosts = {
+    "13.56.237.8" = [ "lendwyse.com" ];
   };
 
   # Bootloader.
