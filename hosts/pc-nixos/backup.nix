@@ -5,6 +5,11 @@
   pkgs,
   ...
 }:
+let
+  notifySend =
+    args:
+    "${pkgs.su}/bin/su -s /bin/sh user -c 'export DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus; ${pkgs.libnotify}/bin/notify-send ${args}'";
+in
 {
   environment.systemPackages = [ pkgs.restic ];
 
@@ -58,6 +63,22 @@
       OnCalendar = "02:15";
       Persistent = true;
     };
+
+    extraBackupArgs = [
+      "--verbose"
+    ];
+
+    backupPrepareCommand = ''
+      ${notifySend ''-u normal -i drive-harddisk "Restic Backup" "Rozpoczynam backup do backupbox..."''}
+    '';
+
+    backupCleanupCommand = ''
+      if [ $EXIT_STATUS -eq 0 ]; then
+        ${notifySend ''-u normal -i emblem-success "Restic Backup" "Backup zakończony pomyślnie!"''}
+      else
+        ${notifySend ''-u critical -i dialog-error "Restic Backup" "Backup zakończony błędem (kod: $EXIT_STATUS)"''}
+      fi
+    '';
   };
 
   age.secrets.pc-restic.file = self + /secrets/pc-restic.age;
