@@ -28,7 +28,7 @@
           |> builtins.map (entry: if builtins.isAttrs entry then entry.path else entry)
           |> builtins.map (path: "${config.users.users.user.home}/${path}");
       in
-      lib.unique (globalFiles ++ homeDirsFiles ++ [ "/root/.ssh/config" ]);
+      lib.unique (globalFiles ++ homeDirsFiles);
 
     exclude = [
       "/nix"
