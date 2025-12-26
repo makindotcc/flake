@@ -55,6 +55,7 @@
   environment.persistence.${config.impermanence.dir} = {
     hideMounts = true;
     directories = [
+      "/root/"
       "/var/log"
       "/var/lib"
       "/nix"

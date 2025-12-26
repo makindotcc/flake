@@ -17,6 +17,7 @@ in
     # ./tailscale.nix
     ./remote-access.nix
     ./rgb.nix
+    ./backup.nix
   ];
 
   isDesktop = true;

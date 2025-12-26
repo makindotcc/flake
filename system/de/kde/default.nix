@@ -84,7 +84,6 @@
         [
           "./local/state/dolphinstaterc"
           "./local/state/plasmashellstaterc"
-          "./local/state/kickerstaterc"
           "./local/state/katestaterc"
         ]
         |> builtins.map (path: {
