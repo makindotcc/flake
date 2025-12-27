@@ -13,8 +13,8 @@ in
 {
   environment.systemPackages = [ pkgs.restic ];
 
-  services.restic.backups.backupbox = {
-    repository = "sftp://backupbox/pc";
+  services.restic.backups.backup-fs = {
+    repository = "sftp://backupbox/restic/pc";
     passwordFile = config.age.secrets.pc-restic.path;
 
     paths =
