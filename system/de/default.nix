@@ -5,6 +5,7 @@
     ./gnome
     ./kde
     ./hyprland
+    ./homemade
   ];
 
   options = {
@@ -14,9 +15,10 @@
         "kde"
         "cosmic"
         "hyprland"
+        "homemade"
         "none"
       ];
-      default = if config.isDesktop then "gnome" else "none";
+      default = if config.isDesktop then "kde" else "none";
       description = "The type of desktop environment to use.";
     };
   };

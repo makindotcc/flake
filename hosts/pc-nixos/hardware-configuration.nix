@@ -102,7 +102,6 @@
         ".local/share/JetBrains"
         ".local/share/fsearch"
         ".local/share/krita"
-        ".local/share/nautilus"
         {
           directory = ".local/share/keyrings";
           mode = "0700";

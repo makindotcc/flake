@@ -29,7 +29,8 @@ in
   wine.enable = true;
   docker.enable = true;
   hardware.nvidia.enable = true;
-  de.type = "kde";
+  de.type = "homemade";
+  # de.homemade.enable = true;
   # de.hyprland.enable = true;
 
   environment.systemPackages = with pkgs; [
