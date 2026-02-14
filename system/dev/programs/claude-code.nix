@@ -26,7 +26,11 @@
         ".claude"
       ];
       files = [
-        ".claude.json"
+        {
+          name = "claudejson";
+          path = ".claude.json";
+          mode = "copy";
+        }
       ];
     };
     environment.persistence.${config.impermanence.dir}.directories = [
