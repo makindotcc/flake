@@ -39,13 +39,10 @@ Item {
                     acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
 
                     onClicked: (mouse) => {
-                        console.log("Tray click:", modelData.title, "onlyMenu:", modelData.onlyMenu, "hasMenu:", modelData.hasMenu)
                         if (mouse.button === Qt.LeftButton) {
                             if (modelData.onlyMenu && modelData.hasMenu) {
-                                console.log("Opening menu")
                                 menuAnchor.open()
                             } else {
-                                console.log("Calling activate()")
                                 modelData.activate()
                             }
                         } else if (mouse.button === Qt.MiddleButton) {

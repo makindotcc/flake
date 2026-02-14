@@ -23,7 +23,6 @@ ShellRoot {
         target: "fuzzel"
 
         function toggle(): void {
-            console.log("toggle");
             if (fuzzelProc.running) {
                 fuzzelProc.signal(15)
             } else {

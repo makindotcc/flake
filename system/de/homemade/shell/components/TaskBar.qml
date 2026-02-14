@@ -25,7 +25,6 @@ Item {
         if (!appId) return fallbackIcon
         const iconName = getIconName(appId)
         const path = Quickshell.iconPath(iconName, true)
-        console.log("path", path, "CO JEST", path !== "" ? path : fallbackIcon)
         return path !== "" ? path : fallbackIcon
     }
 
