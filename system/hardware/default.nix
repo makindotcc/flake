@@ -1,9 +1,6 @@
 { lib, config, ... }:
 {
-  imports = [
-    ./nvidia.nix
-    ./usb-wakeup-disable.nix
-  ];
+  imports = (lib.collectNix ./. |> lib.remove ./default.nix);
 
   hardware.usb.wakeupDisabled = lib.mkIf config.isLinux [
     {

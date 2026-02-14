@@ -13,6 +13,7 @@
         "gnome"
         "kde"
         "cosmic"
+        "hyprland"
         "none"
       ];
       default = if config.isDesktop then "gnome" else "none";
@@ -26,6 +27,11 @@
       FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
       # wayland in (most) electron apps
       NIXOS_OZONE_WL = "1";
+    };
+
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
     };
   };
 }

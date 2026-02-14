@@ -18,6 +18,8 @@ in
     ./remote-access.nix
     ./rgb.nix
     ./backup.nix
+    ./ollama.nix
+    ./tabby.nix
   ];
 
   isDesktop = true;
@@ -29,7 +31,6 @@ in
   hardware.nvidia.enable = true;
   de.type = "kde";
   # de.hyprland.enable = true;
-  # de.cosmic.enable = true;
 
   environment.systemPackages = with pkgs; [
     ntfs3g
@@ -67,6 +68,4 @@ in
   networking.networkmanager.enable = true;
 
   system.stateVersion = stateVersion;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 }

@@ -19,7 +19,6 @@
   config = lib.mkIf config.de.gnome.enable {
     services = {
       xserver.enable = true;
-      displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
     };
     # https://discourse.nixos.org/t/gnome-display-manager-fails-to-login-until-wi-fi-connection-is-established/50513/15
@@ -37,7 +36,7 @@
       gnome-music
       gnome-photos
       gnome-tour
-      orca
+      # orca
       yelp
     ];
 

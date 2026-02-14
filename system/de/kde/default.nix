@@ -11,10 +11,6 @@
 
   config = lib.mkIf config.de.kde.enable {
     services.xserver.enable = true;
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
     services.desktopManager.plasma6.enable = true;
 
     hardware.bluetooth = {
@@ -44,7 +40,6 @@
         ".config/kactivitymanagerdrc"
         ".config/kactivitymanagerd-statsrc"
         ".config/kateschemarc"
-        ".config/kcminputrc"
         ".config/khotkeysrc"
         ".config/kmixrc"
         ".config/konsolerc"
@@ -73,6 +68,7 @@
           ".config/kded5rc"
           ".config/dolphinrc"
           ".config/plasmarc"
+          ".config/kcminputrc"
         ]
         |> builtins.map (path: {
           name = "kde-${lib.strings.removePrefix ".config/" path}";
@@ -82,12 +78,12 @@
       )
       ++ (
         [
-          "./local/state/dolphinstaterc"
-          "./local/state/plasmashellstaterc"
-          "./local/state/katestaterc"
+          ".local/state/dolphinstaterc"
+          ".local/state/plasmashellstaterc"
+          ".local/state/katestaterc"
         ]
         |> builtins.map (path: {
-          name = "kde-${lib.strings.removePrefix "./local/state/" path}";
+          name = "kde-${lib.strings.removePrefix ".local/state/" path}";
           path = path;
           mode = "copy";
         })

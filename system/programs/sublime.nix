@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   lib,
   config,
   ...
@@ -9,9 +10,14 @@
     default = config.isDesktop;
   };
 
-  config = lib.mkIf config.programs.sublime.enable {
+  config = lib.mkIf config.programs.sublime.enable ({
+    nixpkgs.overlays = [
+      (final: prev: {
+        teamspeak3-insecure = pkgs-stable.teamspeak3;
+      })
+    ];
     environment.systemPackages = [ pkgs.sublime4 ];
-    nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
     impermanence.normalUsers.directories = [ ".config/sublime-text" ];
-  };
+    nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
+  });
 }

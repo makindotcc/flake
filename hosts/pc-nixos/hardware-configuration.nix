@@ -4,6 +4,7 @@
   ...
 }:
 {
+  hardware.razer.enable = true;
   boot.kernelModules = [
     "kvm-amd"
     "nct6775"
@@ -48,8 +49,13 @@
         "dmask=0077"
       ];
     };
-    "/etc/ssh".neededForBoot = true;
   };
+
+  age.identityPaths = [
+    "${config.impermanence.dir}/etc/ssh/ssh_host_ed25519_key"
+    # kwallet?
+    "${config.impermanence.dir}/etc/ssh/ssh_host_rsa_key"
+  ];
 
   impermanence.enable = true;
   environment.persistence.${config.impermanence.dir} = {

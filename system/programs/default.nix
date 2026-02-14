@@ -42,6 +42,9 @@
     pkgs.mission-center
     pkgs-stable.clapper
     pkgs.eyedropper
+  ]
+  ++ lib.optionals config.isLinux [
+    pkgs.net-tools
   ];
 
   programs.vim = {

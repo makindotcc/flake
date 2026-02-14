@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-stable,
   lib,
   config,
   ...
@@ -12,7 +13,7 @@
   config = lib.mkIf config.programs.discord.enable {
     environment.systemPackages = [
       pkgs.discord
-      pkgs.vesktop
+      pkgs-stable.vesktop
     ];
 
     impermanence.normalUsers.directories = [

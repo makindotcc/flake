@@ -11,7 +11,7 @@
 
   config = lib.mkIf config.dev.langs.nix.enable {
     environment.systemPackages = with pkgs; [
-      nixfmt-rfc-style
+      nixfmt
       nil
     ];
   };

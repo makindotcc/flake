@@ -31,14 +31,22 @@ in
             |> builtins.map (entry: if builtins.isAttrs entry then entry.filePath else entry)
           );
         homeDirsFiles =
-          (config.impermanence.normalUsers.directories ++ config.impermanence.normalUsers.files)
-          |> builtins.map (entry: if builtins.isAttrs entry then entry.path else entry)
+          (
+            config.environment.persistence.${config.impermanence.dir}.users.user.directories
+            |> builtins.map (entry: if builtins.isAttrs entry then entry.directory else entry)
+          )
+          ++ (
+            config.environment.persistence.${config.impermanence.dir}.users.user.files
+            |> builtins.map (entry: if builtins.isAttrs entry then entry.file else entry)
+          )
           |> builtins.map (path: "${config.users.users.user.home}/${path}");
       in
       lib.unique (globalFiles ++ homeDirsFiles);
 
     exclude = [
       "/nix"
+      "/var/lib/tabby"
+      "/var/lib/private/tabby"
     ]
     ++ (
       [
@@ -49,7 +57,8 @@ in
         "Documents/dev/*/target" # rust build artifacts
         ".local/share/Steam"
         ".local/share/docker"
-        "vmware/"
+        "vmware"
+        ".ollama"
       ]
       |> builtins.map (dir: "${config.users.users.user.home}/${dir}")
     );

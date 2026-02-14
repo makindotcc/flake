@@ -56,7 +56,7 @@
     ];
     services.resolved = {
       enable = true;
-      dnssec = "false";
+      settings.Resolve.DNSSEC = "false";
     };
 
     home-manager.useGlobalPkgs = true;
