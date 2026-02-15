@@ -18,7 +18,7 @@
     ++ (lib.optionals (config.isLinux && config.isDesktop) [
       (pkgs.writeShellScriptBin "send-claude-attention" ''
         ${pkgs.libnotify}/bin/notify-send "Claude Code" "Attention required"
-        ${pkgs.pipewire}/bin/pw-play /run/current-system/sw/share/sounds/ocean/stereo/bell.oga --volume=1.2
+        # ${pkgs.pipewire}/bin/pw-play /run/current-system/sw/share/sounds/ocean/stereo/bell.oga --volume=1.2
       '')
     ]);
     impermanence.normalUsers = {

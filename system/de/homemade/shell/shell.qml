@@ -68,6 +68,14 @@ ShellRoot {
         }
     }
 
+    IpcHandler {
+        target: "displayMode"
+
+        function toggle(): void {
+            displayModePopup.toggle()
+        }
+    }
+
     // Overlay to catch clicks outside fuzzel
     PanelWindow {
         id: overlay
@@ -89,6 +97,10 @@ ShellRoot {
             onClicked: fuzzelProc.signal(15)
         }
     }
+
+    NotificationPopup {}
+    VolumeOsd {}
+    DisplayModePopup { id: displayModePopup }
 
     PanelWindow {
         id: bar

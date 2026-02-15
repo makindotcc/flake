@@ -35,6 +35,8 @@
     environment.systemPackages = with pkgs; [
       labwc
       fuzzel
+      gsettings-desktop-schemas
+      glib
       qt6Packages.qt6ct
       libsForQt5.qt5ct
       wlr-randr
@@ -60,6 +62,7 @@
     services.gnome.gnome-keyring.enable = true;
 
     environment.sessionVariables = {
+      XDG_CURRENT_DESKTOP = "labwc";
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_CACHE_HOME = "$HOME/.cache";
@@ -79,6 +82,7 @@
         }:
         let
           fuzzelToggle = "sh -c 'qs ipc --pid $(pgrep -f bin/quickshell | head -1) call fuzzel toggle'";
+          displayModeToggle = "sh -c 'qs ipc --pid $(pgrep -f bin/quickshell | head -1) call displayMode toggle'";
         in
         {
           programs.swaylock = {
@@ -241,7 +245,7 @@
                   {
                     "@category" = "default";
                     accelProfile = "flat";
-                    pointerSpeed = "-0.23";
+                    pointerSpeed = "-0.25";
                   }
                 ];
               };
@@ -327,6 +331,51 @@
                       "@command" = "sh -c 'grim - | wl-copy'";
                     };
                   }
+                  # Display mode (Win+P)
+                  {
+                    "@key" = "W-p";
+                    action = {
+                      "@name" = "Execute";
+                      "@command" = displayModeToggle;
+                    };
+                  }
+                  # Volume controls
+                  {
+                    "@key" = "XF86AudioRaiseVolume";
+                    action = {
+                      "@name" = "Execute";
+                      "@command" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+";
+                    };
+                  }
+                  {
+                    "@key" = "XF86AudioLowerVolume";
+                    action = {
+                      "@name" = "Execute";
+                      "@command" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
+                    };
+                  }
+                  {
+                    "@key" = "XF86AudioMute";
+                    action = {
+                      "@name" = "Execute";
+                      "@command" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+                    };
+                  }
+                  # Fine volume controls (Shift + volume keys = 1%)
+                  {
+                    "@key" = "S-XF86AudioRaiseVolume";
+                    action = {
+                      "@name" = "Execute";
+                      "@command" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+";
+                    };
+                  }
+                  {
+                    "@key" = "S-XF86AudioLowerVolume";
+                    action = {
+                      "@name" = "Execute";
+                      "@command" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
+                    };
+                  }
                 ];
               };
               mouse = {
@@ -393,8 +442,8 @@
             ];
 
             autostart = [
-              "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_RUNTIME_DIR PATH"
-              "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_RUNTIME_DIR PATH"
+              "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_RUNTIME_DIR PATH XDG_DATA_DIRS"
+              "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_RUNTIME_DIR PATH XDG_DATA_DIRS"
               "sh -c 'wlr-randr --output HDMI-A-2 --pos 0,0 --mode 3840x2160@240Hz --output HDMI-A-1 --pos 3840,0 && qs &'"
             ];
           };
