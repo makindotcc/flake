@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Bluetooth
+import Quickshell.Io
 
 Item {
     id: root
@@ -11,6 +12,11 @@ Item {
 
     Layout.preferredWidth: 30
     Layout.fillHeight: true
+
+    Process {
+        id: bluemanProc
+        command: ["blueman-manager"]
+    }
 
     // Direct binding to adapter powered state
     property bool powered: Bluetooth.defaultAdapter?.enabled ?? false
@@ -70,7 +76,7 @@ Item {
             if (mouse.button === Qt.LeftButton) {
                 popupVisible = !popupVisible
             } else if (mouse.button === Qt.RightButton) {
-                if (Bluetooth.defaultAdapter) Bluetooth.defaultAdapter.powered = !Bluetooth.defaultAdapter.powered
+                bluemanProc.running = true
             }
         }
     }
@@ -90,7 +96,7 @@ Item {
         WlrLayershell.layer: WlrLayer.Top
         WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
 
-        exclusiveZone: 0
+        exclusiveZone: -1
 
         MouseArea {
             anchors.fill: parent

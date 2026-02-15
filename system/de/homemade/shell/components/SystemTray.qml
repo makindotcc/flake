@@ -7,6 +7,7 @@ import Quickshell.Services.SystemTray
 Item {
     id: root
     property int extraVerticalPadding: 4
+    property bool hasItems: SystemTray.items.values.length > 0
 
     Layout.preferredWidth: trayRow.width
     Layout.fillHeight: true

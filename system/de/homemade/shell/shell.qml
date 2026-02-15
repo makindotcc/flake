@@ -4,15 +4,48 @@
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
-import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
+import Qt.labs.platform
 import "components"
 
 ShellRoot {
     id: root
 
     property alias fuzzelProc: fuzzelProc
+
+    // Wallpaper for each screen
+    Variants {
+        model: Quickshell.screens
+
+        PanelWindow {
+            property var modelData
+
+            screen: modelData
+            color: "#000000"
+            anchors {
+                top: true
+                bottom: true
+                left: true
+                right: true
+            }
+
+            WlrLayershell.namespace: "wallpaper"
+            WlrLayershell.layer: WlrLayer.Background
+            WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
+            exclusiveZone: -1
+
+            // Empty mask = clicks pass through to labwc
+            mask: Region {}
+
+            Image {
+                id: wallpaperImage
+                anchors.fill: parent
+                source: StandardPaths.writableLocation(StandardPaths.ConfigLocation) + "/quickshell/wallpaper.png"
+                fillMode: Image.PreserveAspectCrop
+            }
+        }
+    }
 
     Process {
         id: fuzzelProc
@@ -78,14 +111,10 @@ ShellRoot {
             spacing: 4
 
             StartButton { fuzzelProc: fuzzelProc }
-            Separator {}
             TaskBar { toplevels: ToplevelManager.toplevels }
-            Separator {}
-            SystemTray {}
-            Separator {}
+            SystemTray { id: systemTray }
             VolumeControl {}
             BluetoothStatus {}
-            Separator {}
             Clock {}
             ShowDesktopButton { toplevels: ToplevelManager.toplevels }
         }

@@ -98,7 +98,7 @@ Item {
         WlrLayershell.layer: WlrLayer.Top
         WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
 
-        exclusiveZone: 0
+        exclusiveZone: -1
 
         MouseArea {
             anchors.fill: parent

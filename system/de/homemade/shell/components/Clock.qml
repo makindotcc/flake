@@ -6,7 +6,13 @@ Item {
 
     Layout.fillWidth: false
     Layout.fillHeight: true
-    Layout.preferredWidth: clockText.implicitWidth + 16
+    Layout.preferredWidth: maxWidthMetrics.width + 16
+
+    TextMetrics {
+        id: maxWidthMetrics
+        font: clockText.font
+        text: "00:00:00"
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -18,8 +24,10 @@ Item {
         Text {
             id: clockText
             anchors.centerIn: parent
+            width: maxWidthMetrics.width
             color: "#cdd6f4"
             font.pixelSize: 12
+            font.family: "monospace"
             horizontalAlignment: Text.AlignHCenter
 
             Timer {
@@ -29,7 +37,7 @@ Item {
                 triggeredOnStart: true
                 onTriggered: {
                     var now = new Date()
-                    clockText.text = now.toLocaleTimeString(Qt.locale(), "hh:mm") + "\n" + now.toLocaleDateString(Qt.locale(), "dd.MM")
+                    clockText.text = now.toLocaleTimeString(Qt.locale(), "hh:mm:ss") + "\n" + now.toLocaleDateString(Qt.locale(), "dd.MM")
                 }
             }
         }
