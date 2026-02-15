@@ -6,26 +6,27 @@ import Quickshell.Services.SystemTray
 
 Item {
     id: root
-    property int extraVerticalPadding: 4
     property bool hasItems: SystemTray.items.values.length > 0
 
-    Layout.preferredWidth: trayRow.width
-    Layout.fillHeight: true
+    width: trayRow.width
+    height: parent.height
 
     Row {
         id: trayRow
         anchors.verticalCenter: parent.verticalCenter
-        spacing: 4
+        height: parent.height
+        spacing: 2
 
         Repeater {
             model: SystemTray.items
 
             Rectangle {
                 required property var modelData
-                width: 28
-                height: root.parent.height - (extraVerticalPadding * 2)
-                radius: 4
-                color: trayItemMouse.containsMouse ? "#45475a" : "transparent"
+                width: 32
+                height: 32
+                anchors.verticalCenter: parent.verticalCenter
+                radius: 5
+                color: trayItemMouse.containsMouse ? "#33ffffff" : "transparent"
 
                 IconImage {
                     anchors.centerIn: parent

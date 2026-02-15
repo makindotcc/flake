@@ -6,11 +6,10 @@ import Quickshell.Services.Pipewire
 
 Item {
     id: root
-    property int extraVerticalPadding: 4
     property bool popupVisible: false
 
-    Layout.preferredWidth: 40
-    Layout.fillHeight: true
+    width: 36
+    height: parent.height
 
     // Bind the pipewire node so its properties will be tracked
     PwObjectTracker {
@@ -36,12 +35,11 @@ Item {
     }
 
     Rectangle {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        width: 40
-        height: parent.height - (extraVerticalPadding * 2)
-        color: volumeMouse.containsMouse || popupVisible ? "#45475a" : "transparent"
-        radius: 4
+        anchors.centerIn: parent
+        width: 32
+        height: 32
+        color: volumeMouse.containsMouse || popupVisible ? "#33ffffff" : "transparent"
+        radius: 5
 
         Text {
             anchors.centerIn: parent
@@ -49,15 +47,6 @@ Item {
             color: muted ? "#6c7086" : "#cdd6f4"
             font.family: "Symbols Nerd Font"
             font.pixelSize: 16
-        }
-
-        Text {
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 2
-            text: Math.round(volume * 100) + "%"
-            color: "#cdd6f4"
-            font.pixelSize: 9
         }
     }
 
@@ -125,7 +114,7 @@ Item {
 
         exclusiveZone: 0
 
-        color: "#1e1e2e"
+        color: "#1a1a1a"
 
         // Prevent clicks from reaching overlay
         MouseArea {
@@ -149,7 +138,7 @@ Item {
             Rectangle {
                 width: parent.width
                 height: 1
-                color: "#45475a"
+                color: "#2a2a2a"
             }
 
             Repeater {
@@ -160,7 +149,7 @@ Item {
                     width: sinkList.width - 24
                     height: 36
                     radius: 6
-                    color: modelData === Pipewire.defaultAudioSink ? "#45475a" : (sinkItemMouse.containsMouse ? "#313244" : "transparent")
+                    color: modelData === Pipewire.defaultAudioSink ? "#2a2a2a" : (sinkItemMouse.containsMouse ? "#222222" : "transparent")
 
                     Row {
                         anchors.fill: parent
@@ -201,7 +190,7 @@ Item {
             Rectangle {
                 width: parent.width
                 height: 1
-                color: "#45475a"
+                color: "#2a2a2a"
             }
 
             Text {
@@ -234,14 +223,14 @@ Item {
                     width: parent.width - 80
                     height: 8
                     radius: 4
-                    color: "#45475a"
+                    color: "#2a2a2a"
                     anchors.verticalCenter: parent.verticalCenter
 
                     Rectangle {
                         width: parent.width * Math.min(1, volume)
                         height: parent.height
                         radius: parent.radius
-                        color: muted ? "#6c7086" : "#89b4fa"
+                        color: muted ? "#6c7086" : "#2596be"
                     }
 
                     MouseArea {

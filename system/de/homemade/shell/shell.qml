@@ -98,25 +98,40 @@ ShellRoot {
             left: true
             right: true
         }
-        implicitHeight: 40
-        color: "#1e1e2e"
+        implicitHeight: 44
+        color: "#141414"
 
         WlrLayershell.namespace: "taskbar"
         WlrLayershell.layer: WlrLayer.Top
 
         exclusiveZone: implicitHeight
 
-        RowLayout {
-            anchors.fill: parent
-            spacing: 4
+        // Left section - Start + TaskBar
+        Row {
+            id: leftSection
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            spacing: 0
 
-            StartButton { fuzzelProc: fuzzelProc }
+            StartButton { fuzzelProc: fuzzelProc; leftPadding: 4 }
             TaskBar { toplevels: ToplevelManager.toplevels }
+        }
+
+        // Right section - System tray, volume, clock, etc.
+        Row {
+            id: rightSection
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            spacing: 2
+
+            ScreenRecordIndicator {}
             SystemTray { id: systemTray }
             VolumeControl {}
             BluetoothStatus {}
             Clock {}
-            ShowDesktopButton { toplevels: ToplevelManager.toplevels }
+            ShowDesktopButton { toplevels: ToplevelManager.toplevels; rightPadding: 4 }
         }
     }
 }

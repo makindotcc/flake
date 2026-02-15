@@ -8,7 +8,6 @@ import QtQuick.Effects
 Item {
     id: root
     property var toplevels: []
-    property int extraVerticalPadding: 4
 
     // Local order list - stores windows in custom order
     property var windowOrder: []
@@ -51,11 +50,6 @@ Item {
     function getIconName(appId) {
         const iconMap = {
             "code": "vscode",
-            "code-url-handler": "vscode",
-            "Code": "vscode",
-            "chromium-browser": "chromium",
-            "google-chrome": "chrome",
-            "org.gnome.Nautilus": "nautilus"
         }
         return iconMap[appId] || appId
     }
@@ -66,30 +60,30 @@ Item {
         if (!appId) return fallbackIcon
         const iconName = getIconName(appId)
         const path = Quickshell.iconPath(iconName, true)
+        console.log("path", path)
         return path !== "" ? path : fallbackIcon
     }
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
+    width: taskRow.width
+    height: parent.height
 
     // Drop indicator
     Rectangle {
         visible: root.dragTargetIndex >= 0 && root.draggedItem !== null
-        x: root.dragTargetIndex * (180 + taskRow.spacing)
-        y: extraVerticalPadding
+        x: root.dragTargetIndex * (160 + taskRow.spacing)
+        y: 8
         width: 3
-        height: parent.height - (extraVerticalPadding * 2)
-        color: "#89b4fa"
+        height: parent.height - 16
+        color: "#2596be"
         radius: 2
         z: 100
     }
 
     Row {
         id: taskRow
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        spacing: 2
+        anchors.verticalCenter: parent.verticalCenter
+        height: parent.height
+        spacing: 4
 
         Repeater {
             model: windowOrder
@@ -99,60 +93,86 @@ Item {
                 required property var modelData
                 required property int index
 
-                width: 180
+                property real calculatedWidth: titleMetrics.width + 52
+                width: Math.min(180, calculatedWidth)
                 height: parent.height
 
                 // Drag properties
                 property bool isDragging: false
                 property real dragStartX: 0
 
+                TextMetrics {
+                    id: titleMetrics
+                    font.pixelSize: 13
+                    text: modelData.title || "Window"
+                }
+
+                // Background rectangle with hover/active state
                 Rectangle {
                     id: taskRect
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: parent.width
-                    height: parent.height - (extraVerticalPadding * 2)
-                    color: modelData.activated ? "#45475a" : (taskMouse.containsMouse ? "#313244" : "transparent")
+                    anchors.centerIn: parent
+                    width: parent.width - 4
+                    height: 32
+                    radius: 5
+                    color: modelData.activated ? "#22ffffff" : (taskMouse.containsMouse ? "#18ffffff" : "transparent")
                     opacity: modelData.minimized ? 0.6 : 1.0
-                    radius: 4
+                    clip: true
 
                     // Visual feedback when dragging
                     border.width: taskItem.isDragging ? 2 : 0
-                    border.color: "#89b4fa"
+                    border.color: "#2596be"
 
                     Row {
-                        anchors.fill: parent
-                        anchors.margins: 6
-                        spacing: 6
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.leftMargin: 10
+                        anchors.rightMargin: 10
+                        spacing: 8
 
-                        Rectangle {
+                        // Icon
+                        Image {
+                            id: appIcon
+                            anchors.verticalCenter: parent.verticalCenter
                             width: 20
                             height: 20
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: "transparent"
-
-                            Image {
-                                id: appIcon
-                                anchors.fill: parent
-                                source: getIconPath(modelData.appId)
-                                sourceSize: Qt.size(20, 20)
-                                layer.enabled: source == fallbackIcon
-                                layer.effect: MultiEffect {
-                                    colorization: 1.0
-                                    colorizationColor: "white"
-                                    brightness: 1.0
-                                }
+                            source: getIconPath(modelData.appId)
+                            sourceSize: Qt.size(20, 20)
+                            layer.enabled: source == fallbackIcon
+                            layer.effect: MultiEffect {
+                                colorization: 1.0
+                                colorizationColor: "white"
+                                brightness: 1.0
                             }
                         }
 
+                        // Title
                         Text {
-                            width: parent.width - 26
-                            height: parent.height
+                            id: titleText
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: taskItem.calculatedWidth > 180 ? parent.width - 28 : titleMetrics.width
                             text: modelData.title || "Window"
                             color: "#cdd6f4"
-                            font.pixelSize: 12
-                            elide: Text.ElideRight
-                            verticalAlignment: Text.AlignVCenter
+                            font.pixelSize: 13
+                            elide: taskItem.calculatedWidth > 180 ? Text.ElideRight : Text.ElideNone
+                        }
+                    }
+
+                    // Active indicator (inside rectangle)
+                    Rectangle {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottom
+                        width: modelData.activated ? 18 : (taskMouse.containsMouse ? 8 : 0)
+                        height: 3
+                        radius: 2
+                        color: modelData.activated ? "#2596be" : "#6c7086"
+                        visible: width > 0
+
+                        Behavior on width {
+                            NumberAnimation { duration: 150; easing.type: Easing.OutQuad }
+                        }
+                        Behavior on color {
+                            ColorAnimation { duration: 150 }
                         }
                     }
                 }
@@ -162,11 +182,11 @@ Item {
                     popupType: Popup.Window
 
                     background: Rectangle {
-                        implicitWidth: taskItem.width
-                        color: "#1e1e2e"
-                        border.color: "#45475a"
+                        implicitWidth: 160
+                        color: "#1a1a1a"
+                        border.color: "#2a2a2a"
                         border.width: 1
-                        radius: 4
+                        radius: 8
                     }
 
                     MenuItem {
@@ -176,11 +196,12 @@ Item {
                             text: parent.text
                             color: "#cdd6f4"
                             font.pixelSize: 12
-                            leftPadding: 8
+                            leftPadding: 12
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.highlighted ? "#45475a" : "transparent"
+                            color: parent.highlighted ? "#2a2a2a" : "transparent"
+                            radius: 4
                         }
                     }
 
@@ -191,19 +212,20 @@ Item {
                             text: parent.text
                             color: "#cdd6f4"
                             font.pixelSize: 12
-                            leftPadding: 8
+                            leftPadding: 12
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.highlighted ? "#45475a" : "transparent"
+                            color: parent.highlighted ? "#2a2a2a" : "transparent"
+                            radius: 4
                         }
                     }
 
                     MenuSeparator {
                         contentItem: Rectangle {
-                            implicitWidth: taskItem.width
+                            implicitWidth: 140
                             implicitHeight: 1
-                            color: "#45475a"
+                            color: "#2a2a2a"
                         }
                     }
 
@@ -214,11 +236,12 @@ Item {
                             text: parent.text
                             color: "#f38ba8"
                             font.pixelSize: 12
-                            leftPadding: 8
+                            leftPadding: 12
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: parent.highlighted ? "#45475a" : "transparent"
+                            color: parent.highlighted ? "#2a2a2a" : "transparent"
+                            radius: 4
                         }
                     }
 
@@ -256,7 +279,7 @@ Item {
                         }
 
                         if (taskItem.isDragging) {
-                            let itemWidth = taskItem.width + taskRow.spacing
+                            let itemWidth = 160 + taskRow.spacing
                             let pos = mapToItem(taskRow, mouse.x, mouse.y)
                             let newIndex = Math.floor(pos.x / itemWidth)
                             root.dragTargetIndex = Math.max(0, Math.min(newIndex, windowOrder.length - 1))
@@ -309,7 +332,7 @@ Item {
                         if (mouse.button === Qt.MiddleButton) {
                             modelData.requestClose()
                         } else if (mouse.button === Qt.RightButton) {
-                            contextMenu.popup(taskItem, 0, -contextMenu.implicitHeight - 5)
+                            contextMenu.popup(taskItem, 0, -contextMenu.implicitHeight - 8)
                         }
                     }
 

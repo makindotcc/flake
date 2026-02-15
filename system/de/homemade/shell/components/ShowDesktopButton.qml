@@ -4,22 +4,25 @@ import QtQuick.Layouts
 Item {
     property var toplevels
     property bool desktopShown: false
-    property int extraRightPadding: 4
-    property int extraVerticalPadding: 4
+    property int rightPadding: 0
 
-    Layout.preferredWidth: 6 + extraRightPadding
-    Layout.fillHeight: true
+    width: 8 + rightPadding
+    height: parent.height
 
     Rectangle {
         anchors.right: parent.right
-        anchors.rightMargin: extraRightPadding
+        anchors.rightMargin: rightPadding + 2
         anchors.verticalCenter: parent.verticalCenter
-        width: 6
-        height: parent.height - (extraVerticalPadding * 2)
-        color: showDesktopMouse.containsMouse ? "#45475a" : "#313244"
+        width: 4
+        height: 24
+        color: showDesktopMouse.containsMouse ? "#2596be" : "#2a2a2a"
         radius: 2
+
+        Behavior on color {
+            ColorAnimation { duration: 150 }
+        }
     }
-    
+
     MouseArea {
         id: showDesktopMouse
         anchors.fill: parent

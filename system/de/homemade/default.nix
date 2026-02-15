@@ -42,6 +42,7 @@
       slurp
       wl-clipboard
       blueman
+      loupe
       (writeShellScriptBin "launch-wrapper" ''
         echo "$(date): args=$*" >> /tmp/launch-wrapper.log
         echo "$(date): PATH=$PATH" >> /tmp/launch-wrapper.log
@@ -246,6 +247,10 @@
               };
               keyboard = {
                 default = true;
+                layoutScope = "global";
+                xkb = {
+                  layout = "pl";
+                };
                 keybind = [
                   {
                     "@key" = "Super_L";

@@ -2,33 +2,44 @@ import QtQuick
 import QtQuick.Layouts
 
 Item {
-    property int extraVerticalPadding: 4
-
-    Layout.fillWidth: false
-    Layout.fillHeight: true
-    Layout.preferredWidth: maxWidthMetrics.width + 16
-
-    TextMetrics {
-        id: maxWidthMetrics
-        font: clockText.font
-        text: "00:00:00"
-    }
+    width: clockColumn.width + 20
+    height: parent.height
 
     Rectangle {
-        anchors.fill: parent
-        anchors.topMargin: extraVerticalPadding
-        anchors.bottomMargin: extraVerticalPadding
-        color: clockMouse.containsMouse ? "#313244" : "transparent"
-        radius: 4
+        anchors.centerIn: parent
+        width: parent.width
+        height: 32
+        color: clockMouse.containsMouse ? "#33ffffff" : "transparent"
+        radius: 5
 
-        Text {
-            id: clockText
+        Column {
+            id: clockColumn
             anchors.centerIn: parent
-            width: maxWidthMetrics.width
-            color: "#cdd6f4"
-            font.pixelSize: 12
-            font.family: "monospace"
-            horizontalAlignment: Text.AlignHCenter
+            spacing: 0
+
+            TextMetrics {
+                id: clockMetrics
+                font: timeText.font
+                text: "hh:mm:ss"
+            }
+
+            Text {
+                id: timeText
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "#cdd6f4"
+                font.pixelSize: 12
+                // font.family: "SFMono Nerd Font"
+                font.family: "monospace"
+                width: clockMetrics.width
+            }
+
+            Text {
+                id: dateText
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "#a6adc8"
+                font.pixelSize: 10
+                // font.family: "JetBrains Mono"
+            }
 
             Timer {
                 interval: 1000
@@ -37,7 +48,8 @@ Item {
                 triggeredOnStart: true
                 onTriggered: {
                     var now = new Date()
-                    clockText.text = now.toLocaleTimeString(Qt.locale(), "hh:mm:ss") + "\n" + now.toLocaleDateString(Qt.locale(), "dd.MM")
+                    timeText.text = now.toLocaleTimeString(Qt.locale(), "hh:mm:ss")
+                    dateText.text = now.toLocaleDateString(Qt.locale(), "dd.MM.yyyy")
                 }
             }
         }

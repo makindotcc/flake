@@ -7,11 +7,10 @@ import Quickshell.Io
 
 Item {
     id: root
-    property int extraVerticalPadding: 4
     property bool popupVisible: false
 
-    Layout.preferredWidth: 30
-    Layout.fillHeight: true
+    width: 36
+    height: parent.height
 
     Process {
         id: bluemanProc
@@ -40,29 +39,18 @@ Item {
     }
 
     Rectangle {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        width: 30
-        height: parent.height - (extraVerticalPadding * 2)
-        color: btMouse.containsMouse || popupVisible ? "#45475a" : "transparent"
-        radius: 4
+        anchors.centerIn: parent
+        width: 32
+        height: 32
+        color: btMouse.containsMouse || popupVisible ? "#33ffffff" : "transparent"
+        radius: 5
 
         Text {
             anchors.centerIn: parent
             text: powered ? (connectedCount > 0 ? "󰂱" : "󰂯") : "󰂲"
-            color: powered ? (connectedCount > 0 ? "#a6e3a1" : "#89b4fa") : "#6c7086"
+            color: powered ? (connectedCount > 0 ? "#a6e3a1" : "#2596be") : "#6c7086"
             font.family: "Symbols Nerd Font"
             font.pixelSize: 16
-        }
-
-        Text {
-            visible: connectedCount > 0
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 2
-            text: connectedCount.toString()
-            color: "#a6e3a1"
-            font.pixelSize: 9
         }
     }
 
@@ -123,7 +111,7 @@ Item {
 
         exclusiveZone: 0
 
-        color: "#1e1e2e"
+        color: "#1a1a1a"
 
         MouseArea {
             anchors.fill: parent
@@ -156,7 +144,7 @@ Item {
                     width: 44
                     height: 24
                     radius: 12
-                    color: powered ? "#89b4fa" : "#45475a"
+                    color: powered ? "#2596be" : "#2a2a2a"
                     anchors.verticalCenter: parent.verticalCenter
 
                     Rectangle {
@@ -186,7 +174,7 @@ Item {
             Rectangle {
                 width: parent.width
                 height: 1
-                color: "#45475a"
+                color: "#2a2a2a"
             }
 
             // Status text
@@ -214,7 +202,7 @@ Item {
                     width: deviceList.width - 24
                     height: 44
                     radius: 6
-                    color: deviceItemMouse.containsMouse ? "#313244" : "transparent"
+                    color: deviceItemMouse.containsMouse ? "#222222" : "transparent"
 
                     property bool isConnecting: modelData.state === BluetoothDeviceState.Connecting
                     property bool isDisconnecting: modelData.state === BluetoothDeviceState.Disconnecting

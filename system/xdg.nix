@@ -8,6 +8,7 @@ let
 
   browser = [ "firefox.desktop" ];
   photos = [ "org.gnome.Loupe.desktop" ];
+  fileManager = [ "org.gnome.Nautilus.desktop" ];
   steam = [ "steam.desktop" ];
   music = [ "io.bassi.Amberol.desktop" ];
   text = [ "org.gnome.TextEditor.desktop" ];
@@ -59,6 +60,10 @@ let
     "audio/x-ms-wma" = music;
 
     "text/csv" = text;
+
+    # file manager
+    "inode/directory" = fileManager;
+    "inode/mount-point" = fileManager;
   }
   // steamHandlers
   // telegramHandlers;

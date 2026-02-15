@@ -6,12 +6,11 @@ import Quickshell.Io
 
 Item {
     property var fuzzelProc
-    property int extraLeftPadding: 4
-    property int extraVerticalPadding: 4
     property bool powerMenuVisible: false
+    property int leftPadding: 0
 
-    Layout.preferredWidth: 40 + extraLeftPadding
-    Layout.fillHeight: true
+    width: 40 + leftPadding
+    height: parent.height
 
     // Power commands
     Process {
@@ -36,19 +35,29 @@ Item {
     }
 
     Rectangle {
-        anchors.left: parent.left
-        anchors.leftMargin: extraLeftPadding
         anchors.verticalCenter: parent.verticalCenter
-        width: 40
-        height: parent.height - (extraVerticalPadding * 2)
-        color: startMouse.containsMouse || powerMenuVisible ? "#45475a" : "transparent"
-        radius: 4
+        anchors.left: parent.left
+        anchors.leftMargin: leftPadding + 2
+        width: 36
+        height: 32
+        color: startMouse.containsMouse || powerMenuVisible ? "#33ffffff" : "transparent"
+        radius: 5
 
-        Text {
+        // Windows 11 style logo (4 squares)
+        Grid {
             anchors.centerIn: parent
-            text: "⊞"
-            color: "#89b4fa"
-            font.pixelSize: 18
+            columns: 2
+            spacing: 2
+
+            Repeater {
+                model: 4
+                Rectangle {
+                    width: 8
+                    height: 8
+                    radius: 2
+                    color: "#2596be"
+                }
+            }
         }
     }
 
@@ -113,7 +122,7 @@ Item {
 
         exclusiveZone: 0
 
-        color: "#1e1e2e"
+        color: "#1a1a1a"
 
         MouseArea {
             anchors.fill: parent
@@ -136,7 +145,7 @@ Item {
             Rectangle {
                 width: parent.width
                 height: 1
-                color: "#45475a"
+                color: "#2a2a2a"
             }
 
             // Lock
@@ -144,7 +153,7 @@ Item {
                 width: parent.width
                 height: 36
                 radius: 6
-                color: lockMouse.containsMouse ? "#313244" : "transparent"
+                color: lockMouse.containsMouse ? "#222222" : "transparent"
 
                 Row {
                     anchors.fill: parent
@@ -153,7 +162,7 @@ Item {
 
                     Text {
                         text: "󰌾"
-                        color: "#89b4fa"
+                        color: "#2596be"
                         font.family: "Symbols Nerd Font"
                         font.pixelSize: 16
                         anchors.verticalCenter: parent.verticalCenter
@@ -183,7 +192,7 @@ Item {
                 width: parent.width
                 height: 36
                 radius: 6
-                color: hibernateMouse.containsMouse ? "#313244" : "transparent"
+                color: hibernateMouse.containsMouse ? "#222222" : "transparent"
 
                 Row {
                     anchors.fill: parent
@@ -222,7 +231,7 @@ Item {
                 width: parent.width
                 height: 36
                 radius: 6
-                color: rebootMouse.containsMouse ? "#313244" : "transparent"
+                color: rebootMouse.containsMouse ? "#222222" : "transparent"
 
                 Row {
                     anchors.fill: parent
@@ -261,7 +270,7 @@ Item {
                 width: parent.width
                 height: 36
                 radius: 6
-                color: logoutMouse.containsMouse ? "#313244" : "transparent"
+                color: logoutMouse.containsMouse ? "#222222" : "transparent"
 
                 Row {
                     anchors.fill: parent
@@ -300,7 +309,7 @@ Item {
                 width: parent.width
                 height: 36
                 radius: 6
-                color: shutdownMouse.containsMouse ? "#313244" : "transparent"
+                color: shutdownMouse.containsMouse ? "#222222" : "transparent"
 
                 Row {
                     anchors.fill: parent
