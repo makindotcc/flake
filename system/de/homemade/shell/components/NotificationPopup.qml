@@ -8,6 +8,25 @@ Item {
     id: root
 
     property int activeCount: 0
+    property alias historyModel: historyModel
+    property int unreadCount: 0
+
+    function markAllRead() {
+        unreadCount = 0
+    }
+
+    function clearHistory() {
+        historyModel.clear()
+        unreadCount = 0
+    }
+
+    function removeFromHistory(index) {
+        historyModel.remove(index)
+    }
+
+    ListModel {
+        id: historyModel
+    }
 
     NotificationServer {
         id: server
@@ -20,6 +39,20 @@ Item {
             notification.tracked = true
             notifComponent.createObject(notifColumn, {notification: notification})
             root.activeCount++
+
+            historyModel.insert(0, {
+                appName: notification.appName || "",
+                appIcon: notification.appIcon || "",
+                summary: notification.summary || "",
+                body: notification.body || "",
+                image: notification.image || "",
+                time: Qt.formatTime(new Date(), "HH:mm"),
+                urgency: notification.urgency
+            })
+            root.unreadCount++
+            if (historyModel.count > 100) {
+                historyModel.remove(historyModel.count - 1)
+            }
         }
     }
 

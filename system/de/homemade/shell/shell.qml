@@ -98,7 +98,7 @@ ShellRoot {
         }
     }
 
-    NotificationPopup {}
+    NotificationPopup { id: notifPopup }
     VolumeOsd {}
     DisplayModePopup { id: displayModePopup }
 
@@ -142,6 +142,7 @@ ShellRoot {
             SystemTray { id: systemTray }
             VolumeControl {}
             BluetoothStatus {}
+            NotificationCenter { notifPopup: notifPopup }
             Clock {}
             ShowDesktopButton { toplevels: ToplevelManager.toplevels; rightPadding: 4 }
         }
