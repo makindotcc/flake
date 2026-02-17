@@ -245,7 +245,7 @@
                   {
                     "@category" = "default";
                     accelProfile = "flat";
-                    pointerSpeed = "-0.25";
+                    pointerSpeed = "-0.45";
                   }
                 ];
               };
