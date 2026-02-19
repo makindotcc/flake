@@ -16,5 +16,9 @@
       pkgs.gopls
     ];
     impermanence.normalUsers.directories = [ "go" ];
+
+    environment.sessionVariables = {
+      CGO_ENABLED = "0";
+    };
   };
 }

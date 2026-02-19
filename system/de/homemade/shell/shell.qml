@@ -1,5 +1,6 @@
 //@ pragma UseQApplication
 //@ pragma IconTheme Adwaita
+//@ pragma Env QSG_RENDER_LOOP=threaded
 
 import Quickshell
 import Quickshell.Io
@@ -12,7 +13,22 @@ import "components"
 ShellRoot {
     id: root
 
-    property alias fuzzelProc: fuzzelProc
+    property var primaryScreen: _findPrimaryScreen()
+
+    function _findPrimaryScreen() {
+        for (const screen of Quickshell.screens) {
+            if (screen.name === "HDMI-A-1") {
+                return screen
+            }
+        }
+        return Quickshell.screens[0] ?? null
+    }
+
+    Connections {
+        target: Quickshell.screens
+        function onObjectInsertedPost() { root.primaryScreen = root._findPrimaryScreen() }
+        function onObjectRemovedPost() { root.primaryScreen = root._findPrimaryScreen() }
+    }
 
     // Wallpaper for each screen
     Variants {
@@ -47,24 +63,17 @@ ShellRoot {
         }
     }
 
-    Process {
-        id: fuzzelProc
-        command: ["fuzzel"]
-    }
+    AppLauncher { id: appLauncher; screen: root.primaryScreen }
 
     IpcHandler {
-        target: "fuzzel"
+        target: "launcher"
 
         function toggle(): void {
-            if (fuzzelProc.running) {
-                fuzzelProc.signal(15)
-            } else {
-                fuzzelProc.running = true
-            }
+            appLauncher.toggle()
         }
 
         function close(): void {
-            fuzzelProc.signal(15)
+            appLauncher.close()
         }
     }
 
@@ -76,35 +85,13 @@ ShellRoot {
         }
     }
 
-    // Overlay to catch clicks outside fuzzel
-    PanelWindow {
-        id: overlay
-        visible: fuzzelProc.running
-        anchors {
-            top: true
-            bottom: true
-            left: true
-            right: true
-        }
-        color: "transparent"
-
-        WlrLayershell.namespace: "fuzzel-overlay"
-        WlrLayershell.layer: WlrLayer.Overlay
-        WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: fuzzelProc.signal(15)
-        }
-    }
-
     NotificationPopup { id: notifPopup }
     VolumeOsd {}
     DisplayModePopup { id: displayModePopup }
 
     PanelWindow {
         id: bar
-        screen: Quickshell.screens.find(s => s.name === "HDMI-A-2") ?? Quickshell.screens[0]
+        screen: root.primaryScreen
         anchors {
             bottom: true
             left: true
@@ -114,7 +101,7 @@ ShellRoot {
         color: "#141414"
 
         WlrLayershell.namespace: "taskbar"
-        WlrLayershell.layer: WlrLayer.Top
+        WlrLayershell.layer: appLauncher.popupVisible ? WlrLayer.Overlay : WlrLayer.Top
 
         exclusiveZone: implicitHeight
 
@@ -126,7 +113,7 @@ ShellRoot {
             anchors.bottom: parent.bottom
             spacing: 0
 
-            StartButton { fuzzelProc: fuzzelProc; leftPadding: 4 }
+            StartButton { appLauncher: appLauncher; leftPadding: 4 }
             TaskBar { toplevels: ToplevelManager.toplevels }
         }
 
@@ -138,6 +125,7 @@ ShellRoot {
             anchors.bottom: parent.bottom
             spacing: 2
 
+            // FpsCounter {}
             ScreenRecordIndicator {}
             SystemTray { id: systemTray }
             VolumeControl {}

@@ -6,6 +6,7 @@
 {
   users.mutableUsers = false;
   users.users.user = {
+    uid = 1000;
     isNormalUser = true;
     description = "user";
     hashedPasswordFile = config.age.secrets.user-password.path;

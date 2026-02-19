@@ -42,7 +42,7 @@ in
     in
     {
       environment.systemPackages = builtins.concatLists [
-        (lib.optional cfg.editor.idea.enable pkgs-stable.jetbrains.idea-community-bin)
+        (lib.optional cfg.editor.idea.enable pkgs-stable.jetbrains.idea-oss)
         (lib.optional cfg.editor.clion.enable pkgs-stable.jetbrains.clion)
         (lib.optional cfg.editor.rust-rover.enable pkgs-stable.jetbrains.rust-rover)
         (lib.optional cfg.re.frida.enable pkgs.frida-tools)

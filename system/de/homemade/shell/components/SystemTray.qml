@@ -33,7 +33,7 @@ Item {
                     source: modelData.icon
                     implicitSize: 18
                 }
-
+                
                 MouseArea {
                     id: trayItemMouse
                     anchors.fill: parent

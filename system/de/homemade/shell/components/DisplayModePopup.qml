@@ -53,16 +53,16 @@ Item {
     }
 
     function resolveMode() {
-        let hdmi2 = outputStates["HDMI-A-2"]
         let hdmi1 = outputStates["HDMI-A-1"]
-        if (!hdmi2 && !hdmi1) { currentMode = "extend"; outputStates = {}; parseCount = 0; return }
+        let hdmi2 = outputStates["HDMI-A-2"]
+        if (!hdmi1 && !hdmi2) { currentMode = "extend"; outputStates = {}; parseCount = 0; return }
 
-        if (hdmi2 && hdmi2.enabled && (!hdmi1 || !hdmi1.enabled)) {
+        if (hdmi1 && hdmi1.enabled && (!hdmi2 || !hdmi2.enabled)) {
             currentMode = "pc"
-        } else if ((!hdmi2 || !hdmi2.enabled) && hdmi1 && hdmi1.enabled) {
+        } else if ((!hdmi1 || !hdmi1.enabled) && hdmi2 && hdmi2.enabled) {
             currentMode = "second"
-        } else if (hdmi2 && hdmi1 && hdmi2.enabled && hdmi1.enabled) {
-            if (hdmi2.position === hdmi1.position) {
+        } else if (hdmi1 && hdmi2 && hdmi1.enabled && hdmi2.enabled) {
+            if (hdmi1.position === hdmi2.position) {
                 currentMode = "duplicate"
             } else {
                 currentMode = "extend"
@@ -82,20 +82,17 @@ Item {
 
     function applyDisplayMode(mode) {
         currentMode = mode
-        switch (mode) {
-        case "pc":
-            applyMode.command = ["wlr-randr", "--output", "HDMI-A-2", "--on", "--pos", "0,0", "--output", "HDMI-A-1", "--off"]
-            break
-        case "duplicate":
-            applyMode.command = ["wlr-randr", "--output", "HDMI-A-2", "--on", "--pos", "0,0", "--output", "HDMI-A-1", "--on", "--pos", "0,0"]
-            break
-        case "extend":
-            applyMode.command = ["wlr-randr", "--output", "HDMI-A-2", "--on", "--pos", "0,0", "--output", "HDMI-A-1", "--on", "--pos", "3840,0"]
-            break
-        case "second":
-            applyMode.command = ["wlr-randr", "--output", "HDMI-A-2", "--off", "--output", "HDMI-A-1", "--on", "--pos", "0,0"]
-            break
+        let cmd = ""
+        if (mode === "pc") {
+            cmd = "wlr-randr --output HDMI-A-1 --pos 0,0 --mode 3840x2160@240Hz --on --output HDMI-A-2 --off"
+        } else if (mode === "extend") {
+            cmd = "wlr-randr --output HDMI-A-1 --pos 0,0 --mode 3840x2160@240Hz --on --output HDMI-A-2 --pos 3840,0 --on"
+        } else if (mode === "duplicate") {
+            cmd = "wlr-randr --output HDMI-A-1 --pos 0,0 --mode 3840x2160@240Hz --on --output HDMI-A-2 --pos 0,0 --on"
+        } else if (mode === "second") {
+            cmd = "wlr-randr --output HDMI-A-1 --off --output HDMI-A-2 --pos 0,0 --on"
         }
+        applyMode.command = ["sh", "-c", cmd]
         applyMode.running = true
         closeTimer.start()
     }

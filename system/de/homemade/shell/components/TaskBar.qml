@@ -160,9 +160,9 @@ Item {
 
                     // Active indicator (inside rectangle)
                     Rectangle {
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        x: appIcon.parent.x + appIcon.x + (appIcon.width - width) / 2
                         anchors.bottom: parent.bottom
-                        width: modelData.activated ? 18 : (taskMouse.containsMouse ? 8 : 0)
+                        width: modelData.activated ? 10 : (taskMouse.containsMouse ? 6 : 3)
                         height: 3
                         radius: 2
                         color: modelData.activated ? "#2596be" : "#6c7086"

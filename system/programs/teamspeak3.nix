@@ -7,7 +7,7 @@
 }:
 {
   options.programs.teamspeak3.enable = lib.mkEnableOption "Teamspeak 3 client" // {
-    default = config.isDesktop;
+    default = false;
   };
 
   config = lib.mkIf config.programs.teamspeak3.enable ({

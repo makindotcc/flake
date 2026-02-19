@@ -37,7 +37,7 @@ Item {
         active: root.shouldShowOsd
 
         PanelWindow {
-            screen: Quickshell.screens.find(s => s.name === "HDMI-A-2") ?? Quickshell.screens[0]
+            // screen: Quickshell.screens.find(s => s.name === "HDMI-A-2") ?? Quickshell.screens[0]
 
             anchors.bottom: true
             margins.bottom: screen.height / 5
