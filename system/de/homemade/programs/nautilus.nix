@@ -1,5 +1,10 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+lib.mkIf config.de.homemade.enable {
   environment.systemPackages = [ pkgs.nautilus ];
 
   # Needed for Nautilus to work properly outside GNOME

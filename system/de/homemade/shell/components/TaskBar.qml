@@ -8,6 +8,7 @@ import QtQuick.Effects
 Item {
     id: root
     property var toplevels: []
+    property var panelWindow: null
 
     // Local order list - stores windows in custom order
     property var windowOrder: []
@@ -96,6 +97,19 @@ Item {
                 property real calculatedWidth: titleMetrics.width + 52
                 width: Math.min(180, calculatedWidth)
                 height: parent.height
+
+                // Minimize hint for compositor animation
+                Timer {
+                    id: hintTimer
+                    interval: 50
+                    onTriggered: {
+                        if (!root.panelWindow || !taskItem.modelData || !taskRect.width) return
+                        let pos = taskRect.mapToItem(null, 0, 0)
+                        taskItem.modelData.setRectangle(root.panelWindow, Qt.rect(pos.x, pos.y, taskRect.width, taskRect.height))
+                    }
+                }
+                onXChanged: hintTimer.restart()
+                onWidthChanged: hintTimer.restart()
 
                 // Drag properties
                 property bool isDragging: false

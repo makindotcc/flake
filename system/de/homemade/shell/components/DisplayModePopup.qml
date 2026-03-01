@@ -26,6 +26,7 @@ Item {
         id: detectCurrentMode
         command: ["sh", "-c", "wlr-randr | awk '/^[^ ]/{name=$1} /Enabled:/{en[name]=$2} /Position:/{pos[name]=$2} END{for(n in en) print n, en[n], pos[n]}'"]
         running: false
+        
 
         stdout: SplitParser {
             onRead: data => {

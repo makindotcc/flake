@@ -1,5 +1,5 @@
 {
-  pkgs-stable,
+  pkgs,
   lib,
   config,
   ...
@@ -13,10 +13,14 @@
     programs.obs-studio = {
       enable = true;
       package = (
-        pkgs-stable.obs-studio.override {
+        pkgs.obs-studio.override {
           cudaSupport = true;
         }
       );
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-vaapi
+        obs-pipewire-audio-capture
+      ];
     };
 
     impermanence.normalUsers.directories = [ ".config/obs-studio" ];

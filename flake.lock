@@ -55,6 +55,7 @@
       "original": {
         "owner": "samuelngs",
         "repo": "apple-emoji-linux",
+        "rev": "e56448ab6b556c9a3be63ce0fb1903b70fd87b61",
         "type": "github"
       }
     },
@@ -71,11 +72,11 @@
         "sf-pro": "sf-pro"
       },
       "locked": {
-        "lastModified": 1771015369,
-        "narHash": "sha256-MhtCW601b9tAMP20FBToytRSUMoThtefJ3/7kCThwsE=",
+        "lastModified": 1772251183,
+        "narHash": "sha256-Zfr9trB8LaesfpupugDgXPqC4F25MO18kyMyb9b2PkM=",
         "owner": "Lyndeno",
         "repo": "apple-fonts.nix",
-        "rev": "c3ddc684891e15ae6cc2048bcd033f9995f0d075",
+        "rev": "f8dad87c2cb956695d18c1f36360322d8a0b7d63",
         "type": "github"
       },
       "original": {
@@ -224,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771269455,
-        "narHash": "sha256-BZ31eN5F99YH6vkc4AhzKGE+tJgJ52kl8f01K7wCs8w=",
+        "lastModified": 1772380461,
+        "narHash": "sha256-O3ukj3Bb3V0Tiy/4LUfLlBpWypJ9P0JeUgsKl2nmZZY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5f1d42a97b19803041434f66681d5c44c9ae62e3",
+        "rev": "f140aa04d7d14f8a50ab27f3691b5766b17ae961",
         "type": "github"
       },
       "original": {
@@ -283,11 +284,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1771243519,
-        "narHash": "sha256-oeHgjE5GpACBjDeXrTczIl6cKmHltLbk7inNSMgGFFQ=",
+        "lastModified": 1772379915,
+        "narHash": "sha256-14z3ktmAhpHUGxSxPSuVRMrTPUTiyKbn2N1Mg/VeWxQ=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "a2cb8eeecfbf4a1ce0083e6a32680b1bec8b045c",
+        "rev": "3e7ce1d69d774a52053ed963e94953b15059bb8d",
         "type": "github"
       },
       "original": {
@@ -315,11 +316,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1771208521,
-        "narHash": "sha256-X01Q3DgSpjeBpapoGA4rzKOn25qdKxbPnxHeMLNoHTU=",
+        "lastModified": 1772047000,
+        "narHash": "sha256-7DaQVv4R97cii/Qdfy4tmDZMB2xxtyIvNGSwXBBhSmo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fa56d7d6de78f5a7f997b0ea2bc6efd5868ad9e8",
+        "rev": "1267bb4920d0fc06ea916734c11b0bf004bbe17e",
         "type": "github"
       },
       "original": {
@@ -331,11 +332,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1771008912,
-        "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
+        "lastModified": 1772198003,
+        "narHash": "sha256-I45esRSssFtJ8p/gLHUZ1OUaaTaVLluNkABkk6arQwE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a82ccc39b39b621151d6732718e3e250109076fa",
+        "rev": "dd9b079222d43e1943b6ebd802f04fd959dc8e61",
         "type": "github"
       },
       "original": {
@@ -395,11 +396,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1770562336,
-        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
+        "lastModified": 1771848320,
+        "narHash": "sha256-0MAd+0mun3K/Ns8JATeHT1sX28faLII5hVLq0L3BdZU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
+        "rev": "2fc6539b481e1d2569f25f8799236694180c0993",
         "type": "github"
       },
       "original": {
@@ -475,11 +476,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1771008912,
-        "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
+        "lastModified": 1772198003,
+        "narHash": "sha256-I45esRSssFtJ8p/gLHUZ1OUaaTaVLluNkABkk6arQwE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a82ccc39b39b621151d6732718e3e250109076fa",
+        "rev": "dd9b079222d43e1943b6ebd802f04fd959dc8e61",
         "type": "github"
       },
       "original": {
@@ -516,7 +517,8 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "s76-scheduler-plugin": "s76-scheduler-plugin",
         "urldebloater": "urldebloater",
-        "vscode-server": "vscode-server"
+        "vscode-server": "vscode-server",
+        "wayfire-src": "wayfire-src"
       }
     },
     "s76-scheduler-plugin": {
@@ -720,6 +722,24 @@
         "owner": "nix-community",
         "repo": "nixos-vscode-server",
         "type": "github"
+      }
+    },
+    "wayfire-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771769857,
+        "narHash": "sha256-NLgfi/lgB4s/0CSE8jvYj3Xl/k5MtdIBZf4at7pWp9A=",
+        "ref": "refs/heads/master",
+        "rev": "b36615a7bc3b5ca2307eaf9d3b1cd527ce4263c2",
+        "revCount": 3454,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/WayfireWM/wayfire"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/WayfireWM/wayfire"
       }
     }
   },

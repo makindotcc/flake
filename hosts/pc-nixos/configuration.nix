@@ -29,7 +29,7 @@ in
   wine.enable = true;
   docker.enable = true;
   hardware.nvidia.enable = true;
-  de.type = "homemade";
+  de.type = "kde";
   # de.homemade.enable = true;
   # de.hyprland.enable = true;
 

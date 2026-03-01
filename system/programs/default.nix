@@ -28,7 +28,7 @@
     pkgs.yt-dlp
     pkgs.ffmpeg_6-full
     pkgs.nmap
-    pkgs.krita
+    pkgs-stable.krita
   ]
   ++ lib.optionals (config.isLinux && config.isPhysical) [
     pkgs.usbutils

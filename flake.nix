@@ -13,7 +13,7 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     dash-to-panel-win11.url = "github:makindotcc/dash-to-panel-win11/ricing";
     s76-scheduler-plugin.url = "github:makindotcc/s76-scheduler-plugin";
-    apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux";
+    apple-emoji-linux.url = "github:samuelngs/apple-emoji-linux/e56448ab6b556c9a3be63ce0fb1903b70fd87b61";
     urldebloater.url = "github:makindotcc/urldebloater";
     agenix.url = "github:ryantm/agenix";
     impermanence.url = "github:nix-community/impermanence";
@@ -26,6 +26,11 @@
     buzkaaclicker-backend.url = "github:buzkaaclicker/backend-rs";
     # buzkaaclicker-backend.url = "path:/home/user/Documents/dev/buzkaaclicker/backend-rs";
     antibridge.url = "git+ssh://git@github.com/makindotcc/AntiBridge";
+
+    wayfire-src = {
+      url = "git+https://github.com/WayfireWM/wayfire?submodules=1";
+      flake = false;
+    };
   };
 
   outputs =

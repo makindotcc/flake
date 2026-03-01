@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  pkgs-stable,
   ...
 }:
 {
@@ -11,7 +11,7 @@
 
   config = lib.mkIf config.dev.langs.deprecated.enable {
     environment.systemPackages = (
-      with pkgs;
+      with pkgs-stable;
       [
         gnumake
         lld

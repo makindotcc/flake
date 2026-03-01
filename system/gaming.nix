@@ -27,17 +27,21 @@ in
     lib.mkIf cfg.enable {
       programs.gamemode.enable = true;
 
-      environment.systemPackages = builtins.concatLists [
-        (lib.optional cfg.minecraft.lunar-client.enable pkgs.lunar-client)
-        (lib.optional cfg.minecraft.prismlauncher.enable (
-          pkgs.prismlauncher.override {
-            jdks = [
-              pkgs-stable.jdk8
-              pkgs-stable.jdk21
-            ];
-          }
-        ))
-      ];
+      environment.systemPackages =
+        builtins.concatLists [
+          (lib.optional cfg.minecraft.lunar-client.enable pkgs.lunar-client)
+          (lib.optional cfg.minecraft.prismlauncher.enable (
+            pkgs.prismlauncher.override {
+              jdks = [
+                pkgs-stable.jdk8
+                pkgs-stable.jdk21
+              ];
+            }
+          ))
+        ]
+        ++ [
+          pkgs.mangohud
+        ];
 
       programs.steam = lib.mkIf cfg.steam.enable {
         enable = true;

@@ -51,7 +51,7 @@ ShellRoot {
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
             exclusiveZone: -1
 
-            // Empty mask = clicks pass through to labwc
+            // Empty mask = clicks pass through to wayfire
             mask: Region {}
 
             Image {
@@ -114,7 +114,7 @@ ShellRoot {
             spacing: 0
 
             StartButton { appLauncher: appLauncher; leftPadding: 4 }
-            TaskBar { toplevels: ToplevelManager.toplevels }
+            TaskBar { toplevels: ToplevelManager.toplevels; panelWindow: bar }
         }
 
         // Right section - System tray, volume, clock, etc.

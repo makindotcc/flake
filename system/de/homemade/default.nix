@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
@@ -22,19 +23,74 @@
         in
         if u == null then throw "users.users.user.uid must be set explicitly" else toString u;
       monitorSetup = "${pkgs.wlr-randr}/bin/wlr-randr --output HDMI-A-1 --pos 0,0 --mode 3840x2160@240Hz --on --output HDMI-A-2 --pos 3840,0 --on";
+      pixdecor = pkgs.stdenv.mkDerivation {
+        pname = "pixdecor";
+        version = "0-unstable-2026-02-13";
+        src = pkgs.fetchFromGitHub {
+          owner = "soreau";
+          repo = "pixdecor";
+          rev = "4893c7362d1b9b90b1208504579bc5b9618eceb5";
+          hash = "sha256-+NvnG8tYc0M5zdxaI375+gqeWWWePyqPp+njI07ooXM=";
+        };
+        nativeBuildInputs = with pkgs; [
+          meson
+          ninja
+          pkg-config
+          wayland-scanner
+        ];
+        buildInputs = with pkgs; [
+          wayfire
+          glm
+          libGL
+          libxkbcommon
+          libdrm
+          libinput
+          libevdev
+          vulkan-headers
+          libxcb-wm
+          gtkmm3
+        ];
+        env.PKG_CONFIG_WAYFIRE_METADATADIR = "${placeholder "out"}/share/wayfire/metadata";
+      };
     in
     {
-      xdg.portal = {
+      nixpkgs.overlays = [
+        (final: prev: {
+          wayfire = prev.wayfire.overrideAttrs (old: {
+            version = "0-unstable-2026-02-21";
+            src = inputs.wayfire-src;
+            mesonFlags = (builtins.filter (f: f != "-Duse_system_wfconfig=enabled") old.mesonFlags) ++ [
+              "-Duse_system_wfconfig=disabled"
+            ];
+          });
+        })
+      ];
+
+      programs.wayfire = {
         enable = true;
-        wlr.enable = true;
+        plugins = [
+          (pkgs.wayfirePlugins.wayfire-plugins-extra.override { withPixdecorPlugin = false; })
+          pixdecor
+        ];
+      };
+
+      programs.uwsm = {
+        enable = true;
+        waylandCompositors.wayfire = {
+          prettyName = "Wayfire";
+          comment = "Wayfire compositor managed by UWSM";
+          binPath = "/run/current-system/sw/bin/wayfire";
+        };
+      };
+
+      xdg.portal = {
         extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        wlr.settings.screencast = {
+          chooser_type = "dmenu";
+          chooser_cmd = "${pkgs.fuzzel}/bin/fuzzel -d";
+        };
         config = {
-          wlroots.default = [
-            "wlr"
-            "gtk"
-          ];
-          common.default = [ "gtk" ];
-          labwc = {
+          wayfire = {
             default = [
               "wlr"
               "gtk"
@@ -47,7 +103,7 @@
       };
 
       environment.systemPackages = with pkgs; [
-        labwc
+        wayfirePlugins.wcm
         gsettings-desktop-schemas
         glib
         qt6Packages.qt6ct
@@ -61,7 +117,6 @@
         loupe
       ];
 
-      services.displayManager.sessionPackages = [ pkgs.labwc ];
       services.gnome.gnome-keyring.enable = true;
 
       security.pam.services.swaylock = { };
@@ -69,20 +124,18 @@
       security.polkit.enable = true;
 
       services.graphical-desktop.enable = true;
-      services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
-      programs = {
-        dconf.enable = true;
-        xwayland.enable = true;
-      };
+      programs.dconf.enable = true;
 
       environment.sessionVariables = {
-        XDG_CURRENT_DESKTOP = "labwc";
         XDG_DATA_HOME = "$HOME/.local/share";
         XDG_CONFIG_HOME = "$HOME/.config";
         XDG_CACHE_HOME = "$HOME/.cache";
         QT_QPA_PLATFORMTHEME = "qt6ct";
         QT_STYLE_OVERRIDE = "Fusion";
+        GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+        WAYFIRE_PLUGIN_XML_PATH = "${pkgs.wayfire}/share/wayfire/metadata:${pixdecor}/share/wayfire/metadata";
+        OBS_USE_EGL = "1";
       };
 
       systemd.services.quickshell-freeze = {
@@ -241,66 +294,16 @@
               inactive_colors=#ffcdd6f4, #ff1e1e2e, #ff45475a, #ff313244, #ff181825, #ff11111b, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff1e1e2e, #ff585b70, #ff89b4fa, #ff1e1e2e, #ff89b4fa, #fff38ba8, #ff1e1e2e, #ffcdd6f4, #ff181825, #ffcdd6f4, #80cdd6f4
             '';
 
-            # Labwc dark theme (catppuccin mocha)
-            xdg.dataFile."themes/catppuccin-mocha/openbox-3/themerc".text = ''
-              # Catppuccin Mocha theme for labwc
-
-              # Title bar
-              window.active.title.bg: flat solid
-              window.active.title.bg.color: #1e1e2e
-              window.inactive.title.bg: flat solid
-              window.inactive.title.bg.color: #181825
-
-              # Title text
-              window.active.label.bg: parentrelative
-              window.active.label.text.color: #cdd6f4
-              window.inactive.label.bg: parentrelative
-              window.inactive.label.text.color: #6c7086
-
-              # Borders
-              border.width: 1
-              window.active.border.color: #45475a
-              window.inactive.border.color: #313244
-              window.active.client.color: #45475a
-              window.inactive.client.color: #313244
-
-              # Buttons
-              window.active.button.unpressed.bg: parentrelative
-              window.active.button.unpressed.image.color: #cdd6f4
-              window.active.button.hover.bg: parentrelative
-              window.active.button.hover.image.color: #f5e0dc
-              window.inactive.button.unpressed.bg: parentrelative
-              window.inactive.button.unpressed.image.color: #6c7086
-
-              # Close button
-              window.active.button.close.hover.image.color: #f38ba8
-              window.active.button.close.pressed.image.color: #eba0ac
-
-              # Menu
-              menu.items.bg: flat solid
-              menu.items.bg.color: #1e1e2e
-              menu.items.text.color: #cdd6f4
-              menu.items.active.bg: flat solid
-              menu.items.active.bg.color: #45475a
-              menu.items.active.text.color: #cdd6f4
-              menu.separator.color: #45475a
-
-              # OSD
-              osd.bg: flat solid
-              osd.bg.color: #1e1e2e
-              osd.label.text.color: #cdd6f4
-            '';
-
             # GTK window buttons (left side) + dark theme
             dconf.settings = {
 
               "org/gnome/desktop/wm/preferences" = {
-                button-layout = "close,minimize,maximize:appmenu";
+                button-layout = "close,minimize,maximize:";
               };
               "org/gnome/desktop/interface" = {
                 color-scheme = "prefer-dark";
                 gtk-theme = "Adwaita-dark";
-                gtk-decoration-layout = "close,minimize,maximize:menu";
+                gtk-decoration-layout = "close,minimize,maximize:";
               };
               "org/freedesktop/appearance" = {
                 color-scheme = lib.hm.gvariant.mkUint32 1; # 1 = prefer-dark
@@ -324,230 +327,98 @@
               platformTheme.name = "qtct";
             };
 
-            wayland.windowManager.labwc = {
-              enable = true;
+            xdg.configFile."wayfire.ini".text = ''
+              [core]
+              plugins = animate autostart command pixdecor foreign-toplevel fast-switcher move place resize vswitch wm-actions workarounds session-lock
 
-              rc = {
-                core = {
-                  autoEnableOutputs = "no";
-                  reuseOutputMode = "yes";
-                  allowTearing = "yes";
-                };
-                theme = {
-                  name = "catppuccin-mocha";
-                  titlebar = {
-                    layout = "close,iconify,max:";
-                  };
-                };
-                libinput = {
-                  device = [
-                    {
-                      "@category" = "default";
-                      accelProfile = "flat";
-                      pointerSpeed = "-0.45";
-                    }
-                  ];
-                };
-                keyboard = {
-                  default = true;
-                  layoutScope = "global";
-                  xkb = {
-                    layout = "pl";
-                  };
-                  keybind = [
-                    {
-                      "@key" = "Super_L";
-                      "@onRelease" = "yes";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = launcherToggle;
-                      };
-                    }
-                    {
-                      "@key" = "W-Return";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "ghostty";
-                      };
-                    }
-                    {
-                      "@key" = "W-d";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = launcherToggle;
-                      };
-                    }
-                    {
-                      "@key" = "W-q";
-                      action = {
-                        "@name" = "Close";
-                      };
-                    }
-                    {
-                      "@key" = "W-f";
-                      action = {
-                        "@name" = "ToggleFullscreen";
-                      };
-                    }
-                    {
-                      "@key" = "A-F4";
-                      action = {
-                        "@name" = "Close";
-                      };
-                    }
-                    {
-                      "@key" = "A-Tab";
-                      action = {
-                        "@name" = "NextWindow";
-                      };
-                    }
-                    {
-                      "@key" = "A-S-Tab";
-                      action = {
-                        "@name" = "PreviousWindow";
-                      };
-                    }
-                    # Lock screen
-                    {
-                      "@key" = "W-l";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "swaylock";
-                      };
-                    }
-                    # Screenshots
-                    {
-                      "@key" = "W-S-s";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "sh -c 'grim -g \"$(slurp)\" - | wl-copy'";
-                      };
-                    }
-                    {
-                      "@key" = "C-W-S-s";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "sh -c 'grim - | wl-copy'";
-                      };
-                    }
-                    # Display mode (Win+P)
-                    {
-                      "@key" = "W-p";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = displayModeToggle;
-                      };
-                    }
-                    # Volume controls
-                    {
-                      "@key" = "XF86AudioRaiseVolume";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+";
-                      };
-                    }
-                    {
-                      "@key" = "XF86AudioLowerVolume";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
-                      };
-                    }
-                    {
-                      "@key" = "XF86AudioMute";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-                      };
-                    }
-                    # Fine volume controls (Shift + volume keys = 1%)
-                    {
-                      "@key" = "S-XF86AudioRaiseVolume";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+";
-                      };
-                    }
-                    {
-                      "@key" = "S-XF86AudioLowerVolume";
-                      action = {
-                        "@name" = "Execute";
-                        "@command" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-";
-                      };
-                    }
-                  ];
-                };
-                mouse = {
-                  default = true;
-                  context = [
-                    {
-                      "@name" = "Root";
-                      mousebind = [
-                        {
-                          "@button" = "Left";
-                          "@action" = "Press";
-                          action = {
-                            "@name" = "None";
-                          };
-                        }
-                        {
-                          "@button" = "Right";
-                          "@action" = "Press";
-                          action = {
-                            "@name" = "ShowMenu";
-                            "@menu" = "root-menu";
-                          };
-                        }
-                      ];
-                    }
-                  ];
-                };
-              };
+              [input]
+              xkb_layout = pl
+              mouse_accel_profile = flat
+              mouse_cursor_speed = -0.45
 
-              menu = [
-                {
-                  menuId = "root-menu";
-                  label = "";
-                  items = [
-                    {
-                      label = "Ghostty";
-                      action = {
-                        name = "Execute";
-                        command = "ghostty";
-                      };
-                    }
-                    {
-                      label = "Launcher";
-                      action = {
-                        name = "Execute";
-                        command = launcherToggle;
-                      };
-                    }
-                    { separator = true; }
-                    {
-                      label = "Reconfigure";
-                      action = {
-                        name = "Reconfigure";
-                      };
-                    }
-                    {
-                      label = "Exit";
-                      action = {
-                        name = "Exit";
-                      };
-                    }
-                  ];
-                }
-              ];
+              [output:HDMI-A-1]
+              mode = 3840x2160@240000
+              position = 0,0
 
-              autostart = [
-                "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_RUNTIME_DIR PATH XDG_DATA_DIRS"
-                "systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_RUNTIME_DIR PATH XDG_DATA_DIRS"
-                # "wlr-randr --output HDMI-A-1 --pos 0,0 --mode 3840x2160@240Hz --on"
-                # "wlr-randr --output HDMI-A-2 --off"
-                monitorSetup
-              ];
-            };
+              [output:HDMI-A-2]
+              mode = auto
+              position = 3840,0
+
+              [pixdecor]
+              border_size = 0
+              titlebar = always
+              button_layout = close,minimize,maximize:
+              fg_color = 0.118 0.118 0.180 1.0
+              bg_color = 0.094 0.094 0.145 1.0
+              fg_text_color = 0.804 0.839 0.957 1.0
+              bg_text_color = 0.424 0.439 0.525 1.0
+              title_font = sans 12
+              title_text_align = 1
+              overlay_engine = rounded_corners
+              rounded_corner_radius = 6
+              shadow_radius = 20
+              shadow_color = 0.0 0.0 0.0 0.333
+              button_color = 0.804 0.839 0.957 1.0
+              left_button_x_offset = 6
+
+              [animate]
+              minimize_animation = zoom
+              zoom_duration = 300ms circle
+
+              [autostart]
+              uwsm = uwsm finalize
+
+              [command]
+              binding_terminal = <super> KEY_ENTER
+              command_terminal = ghostty
+
+              # release_binding_launcher = <super>
+              # command_launcher = ${launcherToggle}
+
+              binding_launcher2 = <super> KEY_SPACE
+              command_launcher2 = ${launcherToggle}
+
+              binding_lock = <super> KEY_L
+              command_lock = swaylock
+
+              binding_screenshot = <super> <shift> KEY_S
+              command_screenshot = sh -c 'grim -g "$(slurp)" - | wl-copy'
+
+              binding_screenshot_full = <ctrl> <super> <shift> KEY_S
+              command_screenshot_full = sh -c 'grim - | wl-copy'
+
+              binding_display_mode = <super> KEY_P
+              command_display_mode = ${displayModeToggle}
+
+              binding_vol_up = KEY_VOLUMEUP
+              command_vol_up = wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 2%+
+
+              binding_vol_down = KEY_VOLUMEDOWN
+              command_vol_down = wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-
+
+              binding_vol_mute = KEY_MUTE
+              command_vol_mute = wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+              binding_vol_up_fine = <shift> KEY_VOLUMEUP
+              command_vol_up_fine = wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+
+
+              binding_vol_down_fine = <shift> KEY_VOLUMEDOWN
+              command_vol_down_fine = wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+
+              [move]
+              activate = <super> BTN_LEFT
+
+              [resize]
+              activate = <super> BTN_RIGHT
+
+              [wm-actions]
+              toggle_fullscreen = <super> KEY_F
+              close = <super> KEY_Q
+
+              [fast-switcher]
+              activate = <alt> KEY_TAB
+              activate_backward = <alt> <shift> KEY_TAB
+            '';
           }
         )
       ];

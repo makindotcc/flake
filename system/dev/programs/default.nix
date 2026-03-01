@@ -33,6 +33,7 @@ in
     samply.enable = mkEnablePrograms "Enable Samply";
     kubernetes = {
       kubectl.enable = mkEnablePrograms "Enable kubectl";
+      helm.enable = mkEnablePrograms "Enable helm";
     };
   };
 
@@ -53,6 +54,7 @@ in
         (lib.optional cfg.devenv.enable pkgs.devenv)
         (lib.optional cfg.samply.enable pkgs.samply)
         (lib.optional cfg.kubernetes.kubectl.enable pkgs.kubectl)
+        (lib.optional cfg.kubernetes.helm.enable pkgs.kubernetes-helm)
       ];
 
       programs.direnv.enable = cfg.direnv.enable;

@@ -45,7 +45,7 @@ Item {
     }
     Process {
         id: logoutProc
-        command: ["labwc", "--exit"]
+        command: ["uwsm", "stop"]
     }
     Process {
         id: lockProc
