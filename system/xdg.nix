@@ -6,7 +6,7 @@
 let
   # dzieki za liste https://github.com/surfaceflinger/flake/blob/master/modules/home/desktop/xdg.nix
 
-  browser = [ "firefox.desktop" ];
+  browser = [ "helium.desktop" ];
   photos = [ "org.gnome.Loupe.desktop" ];
   fileManager = [ "org.gnome.Nautilus.desktop" ];
   steam = [ "steam.desktop" ];
