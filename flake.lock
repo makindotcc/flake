@@ -26,11 +26,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1773331679,
-        "narHash": "sha256-A38JH4PdZs4V2AbF9ZFDCCdvYbJojNYj35ITahfMN7k=",
+        "lastModified": 1773333155,
+        "narHash": "sha256-N/cN7F18N0+IUKl5EyvKhGuSI9LA3OHc5p1Ngi/YEyQ=",
         "ref": "refs/heads/master",
-        "rev": "5f3d99341ae4987f2330ee36f974a3420f6bb6b3",
-        "revCount": 76,
+        "rev": "9e581be50ed3f4ac1ed46f147eaa9b5e46743166",
+        "revCount": 77,
         "type": "git",
         "url": "ssh://git@github.com/makindotcc/AntiBridge"
       },
