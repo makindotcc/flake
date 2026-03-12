@@ -26,11 +26,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1767580889,
-        "narHash": "sha256-07SOcqX35kQTaWc8PFepHRzBuZoQHwIJNeHTjz2dHnU=",
+        "lastModified": 1773331679,
+        "narHash": "sha256-A38JH4PdZs4V2AbF9ZFDCCdvYbJojNYj35ITahfMN7k=",
         "ref": "refs/heads/master",
-        "rev": "85d36d69977bd85e5424333b7924e12f5bcbd104",
-        "revCount": 75,
+        "rev": "5f3d99341ae4987f2330ee36f974a3420f6bb6b3",
+        "revCount": 76,
         "type": "git",
         "url": "ssh://git@github.com/makindotcc/AntiBridge"
       },
@@ -225,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773179137,
-        "narHash": "sha256-EdW2bwzlfme0vbMOcStnNmKlOAA05Bp6su2O8VLGT0k=",
+        "lastModified": 1773332277,
+        "narHash": "sha256-1V+wRrZD9Sw12AQBUWk9CR+XhDZQ8q6yBE0S3Wjbd1M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3f98e2bbc661ec0aaf558d8a283d6955f05f1d09",
+        "rev": "4aeef1941f862fe3a70d1b8264b4e289358c2325",
         "type": "github"
       },
       "original": {
@@ -316,11 +316,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1773068389,
-        "narHash": "sha256-vMrm7Pk2hjBRPnCSjhq1pH0bg350Z+pXhqZ9ICiqqCs=",
+        "lastModified": 1773222311,
+        "narHash": "sha256-BHoB/XpbqoZkVYZCfXJXfkR+GXFqwb/4zbWnOr2cRcU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "44bae273f9f82d480273bab26f5c50de3724f52f",
+        "rev": "0590cd39f728e129122770c029970378a79d076a",
         "type": "github"
       },
       "original": {
@@ -332,11 +332,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1772963539,
-        "narHash": "sha256-9jVDGZnvCckTGdYT53d/EfznygLskyLQXYwJLKMPsZs=",
+        "lastModified": 1773122722,
+        "narHash": "sha256-FIqHByVqxCprNjor1NqF80F2QQoiiyqanNNefdlvOg4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9dcb002ca1690658be4a04645215baea8b95f31d",
+        "rev": "62dc67aa6a52b4364dd75994ec00b51fbf474e50",
         "type": "github"
       },
       "original": {
@@ -476,11 +476,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1772963539,
-        "narHash": "sha256-9jVDGZnvCckTGdYT53d/EfznygLskyLQXYwJLKMPsZs=",
+        "lastModified": 1773122722,
+        "narHash": "sha256-FIqHByVqxCprNjor1NqF80F2QQoiiyqanNNefdlvOg4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9dcb002ca1690658be4a04645215baea8b95f31d",
+        "rev": "62dc67aa6a52b4364dd75994ec00b51fbf474e50",
         "type": "github"
       },
       "original": {
@@ -727,11 +727,11 @@
     "wayfire-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1773089168,
-        "narHash": "sha256-leOK+lBO1P1QneoNBHw7QwRgF8IS9gmBp+VLPMYc820=",
+        "lastModified": 1773332327,
+        "narHash": "sha256-eWdKkDIXm/Yk3T/u5+hI0IEcaAZdhJxobSAW6sbmxJQ=",
         "ref": "refs/heads/master",
-        "rev": "e6a4fa5fbed1030fc9bbd768a7bfe943c926331b",
-        "revCount": 3457,
+        "rev": "acdfe90f770392f54e310f4b9fc1c288e8b1bf8e",
+        "revCount": 3458,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/WayfireWM/wayfire"
