@@ -55,6 +55,7 @@ in
     '';
     allowedTCPPorts = [
       8080
+      25565
     ];
   };
 
