@@ -19,4 +19,8 @@
     ];
     services.vscode-server.enable = true;
   };
+
+  impermanence.normalUsers.directories = [ ".vscode-server" ];
+
+  networking.interfaces."eno1".wakeOnLan.enable = true;
 }
