@@ -35,6 +35,7 @@ in
               jdks = [
                 pkgs-stable.jdk8
                 pkgs-stable.jdk21
+                pkgs-stable.jdk25
               ];
             }
           ))
