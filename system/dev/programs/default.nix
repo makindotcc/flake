@@ -23,6 +23,7 @@ in
       frida.enable = mkEnablePrograms "Enable Frida tools";
       ida.enable = mkEnablePrograms "Enable IDA";
       burp.enable = mkEnablePrograms "Enable Burp Suite";
+      binaryninja.enable = mkEnablePrograms "Enable Binary Ninja";
     };
     debuggers = {
       gdb.enable = mkEnablePrograms "Enable GDB";
