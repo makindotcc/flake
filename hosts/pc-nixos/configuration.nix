@@ -25,6 +25,7 @@ in
   isDesktop = true;
   isPhysical = true;
   dev.full = true;
+  dev.programs.re.ida.enable = false; # wypierdalac z tym zgatekeepowanym downloadem, mam binje 🖕
   gaming.full = true;
   wine.enable = true;
   docker.enable = true;
