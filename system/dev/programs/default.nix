@@ -47,7 +47,7 @@ in
         (lib.optional cfg.editor.idea.enable pkgs-stable.jetbrains.idea-oss)
         (lib.optional cfg.editor.clion.enable pkgs-stable.jetbrains.clion)
         (lib.optional cfg.editor.rust-rover.enable pkgs-stable.jetbrains.rust-rover)
-        (lib.optional cfg.re.frida.enable pkgs.frida-tools)
+
         (lib.optional cfg.re.ida.enable pkgs.ida-free)
         (lib.optional cfg.re.burp.enable pkgs.burpsuite)
         (lib.optional cfg.debuggers.gdb.enable pkgs.gdb)
