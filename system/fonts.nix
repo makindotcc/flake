@@ -14,6 +14,7 @@ lib.mkIf config.isDesktop {
       inputs.apple-fonts.packages.${pkgs.system}.ny-nerd
       inputs.apple-emoji-linux.packages.${pkgs.system}.apple-emoji-linux
       pkgs.comic-mono
+      pkgs.noto-fonts-cjk-sans
     ];
 
     fontconfig = {
