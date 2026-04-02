@@ -25,7 +25,7 @@ with lib.hm.gvariant;
         # { package = airpod-battery-monitor; } # doesn't work
         # development
         # {
-        # package = inputs.dash-to-panel-win11.packages.${pkgs.system}.default.overrideAttrs (oldAttrs: {
+        # package = inputs.dash-to-panel-win11.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (oldAttrs: {
         #   postInstall = ''
         #     ${oldAttrs.postInstall or ""}
         #     rm -rf $out/share/gnome-shell/extensions/dash-to-panel@makindotcc.github.com
@@ -37,7 +37,7 @@ with lib.hm.gvariant;
       ])
       ++ [
         {
-          package = inputs.dash-to-panel-win11.packages.${pkgs.system}.default;
+          package = inputs.dash-to-panel-win11.packages.${pkgs.stdenv.hostPlatform.system}.default;
         }
       ];
   };

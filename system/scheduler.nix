@@ -11,7 +11,7 @@ lib.mkIf config.isDesktop {
   home-manager.sharedModules = lib.mkIf config.services.desktopManager.gnome.enable [
     {
       programs.gnome-shell.extensions = [
-        { package = inputs.s76-scheduler-plugin.packages.${pkgs.system}.default; }
+        { package = inputs.s76-scheduler-plugin.packages.${pkgs.stdenv.hostPlatform.system}.default; }
       ];
     }
   ];

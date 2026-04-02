@@ -9,9 +9,9 @@
 
   config = lib.mkIf config.wine.enable {
     environment.systemPackages = [
-      pkgs.wineWowPackages.stable
+      pkgs.wineWow64Packages.stable
       pkgs.winetricks
-      pkgs.wineWowPackages.waylandFull
+      pkgs.wineWow64Packages.waylandFull
     ];
 
     impermanence.normalUsers.directories = [ ".wine" ];

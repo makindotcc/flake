@@ -1,6 +1,7 @@
 { ... }:
 {
   programs = {
+    git.signing.format = "openpgp";
     git.settings.user = {
       email = "9150636+makindotcc@users.noreply.github.com";
       name = "makindotcc";
