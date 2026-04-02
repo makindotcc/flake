@@ -66,6 +66,8 @@
       "nvidia_uvm"
     ];
 
+    boot.kernelModules = [ "nvidia-uvm" ];
+
     # environment.sessionVariables = {
     #   LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.libglvnd ];
     #   __EGL_VENDOR_LIBRARY_FILENAMES = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
