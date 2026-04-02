@@ -29,26 +29,51 @@
           '';
         };
 
+        binaryninja-mcp = pkgs.writeShellScriptBin "binaryninja-mcp" ''
+          exec ${
+            pkgs.python3.withPackages (
+              ps: with ps; [
+                anthropic
+                mcp
+                requests
+              ]
+            )
+          }/bin/python3 "$@"
+        '';
+
         binaryninja = pkgs.buildFHSEnv {
           name = "binaryninja";
-          targetPkgs = p: with p; [
-            dbus
-            fontconfig
-            freetype
-            libGL
-            libxkbcommon
-            libx11
-            libxcb
-            libxcb-cursor
-            libxcb-image
-            libxcb-keysyms
-            libxcb-render-util
-            libxcb-wm
-            wayland
-            zlib
-          ];
+          targetPkgs =
+            p: with p; [
+              dbus
+              fontconfig
+              freetype
+              libGL
+              libxkbcommon
+              libx11
+              libxcb
+              libxcb-cursor
+              libxcb-image
+              libxcb-keysyms
+              libxcb-render-util
+              libxcb-wm
+              python3
+              wayland
+              zlib
+            ];
           runScript = pkgs.writeScript "binaryninja.sh" ''
-            exec ${binaryninja-unwrapped}/opt/binaryninja/binaryninja "$@"
+            BNDIR="$HOME/.local/share/binaryninja"
+            STAMP="$BNDIR/.nix-store-path"
+
+            if [ ! -f "$STAMP" ] || [ "$(cat "$STAMP")" != "${binaryninja-src}" ]; then
+              rm -rf "$BNDIR"
+              mkdir -p "$BNDIR"
+              cp -r ${binaryninja-unwrapped}/opt/binaryninja/. "$BNDIR"
+              chmod -R u+w "$BNDIR"
+              echo "${binaryninja-src}" > "$STAMP"
+            fi
+
+            exec "$BNDIR/binaryninja" "$@"
           '';
           extraInstallCommands = ''
             mkdir -p $out/share/applications $out/share/icons/hicolor/256x256/apps
@@ -66,6 +91,14 @@
           meta.description = "Binary Ninja";
         };
       in
-      [ binaryninja ];
+      [
+        binaryninja
+        binaryninja-mcp
+      ];
+
+    impermanence.normalUsers.directories = [
+      ".binaryninja"
+      ".local/share/binaryninja"
+    ];
   };
 }
