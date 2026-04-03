@@ -79,5 +79,14 @@ let
   };
 in
 {
-  home-manager.sharedModules = lib.mkIf config.isDesktop [ homeConfig ];
+  home-manager.sharedModules = [
+    (lib.mkIf config.isDesktop homeConfig)
+    {
+      xdg.mime.enable = lib.mkDefault config.isDesktop;
+    }
+  ];
+
+  xdg.sounds.enable = lib.mkDefault config.isDesktop;
+  xdg.icons.enable = lib.mkDefault config.isDesktop;
+  xdg.mime.enable = lib.mkDefault config.isDesktop;
 }
