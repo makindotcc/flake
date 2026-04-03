@@ -17,7 +17,6 @@
     pkgs.dua
     pkgs.ouch
     pkgs.bottom
-    pkgs.fastfetch
     pkgs.psmisc
     pkgs.doggo
     pkgs.inetutils
@@ -35,6 +34,7 @@
     pkgs.pciutils
   ]
   ++ lib.optionals (config.isLinux && config.isDesktop) [
+    pkgs.fastfetch
     pkgs.gparted
     pkgs.fsearch
     pkgs.adw-gtk3
