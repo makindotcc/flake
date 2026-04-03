@@ -26,11 +26,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1773337689,
-        "narHash": "sha256-4bRo67q+N1E0vBoSr8UDdfzbGbn7b12ZrrkWsBLxg2M=",
+        "lastModified": 1775239341,
+        "narHash": "sha256-SfpfZkH6Z30EzFwHkfIgkbxD0khONGNQpyT7Bkg7qEU=",
         "ref": "refs/heads/master",
-        "rev": "b4d0a002eb555fbf0177275643a9e33db00c0b30",
-        "revCount": 79,
+        "rev": "aad02fcae2bb3d13cde7ef7dfe02234c41528a41",
+        "revCount": 80,
         "type": "git",
         "url": "ssh://git@github.com/makindotcc/AntiBridge"
       },
@@ -90,11 +90,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1765344405,
-        "narHash": "sha256-jhzyJXFxUgx3dQ3+kyt+MRVzG3ly2oLIyjQtMtps7R0=",
+        "lastModified": 1775242016,
+        "narHash": "sha256-NJ3U1TpplyQn1Zgvq7DSdBl1RzQnjNFu3kT43FUc/Ok=",
         "owner": "buzkaaclicker",
         "repo": "backend-rs",
-        "rev": "5eb51b14679c19b20b2d225ce2f0a634d0468e0d",
+        "rev": "1e9c24d9a187da0b2ec24e7fca0bd6c515d8513c",
         "type": "github"
       },
       "original": {
@@ -225,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775104157,
-        "narHash": "sha256-rm/7k0D2J9SP30pyZ2C1HqarDncZDN6KAUI0gzgg4TA=",
+        "lastModified": 1775223910,
+        "narHash": "sha256-QRdehpSKTttlZe0oY2n5OCfZeCMrHkKNlWF1LJzO9tY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "41e6e2ab37763c09db4e639033392cf40900440a",
+        "rev": "f68887a4c11e662b0eb0323d34b3fb9506226719",
         "type": "github"
       },
       "original": {
@@ -412,11 +412,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1758277210,
-        "narHash": "sha256-iCGWf/LTy+aY0zFu8q12lK8KuZp7yvdhStehhyX1v8w=",
+        "lastModified": 1775036866,
+        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8eaee110344796db060382e15d3af0a9fc396e0e",
+        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
         "type": "github"
       },
       "original": {
@@ -695,11 +695,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1758480163,
-        "narHash": "sha256-IPBlschyjf3KOnPG8b8sI0AcDN3qT6AUgJL4tKOtsPI=",
+        "lastModified": 1775239463,
+        "narHash": "sha256-W5cnTFu5I8ZTWnuJE2yHB1hCUoXAAJa2UQfe6TlXN7M=",
         "owner": "makindotcc",
         "repo": "urldebloater",
-        "rev": "9ac03d65aae847ca2a8d61c36031af540b1e3eef",
+        "rev": "e7611390f506e3393937d6400c1e6a7b9cebcaca",
         "type": "github"
       },
       "original": {
