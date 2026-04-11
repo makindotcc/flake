@@ -14,7 +14,7 @@ in
 
     ./localcerts.nix
     ./makincc-builder.nix
-    # ./tailscale.nix
+    ./tailscale.nix
     ./remote-access.nix
     ./rgb.nix
     ./backup.nix
