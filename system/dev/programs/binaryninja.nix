@@ -57,7 +57,7 @@
               libxcb-keysyms
               libxcb-render-util
               libxcb-wm
-              python3
+              (python3.withPackages (ps: [ ps.pip ]))
               wayland
               zlib
             ];
@@ -71,6 +71,14 @@
               cp -r ${binaryninja-unwrapped}/opt/binaryninja/. "$BNDIR"
               chmod -R u+w "$BNDIR"
               echo "${binaryninja-src}" > "$STAMP"
+            fi
+
+            BNCONFIG="$HOME/.binaryninja"
+            mkdir -p "$BNCONFIG"
+            if [ ! -f "$BNCONFIG/settings.json" ]; then
+              echo '{"python.interpreter": "/usr/lib/libpython3.13.so"}' > "$BNCONFIG/settings.json"
+            elif ! grep -q "python.interpreter" "$BNCONFIG/settings.json"; then
+              sed -i 's/^{/{\"python.interpreter\": \"\/usr\/lib\/libpython3.13.so\", /' "$BNCONFIG/settings.json"
             fi
 
             exec "$BNDIR/binaryninja" "$@"
