@@ -8,14 +8,19 @@
   config = lib.mkIf config.dev.programs.re.binaryninja.enable {
     environment.systemPackages =
       let
-        binaryninja-src = pkgs.requireFile {
-          name = "binaryninja_linux_stable_personal.zip";
-          sha256 = "1j27wqr18cg6q0m45c4xa18fr1y3j00mh7601cgvdl83lnaws9rm";
-          message = ''
-            Binary Ninja is not in the nix store. Add it with:
-              nix-store --add-fixed sha256 binaryninja_linux_stable_personal.zip
-          '';
-        };
+        binaryninja-src = pkgs.requireFile (
+          let
+            binjaFileName = "binaryninja_linux_5.3.9434_personal.zip";
+          in
+          {
+            name = binjaFileName;
+            sha256 = "sha256-fPPouHECP3NYVc6QF5/vAsVzj6rzLI1a4fjpAVma/3w=";
+            message = ''
+              Binary Ninja is not in the nix store. Add it with:
+                nix-store --add-fixed sha256 ${binjaFileName}
+            '';
+          }
+        );
 
         binaryninja-unwrapped = pkgs.stdenvNoCC.mkDerivation {
           pname = "binaryninja-unwrapped";
@@ -45,6 +50,7 @@
           name = "binaryninja";
           targetPkgs =
             p: with p; [
+              curl
               dbus
               fontconfig
               freetype
@@ -59,6 +65,14 @@
               libxcb-wm
               (python3.withPackages (ps: [ ps.pip ]))
               wayland
+              libxcomposite
+              libxdamage
+              libxext
+              libxfixes
+              libxi
+              libxrandr
+              libxrender
+              libxtst
               zlib
             ];
           runScript = pkgs.writeScript "binaryninja.sh" ''
@@ -81,6 +95,7 @@
               sed -i 's/^{/{\"python.interpreter\": \"\/usr\/lib\/libpython3.13.so\", /' "$BNCONFIG/settings.json"
             fi
 
+            export LD_LIBRARY_PATH="$BNDIR:''${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}/usr/lib"
             exec "$BNDIR/binaryninja" "$@"
           '';
           extraInstallCommands = ''
