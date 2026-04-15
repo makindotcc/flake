@@ -237,11 +237,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775781825,
-        "narHash": "sha256-L5yKTpR+alrZU2XYYvIxCeCP4LBHU5jhwSj7H1VAavg=",
+        "lastModified": 1776184304,
+        "narHash": "sha256-No6QGBmIv5ChiwKCcbkxjdEQ/RO2ZS1gD7SFy6EZ7rc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e35c39fca04fee829cecdf839a50eb9b54d8a701",
+        "rev": "3c7524c68348ef79ce48308e0978611a050089b2",
         "type": "github"
       },
       "original": {
@@ -332,11 +332,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1775811116,
-        "narHash": "sha256-t+HZK42pB6N+i5RGbuy7Xluez/VvWbembBdvzsc23Ss=",
+        "lastModified": 1776067740,
+        "narHash": "sha256-B35lpsqnSZwn1Lmz06BpwF7atPgFmUgw1l8KAV3zpVQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "54170c54449ea4d6725efd30d719c5e505f1c10e",
+        "rev": "7e495b747b51f95ae15e74377c5ce1fe69c1765f",
         "type": "github"
       },
       "original": {
@@ -588,11 +588,11 @@
     "wayfire-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1775660977,
-        "narHash": "sha256-vdPAA48fN2VL765BBvHhYU3PWnLD0RMvmQk7fjckAg8=",
+        "lastModified": 1776149892,
+        "narHash": "sha256-dp1nhzNaO/j4u6FNtQUGJjMkqNRRMKkaTUKjp8M7ODw=",
         "ref": "refs/heads/master",
-        "rev": "dfac6ab3fa98fa3b36285046b3a2d577eb25ddbd",
-        "revCount": 3461,
+        "rev": "93d22c82ff86f170be2c9d60cc0fdfc609756922",
+        "revCount": 3471,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/WayfireWM/wayfire"
